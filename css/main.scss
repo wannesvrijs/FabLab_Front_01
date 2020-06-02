@@ -1,0 +1,102 @@
+@import "./partials/reset";
+
+@import "./partials/fonts";
+
+@import "./partials/variables";
+
+@import "./partials/mixins";
+
+@import "~bootstrap/scss/bootstrap";
+
+p,
+label,
+input,
+button,
+select {
+  font-family: $hoofdfont;
+  font-size: 17px;
+}
+
+h1 {
+  font-family: $titelfont;
+  font-size: 90px;
+  line-height: 90px;
+  color: $blauw;
+}
+
+h2 {
+  font-size: 35px;
+  line-height: 45px;
+}
+
+h3,
+.topper_content {
+  font-size: 24px;
+  line-height: 35px;
+}
+
+// --------------------------------------------FORMS----------------------------------
+
+input {
+  border-radius: 0px;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid $groen;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  line-height: 0;
+}
+.inputerror {
+  background-color: $oranje;
+}
+.inputAllertMessage {
+  color: $oranje;
+  font-size: 14px;
+  line-height: 19px;
+}
+
+.navigation_brand {
+  color: $dblauw;
+  font-family: $titelfont;
+  font-size: 17px;
+}
+
+.navbar {
+  padding: 0, 3rem;
+  border-bottom: 3px solid $blauw;
+}
+
+.nav-link,
+.dropdown-item {
+  font-family: $hoofdfont;
+  color: $donker !important;
+  font-weight: 700;
+  padding: 0, 3rem !important;
+}
+
+.navigation_brand:hover,
+.nav-link:hover,
+.dropdown-item:hover,
+.navigation_active {
+  color: $blauw !important;
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  border-radius: 0px;
+}
+
+button {
+  background: transparent;
+  border-radius: 0;
+  border: 3px solid $blauw;
+}
+
+//---------------------------------login---------------------------------
+
+.login_registreer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
