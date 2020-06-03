@@ -14,20 +14,12 @@ export default () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navbar></Navbar>
-      <Container>
+      <Container fluid="true">
         <Topper
           title="Login"
           paragraph="Log je hier in om nieuwe fabmoments te creeren, inschrijvingen te raadplegen..."
         ></Topper>
-        <Row>
-          <Col
-            xs={{ span: 10, offset: 1 }}
-            md={{ span: 8, offset: 2 }}
-            l={{ span: 6, offset: 4 }}
-          >
-            <LoginForm></LoginForm>
-          </Col>
-        </Row>
+        <LoginForm></LoginForm>
         <Link href="/registreer">
           <a className="login_registreer">registreer nu</a>
         </Link>

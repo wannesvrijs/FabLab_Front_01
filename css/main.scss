@@ -8,6 +8,10 @@
 
 @import "~bootstrap/scss/bootstrap";
 
+html {
+  padding: 0 1.5rem;
+}
+
 p,
 label,
 input,
@@ -37,18 +41,53 @@ h3,
 
 // --------------------------------------------FORMS----------------------------------
 
+input:hover,
+select:hover {
+  height: 2rem;
+  margin-top: 0;
+  border-bottom: 3px solid $groen;
+}
+
+input:focus,
+select:focus {
+  height: 2rem;
+  outline: none;
+  margin-top: 0;
+  border-bottom: 3px solid $groen;
+}
+
 input {
+  appearance: none;
   border-radius: 0px;
   background: transparent;
-  border: none;
+  height: calc(2rem - 1px);
+  border: 0;
   border-bottom: 2px solid $groen;
   width: 100%;
-  padding: 0;
-  margin: 0;
-  line-height: 0;
+  margin-top: 1px;
+}
+
+select {
+  -webkit-appearance: none;
+  -webkit-border-radius: 0px;
+  background-image: linear-gradient(45deg, transparent 50%, $groen 50%),
+    linear-gradient(135deg, $groen 50%, transparent 50%);
+  background-position: calc(100% - 4px) center, 100% center;
+  background-size: 5px 5px, 5px 5px, 1px 1.5em;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  border: 0;
+  margin-top: 1px;
+  border-bottom: 2px solid $groen;
+
+  -moz-appearance: none;
+  display: block;
+  padding: 0.3rem;
+  height: calc(2rem - 1px);
+  width: 100%;
 }
 .inputerror {
-  background-color: $oranje;
+  border-bottom: 2px solid $oranje;
 }
 .inputAllertMessage {
   color: $oranje;
@@ -56,23 +95,45 @@ input {
   line-height: 19px;
 }
 
+button {
+  background: transparent;
+  border-radius: 0;
+  border: 3px solid $blauw;
+}
+
+label {
+  margin: 0;
+  text-transform: capitalize;
+}
+
+//---------------------------------login---------------------------------
+
+.login_registreer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+//----------------------------------------------------navigation------------------
+
 .navigation_brand {
-  color: $dblauw;
+  color: $groen !important;
   font-family: $titelfont;
   font-size: 17px;
+  padding: 0 1rem 1rem 1rem !important;
 }
 
 .navbar {
-  padding: 0, 3rem;
   border-bottom: 3px solid $blauw;
+  padding: 1rem 0 0 0;
+  background: $wit;
 }
 
 .nav-link,
 .dropdown-item {
   font-family: $hoofdfont;
   color: $donker !important;
-  font-weight: 700;
-  padding: 0, 3rem !important;
+  font-weight: 400;
+  padding: 0 1rem 1rem 1rem !important;
 }
 
 .navigation_brand:hover,
@@ -85,18 +146,20 @@ input {
 
 .dropdown-menu {
   border-radius: 0px;
+  border: 0;
+  border-top: 2px solid $blauw;
+  border-bottom: 2px solid $blauw;
+  margin-bottom: 1rem !important;
 }
 
-button {
-  background: transparent;
-  border-radius: 0;
-  border: 3px solid $blauw;
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='45' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280, 90, 211, 1%29' stroke-miterlimit='10' stroke-width='3' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+}
+.navbar-toggler {
+  padding: 0 0.5rem 1rem 0.5rem;
+  border: 0;
 }
 
-//---------------------------------login---------------------------------
-
-.login_registreer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.navbar-toggler:focus {
+  outline: none;
 }
