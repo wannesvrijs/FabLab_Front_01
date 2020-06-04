@@ -36,6 +36,10 @@ select {
   @include reading;
 }
 
+.reading_head {
+  @include readinghead;
+}
+
 a {
   @include link;
 }
@@ -155,4 +159,18 @@ footer {
   background-color: $oranje;
   min-height: 200px;
   width: 100%;
+}
+//-------------------------------------------STORE-------------------------------
+
+table {
+  div {
+    width: 1em;
+    height: 1em;
+    &.out_of_stock {
+      background-color: $oranje;
+    }
+    &.in_stock {
+      background-color: $blauw;
+    }
+  }
 }
