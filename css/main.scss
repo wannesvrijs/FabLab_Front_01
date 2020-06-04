@@ -8,8 +8,24 @@
 
 @import "~bootstrap/scss/bootstrap";
 
-html {
-  padding: 0 1.5rem;
+* {
+  text-align: left;
+}
+
+h1 {
+  @include subtitel;
+  &.hoofd {
+    @include titel;
+  }
+}
+
+h2 {
+  @include subtitel;
+}
+
+h3,
+.topper_content {
+  @include intro;
 }
 
 p,
@@ -17,26 +33,11 @@ label,
 input,
 button,
 select {
-  font-family: $hoofdfont;
-  font-size: 17px;
+  @include reading;
 }
 
-h1 {
-  font-family: $titelfont;
-  font-size: 90px;
-  line-height: 90px;
-  color: $blauw;
-}
-
-h2 {
-  font-size: 35px;
-  line-height: 45px;
-}
-
-h3,
-.topper_content {
-  font-size: 24px;
-  line-height: 35px;
+a {
+  @include link;
 }
 
 // --------------------------------------------FORMS----------------------------------
@@ -91,9 +92,7 @@ select {
   border-bottom: 2px solid $oranje;
 }
 .inputAllertMessage {
-  color: $oranje;
-  font-size: 14px;
-  line-height: 19px;
+  @include tiny($oranje);
 }
 
 button {
@@ -107,31 +106,26 @@ label {
   text-transform: capitalize;
 }
 
-//---------------------------------login---------------------------------
-
-.login_registreer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
 //----------------------------------------------------navigation------------------
 
-.navigation_brand {
-  color: $groen !important;
-  font-family: $titelfont;
-  font-size: 17px;
-  padding: 0 1rem 1rem 1rem !important;
-}
-
 .navbar {
-  border-bottom: 3px solid $blauw;
   padding: 1rem 0 0 0;
-  background: $wit;
+  background: transparent;
+  .navigation_brand {
+    @include intro;
+    padding: 0 1rem 1rem 1rem !important;
+  }
+  .dropdown-menu {
+    border-radius: 0px;
+    border: 0;
+    border-top: 2px solid $blauw;
+    border-bottom: 2px solid $blauw;
+    margin-bottom: 1rem !important;
+  }
 }
 
 .nav-link,
 .dropdown-item {
-  font-family: $hoofdfont;
   color: $donker !important;
   font-weight: 400;
   padding: 0 1rem 1rem 1rem !important;
@@ -145,22 +139,20 @@ label {
   cursor: pointer;
 }
 
-.dropdown-menu {
-  border-radius: 0px;
-  border: 0;
-  border-top: 2px solid $blauw;
-  border-bottom: 2px solid $blauw;
-  margin-bottom: 1rem !important;
-}
-
 .navbar-toggler-icon {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='45' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280, 90, 211, 1%29' stroke-miterlimit='10' stroke-width='3' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
 }
 .navbar-toggler {
   padding: 0 0.5rem 1rem 0.5rem;
   border: 0;
+  &:focus {
+    outline: none;
+  }
 }
 
-.navbar-toggler:focus {
-  outline: none;
+/////-------------------------------------footer------------------
+footer {
+  background-color: $oranje;
+  min-height: 200px;
+  width: 100%;
 }
