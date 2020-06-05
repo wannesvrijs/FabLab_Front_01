@@ -40,6 +40,10 @@ select {
   @include readinghead;
 }
 
+.tiny {
+  @include tiny;
+}
+
 a {
   @include link;
 }
