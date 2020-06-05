@@ -1,4 +1,4 @@
-import LoginForm from "../components/security/LoginForm";
+import LoginForm from "../components/security/LoginForm.jsx";
 import Layout from "../components/Layout";
 import Link from "next/link";
 
@@ -11,7 +11,9 @@ export default () => {
       >
         <LoginForm></LoginForm>
         <Link href="/registreer">
-          <a className="login_registreer">registreer nu</a>
+          <a className="login_registreer">
+            <span>registreer nu</span>
+          </a>
         </Link>
       </Layout>
     </>
