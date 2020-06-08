@@ -91,13 +91,13 @@ export default () => {
                 Contact
               </Nav.Link>
             </Link>
-            <Link href="/login" passHref>
+            <Link href="/account/login" passHref>
               <Nav.Link
                 className={classNames({
-                  navigation_active: router.pathname === "/login",
+                  navigation_active: router.pathname === "/account/login",
                 })}
               >
-                Login
+                Mijn Account
               </Nav.Link>
             </Link>
           </Nav>
