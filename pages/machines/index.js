@@ -1,5 +1,5 @@
-import Layout from "../components/Layout";
-import Machines from "../components/machines/Machines";
+import Layout from "../../components/Layout";
+import Machines from "../../components/machines/Machines";
 import axios from "axios";
 
 export default ({ data }) => {

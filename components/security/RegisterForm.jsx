@@ -1,7 +1,6 @@
 import { useForm } from "../../hooks/formhooks";
 import classNames from "classnames";
 import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
 import landenList from "../../store/landenList.json";
 import Router from "next/router";
 
@@ -38,8 +37,6 @@ export default () => {
     handleInputChange,
     handleSubmit,
   } = useForm(onSignUp);
-  const dispatch = useDispatch();
-  const { landen } = useSelector((state) => state);
 
   const handleVnInputBlur = () => {
     if (inputs.useVn && inputs.useVn.length < 2) {
