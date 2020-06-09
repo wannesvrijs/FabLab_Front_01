@@ -1,15 +1,15 @@
 import Layout from "../components/Layout";
 import Router from "next/router";
 import { parseCookies, setCookie, destroyCookie } from "nookies";
+import MyAccount from "../components/acccount/MyAccount";
+import { withoutAuth } from "../helpers/helpers";
 
-export default ({ nieuws, events }) => {
-  const cookies = parseCookies();
+export default (props) => {
+  const cookies = parseCookies;
 
   const logout = () => {
-    if (typeof cookies.jwtToken !== "undefined") {
-      destroyCookie(null, "jwtToken");
-      Router.push("/");
-    }
+    destroyCookie(null, "jwtToken");
+    Router.push("/");
   };
 
   return (
@@ -17,11 +17,18 @@ export default ({ nieuws, events }) => {
       <Layout
         title="Mijn Account Genk"
         description="Een FabLab (Fabrication – of Fabulous – Laboratory) is een kleinschalige werkplaats met een aanbod van computergestuurde gereedschappen met het doel om 'bijna alles' te kunnen maken."
-      ></Layout>
+      >
+        <MyAccount />
+      </Layout>
 
       <a>
         <span onClick={logout}>logout</span>
       </a>
     </>
   );
+};
+
+export const getServerSideProps = async (ctx) => {
+  withoutAuth(ctx, `/account/login`);
+  return { props: {} };
 };

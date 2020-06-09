@@ -1,4 +1,6 @@
-export default ({ data }) => {
+import Link from "next/link";
+
+export default ({ data, isAuth }) => {
   const handleButtonClick = () => {
     console.log("ingeschreven!");
   };
@@ -25,13 +27,31 @@ export default ({ data }) => {
               )}
               {event.eveMetInschrijvingen &&
                 (event.inschrijvings.length < event.eveMaxPers ? (
-                  <button onClick={handleButtonClick}>Schrijf me in!</button>
+                  isAuth ? (
+                    <button onClick={handleButtonClick}>Schrijf me in!</button>
+                  ) : (
+                    <p className="tiny">
+                      <Link href="/account/login">
+                        <a>log in </a>
+                      </Link>
+                      om je in te schrijven
+                    </p>
+                  )
                 ) : (
                   <>
                     <p className="tiny">{event.eveTitel} is reeds volzet</p>
-                    <button onClick={handleButtonClick}>
-                      Zet me op de wachtlijst
-                    </button>
+                    {isAuth ? (
+                      <button onClick={handleButtonClick}>
+                        Zet me op de wachtlijst
+                      </button>
+                    ) : (
+                      <p className="tiny">
+                        <Link href="/account/login">
+                          <a>log in </a>
+                        </Link>
+                        om je op de wachtlijst te zetten
+                      </p>
+                    )}
                   </>
                 ))}
             </td>

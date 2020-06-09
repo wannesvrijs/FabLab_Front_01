@@ -1,0 +1,884 @@
+[
+  {
+    "NL_SHORT": "Andorra"
+  },
+  {
+    "NL_SHORT": "Verenigde Arabische Emiraten"
+  },
+  {
+    "NL_SHORT": "Afghanistan"
+  },
+  {
+    "NL_SHORT": "Antigua en Barbuda"
+  },
+  {
+    "NL_SHORT": "Afars en Issas"
+  },
+  {
+    "NL_SHORT": "Anguilla"
+  },
+  {
+    "NL_SHORT": "Albanië"
+  },
+  {
+    "NL_SHORT": "Armenië"
+  },
+  {
+    "NL_SHORT": "Nederlandse Antillen"
+  },
+  {
+    "NL_SHORT": "Nederlandse Antillen"
+  },
+  {
+    "NL_SHORT": "Angola"
+  },
+  {
+    "NL_SHORT": "Antarctica"
+  },
+  {
+    "NL_SHORT": "Argentinië"
+  },
+  {
+    "NL_SHORT": "Amerikaans-Samoa"
+  },
+  {
+    "NL_SHORT": "Oostenrijk"
+  },
+  {
+    "NL_SHORT": "Australië"
+  },
+  {
+    "NL_SHORT": "Aruba"
+  },
+  {
+    "NL_SHORT": "ëlandeilanden"
+  },
+  {
+    "NL_SHORT": "Azerbeidzjan"
+  },
+  {
+    "NL_SHORT": "Bosnië en Herzegovina"
+  },
+  {
+    "NL_SHORT": "Barbados"
+  },
+  {
+    "NL_SHORT": "Bangladesh"
+  },
+  {
+    "NL_SHORT": "België"
+  },
+  {
+    "NL_SHORT": "Burkina Faso"
+  },
+  {
+    "NL_SHORT": "Bulgarije"
+  },
+  {
+    "NL_SHORT": "Bahrein"
+  },
+  {
+    "NL_SHORT": "Burundi"
+  },
+  {
+    "NL_SHORT": "Benin"
+  },
+  {
+    "NL_SHORT": "Saint-Barthëlemy"
+  },
+  {
+    "NL_SHORT": "Bermuda"
+  },
+  {
+    "NL_SHORT": "Brunei Darussalam"
+  },
+  {
+    "NL_SHORT": "Bolivië"
+  },
+  {
+    "NL_SHORT": "Bonaire, Sint-Eustatius en Saba"
+  },
+  {
+    "NL_SHORT": "Brits Antarctisch Territorium"
+  },
+  {
+    "NL_SHORT": "Brazilië"
+  },
+  {
+    "NL_SHORT": "Bahamas"
+  },
+  {
+    "NL_SHORT": "Bhutan"
+  },
+  {
+    "NL_SHORT": "Birma"
+  },
+  {
+    "NL_SHORT": "Bouveteiland"
+  },
+  {
+    "NL_SHORT": "Botswana"
+  },
+  {
+    "NL_SHORT": "Wit-Rusland"
+  },
+  {
+    "NL_SHORT": "Belize"
+  },
+  {
+    "NL_SHORT": "Canada"
+  },
+  {
+    "NL_SHORT": "Cocos- (Keeling-) eilanden"
+  },
+  {
+    "NL_SHORT": "Congo"
+  },
+  {
+    "NL_SHORT": "Centraal-Afrika"
+  },
+  {
+    "NL_SHORT": "Congo"
+  },
+  {
+    "NL_SHORT": "Zwitserland"
+  },
+  {
+    "NL_SHORT": "Ivoorkust"
+  },
+  {
+    "NL_SHORT": "Cookeilanden"
+  },
+  {
+    "NL_SHORT": "Chili"
+  },
+  {
+    "NL_SHORT": "Kameroen"
+  },
+  {
+    "NL_SHORT": "China"
+  },
+  {
+    "NL_SHORT": "Colombia"
+  },
+  {
+    "NL_SHORT": "Costa Rica"
+  },
+  {
+    "NL_SHORT": "Servië en Montenegro"
+  },
+  {
+    "NL_SHORT": "Tsjecho-Slowakije"
+  },
+  {
+    "NL_SHORT": "Canton en Enderbury Eilanden"
+  },
+  {
+    "NL_SHORT": "Cuba"
+  },
+  {
+    "NL_SHORT": "Kaapverdië"
+  },
+  {
+    "NL_SHORT": "Curaëao"
+  },
+  {
+    "NL_SHORT": "Christmaseiland"
+  },
+  {
+    "NL_SHORT": "Cyprus"
+  },
+  {
+    "NL_SHORT": "Tsjechië"
+  },
+  {
+    "NL_SHORT": "Oost-Duitsland"
+  },
+  {
+    "NL_SHORT": "Duitsland"
+  },
+  {
+    "NL_SHORT": "West-Duitsland"
+  },
+  {
+    "NL_SHORT": "Djibouti"
+  },
+  {
+    "NL_SHORT": "Denemarken"
+  },
+  {
+    "NL_SHORT": "Dominica"
+  },
+  {
+    "NL_SHORT": "Dominicaanse Republiek"
+  },
+  {
+    "NL_SHORT": "Dahomey"
+  },
+  {
+    "NL_SHORT": "Algerije"
+  },
+  {
+    "NL_SHORT": "Ecuador"
+  },
+  {
+    "NL_SHORT": "Estland"
+  },
+  {
+    "NL_SHORT": "Egypte"
+  },
+  {
+    "NL_SHORT": "Westelijke Sahara"
+  },
+  {
+    "NL_SHORT": "Eritrea"
+  },
+  {
+    "NL_SHORT": "Spanje"
+  },
+  {
+    "NL_SHORT": "Ethiopië"
+  },
+  {
+    "NL_SHORT": "Ethiopië"
+  },
+  {
+    "NL_SHORT": "Finland"
+  },
+  {
+    "NL_SHORT": "Fiji"
+  },
+  {
+    "NL_SHORT": "Falklandeilanden (Malvinas)"
+  },
+  {
+    "NL_SHORT": "Micronesië"
+  },
+  {
+    "NL_SHORT": "Faerëereilanden"
+  },
+  {
+    "NL_SHORT": "Frankrijk"
+  },
+  {
+    "NL_SHORT": "Metropolitaans Frankrijk"
+  },
+  {
+    "NL_SHORT": "Gabon"
+  },
+  {
+    "NL_SHORT": "Verenigd Koninkrijk"
+  },
+  {
+    "NL_SHORT": "Grenada"
+  },
+  {
+    "NL_SHORT": "Gilberteilanden"
+  },
+  {
+    "NL_SHORT": "Georgië"
+  },
+  {
+    "NL_SHORT": "Frans-Guyana"
+  },
+  {
+    "NL_SHORT": "Guernsey"
+  },
+  {
+    "NL_SHORT": "Ghana"
+  },
+  {
+    "NL_SHORT": "Gibraltar"
+  },
+  {
+    "NL_SHORT": "Groenland"
+  },
+  {
+    "NL_SHORT": "Gambia"
+  },
+  {
+    "NL_SHORT": "Guinea"
+  },
+  {
+    "NL_SHORT": "Guadeloupe"
+  },
+  {
+    "NL_SHORT": "Equatoriaal-Guinea"
+  },
+  {
+    "NL_SHORT": "Griekenland"
+  },
+  {
+    "NL_SHORT": "Zuid-Georgië en de Zuid-Sandwicheilanden"
+  },
+  {
+    "NL_SHORT": "Guatemala"
+  },
+  {
+    "NL_SHORT": "Guam"
+  },
+  {
+    "NL_SHORT": "Guinee-Bissau"
+  },
+  {
+    "NL_SHORT": "Guyana"
+  },
+  {
+    "NL_SHORT": "Hongkong"
+  },
+  {
+    "NL_SHORT": "Heard- en McDonaldeilanden"
+  },
+  {
+    "NL_SHORT": "Honduras"
+  },
+  {
+    "NL_SHORT": "Kroatië"
+  },
+  {
+    "NL_SHORT": "Haëti"
+  },
+  {
+    "NL_SHORT": "Hongarije"
+  },
+  {
+    "NL_SHORT": "Opper-Volta"
+  },
+  {
+    "NL_SHORT": "Indonesië"
+  },
+  {
+    "NL_SHORT": "Ierland"
+  },
+  {
+    "NL_SHORT": "Israël"
+  },
+  {
+    "NL_SHORT": "Eiland Man"
+  },
+  {
+    "NL_SHORT": "India"
+  },
+  {
+    "NL_SHORT": "Brits Indische oceaan"
+  },
+  {
+    "NL_SHORT": "Irak"
+  },
+  {
+    "NL_SHORT": "Iran"
+  },
+  {
+    "NL_SHORT": "Ijsland"
+  },
+  {
+    "NL_SHORT": "Italië"
+  },
+  {
+    "NL_SHORT": "Jersey"
+  },
+  {
+    "NL_SHORT": "Jamaica"
+  },
+  {
+    "NL_SHORT": "Jordanië"
+  },
+  {
+    "NL_SHORT": "Japan"
+  },
+  {
+    "NL_SHORT": "Johnston-atol"
+  },
+  {
+    "NL_SHORT": "Kenia"
+  },
+  {
+    "NL_SHORT": "Kirgistan"
+  },
+  {
+    "NL_SHORT": "Kampuchea"
+  },
+  {
+    "NL_SHORT": "Khmerische Rep. Cambodja"
+  },
+  {
+    "NL_SHORT": "Cambodja"
+  },
+  {
+    "NL_SHORT": "Kiribati"
+  },
+  {
+    "NL_SHORT": "Kiribati"
+  },
+  {
+    "NL_SHORT": "Comoren"
+  },
+  {
+    "NL_SHORT": "Saint Kitts en Nevis"
+  },
+  {
+    "NL_SHORT": "Sankt Kitts, Nevis en Anguilla"
+  },
+  {
+    "NL_SHORT": "Noord-Korea"
+  },
+  {
+    "NL_SHORT": "Zuid Korea"
+  },
+  {
+    "NL_SHORT": "Koeweit"
+  },
+  {
+    "NL_SHORT": "Caymaneilanden"
+  },
+  {
+    "NL_SHORT": "Kazachstan"
+  },
+  {
+    "NL_SHORT": "Laos"
+  },
+  {
+    "NL_SHORT": "Libanon"
+  },
+  {
+    "NL_SHORT": "Sint Lucia"
+  },
+  {
+    "NL_SHORT": "Liechtenstein"
+  },
+  {
+    "NL_SHORT": "Sri Lanka"
+  },
+  {
+    "NL_SHORT": "Liberia"
+  },
+  {
+    "NL_SHORT": "Lesotho"
+  },
+  {
+    "NL_SHORT": "Litouwen"
+  },
+  {
+    "NL_SHORT": "Luxemburg"
+  },
+  {
+    "NL_SHORT": "Letland"
+  },
+  {
+    "NL_SHORT": "Libië"
+  },
+  {
+    "NL_SHORT": "Marokko"
+  },
+  {
+    "NL_SHORT": "Monaco"
+  },
+  {
+    "NL_SHORT": "Moldavië"
+  },
+  {
+    "NL_SHORT": "Montenegro"
+  },
+  {
+    "NL_SHORT": "Sint Maarten (Frans deel)"
+  },
+  {
+    "NL_SHORT": "Madagascar"
+  },
+  {
+    "NL_SHORT": "Marshalleilanden"
+  },
+  {
+    "NL_SHORT": "Midway-eilanden"
+  },
+  {
+    "NL_SHORT": "Macedonië, voormalige Joegoslavische Republiek"
+  },
+  {
+    "NL_SHORT": "Noord-Macedonië"
+  },
+  {
+    "NL_SHORT": "Mali"
+  },
+  {
+    "NL_SHORT": "Myanmar"
+  },
+  {
+    "NL_SHORT": "Mongolië"
+  },
+  {
+    "NL_SHORT": "Macao"
+  },
+  {
+    "NL_SHORT": "Noordelijke Marianen"
+  },
+  {
+    "NL_SHORT": "Martinique"
+  },
+  {
+    "NL_SHORT": "Mauritanië"
+  },
+  {
+    "NL_SHORT": "Montserrat"
+  },
+  {
+    "NL_SHORT": "Malta"
+  },
+  {
+    "NL_SHORT": "Mauritius"
+  },
+  {
+    "NL_SHORT": "Maldiven"
+  },
+  {
+    "NL_SHORT": "Malawi"
+  },
+  {
+    "NL_SHORT": "Mexico"
+  },
+  {
+    "NL_SHORT": "Maleisië"
+  },
+  {
+    "NL_SHORT": "Mozambique"
+  },
+  {
+    "NL_SHORT": "Namibië"
+  },
+  {
+    "NL_SHORT": "Nieuw-Caledonië"
+  },
+  {
+    "NL_SHORT": "Niger"
+  },
+  {
+    "NL_SHORT": "Norfolkeiland"
+  },
+  {
+    "NL_SHORT": "Nigeria"
+  },
+  {
+    "NL_SHORT": "Nieuwe Hebriden"
+  },
+  {
+    "NL_SHORT": "Nicaragua"
+  },
+  {
+    "NL_SHORT": "Nederland"
+  },
+  {
+    "NL_SHORT": "Noorwegen"
+  },
+  {
+    "NL_SHORT": "Nepal"
+  },
+  {
+    "NL_SHORT": "Koningin Maudland"
+  },
+  {
+    "NL_SHORT": "Nauru"
+  },
+  {
+    "NL_SHORT": "Neutrale Zone"
+  },
+  {
+    "NL_SHORT": "Niue"
+  },
+  {
+    "NL_SHORT": "Nieuw-Zeeland"
+  },
+  {
+    "NL_SHORT": "Oman"
+  },
+  {
+    "NL_SHORT": "Panama"
+  },
+  {
+    "NL_SHORT": "Panama"
+  },
+  {
+    "NL_SHORT": "Trustgebied van de Pacifische Eilanden"
+  },
+  {
+    "NL_SHORT": "Peru"
+  },
+  {
+    "NL_SHORT": "Frans-Polynesië"
+  },
+  {
+    "NL_SHORT": "Papoea-Nieuw-Guinea"
+  },
+  {
+    "NL_SHORT": "Filipijnen"
+  },
+  {
+    "NL_SHORT": "Pakistan"
+  },
+  {
+    "NL_SHORT": "Polen"
+  },
+  {
+    "NL_SHORT": "Saint-Pierre en Miquelon"
+  },
+  {
+    "NL_SHORT": "Pitcairn"
+  },
+  {
+    "NL_SHORT": "Puerto Rico"
+  },
+  {
+    "NL_SHORT": "Bezette Palestijnse gebieden"
+  },
+  {
+    "NL_SHORT": "Portugal"
+  },
+  {
+    "NL_SHORT": "Diverse pacifische eilanden van de V.S."
+  },
+  {
+    "NL_SHORT": "Palau"
+  },
+  {
+    "NL_SHORT": "Paraguay"
+  },
+  {
+    "NL_SHORT": "Panamakanaalzone"
+  },
+  {
+    "NL_SHORT": "Qatar"
+  },
+  {
+    "NL_SHORT": "Rëunion"
+  },
+  {
+    "NL_SHORT": "Zuid-Rhodesië"
+  },
+  {
+    "NL_SHORT": "Roemenië"
+  },
+  {
+    "NL_SHORT": "Servië"
+  },
+  {
+    "NL_SHORT": "Rusland"
+  },
+  {
+    "NL_SHORT": "Rwanda"
+  },
+  {
+    "NL_SHORT": "Saoedi-Arabië"
+  },
+  {
+    "NL_SHORT": "Salomonseilanden"
+  },
+  {
+    "NL_SHORT": "Seychellen"
+  },
+  {
+    "NL_SHORT": "Soedan"
+  },
+  {
+    "NL_SHORT": "Soedan"
+  },
+  {
+    "NL_SHORT": "Zweden"
+  },
+  {
+    "NL_SHORT": "Finland"
+  },
+  {
+    "NL_SHORT": "Singapore"
+  },
+  {
+    "NL_SHORT": "Sint Helena, Ascension en Tristan da Cunha"
+  },
+  {
+    "NL_SHORT": "Slovenië"
+  },
+  {
+    "NL_SHORT": "Svalbard en Jan Mayen"
+  },
+  {
+    "NL_SHORT": "Sikkim"
+  },
+  {
+    "NL_SHORT": "Slowakije"
+  },
+  {
+    "NL_SHORT": "Sierra Leone"
+  },
+  {
+    "NL_SHORT": "San Marino"
+  },
+  {
+    "NL_SHORT": "Senegal"
+  },
+  {
+    "NL_SHORT": "Somalië"
+  },
+  {
+    "NL_SHORT": "Suriname"
+  },
+  {
+    "NL_SHORT": "Zuid-Soedan"
+  },
+  {
+    "NL_SHORT": "Sëo Tomë en Prëncipe"
+  },
+  {
+    "NL_SHORT": "Sovjet-Unie"
+  },
+  {
+    "NL_SHORT": "El Salvador"
+  },
+  {
+    "NL_SHORT": "Sint Maarten (Nederlands deel)"
+  },
+  {
+    "NL_SHORT": "Syrië"
+  },
+  {
+    "NL_SHORT": "Swaziland"
+  },
+  {
+    "NL_SHORT": "Turks- en Caicoseilanden"
+  },
+  {
+    "NL_SHORT": "Tsjaad"
+  },
+  {
+    "NL_SHORT": "Franse zuidelijke gebieden"
+  },
+  {
+    "NL_SHORT": "Togo"
+  },
+  {
+    "NL_SHORT": "Thailand"
+  },
+  {
+    "NL_SHORT": "Tadzjikistan"
+  },
+  {
+    "NL_SHORT": "Tokelau"
+  },
+  {
+    "NL_SHORT": "Oost-Timor"
+  },
+  {
+    "NL_SHORT": "Turkmenistan"
+  },
+  {
+    "NL_SHORT": "Tunesië"
+  },
+  {
+    "NL_SHORT": "Tonga"
+  },
+  {
+    "NL_SHORT": "Portugees Timor"
+  },
+  {
+    "NL_SHORT": "Turkije"
+  },
+  {
+    "NL_SHORT": "Trinidad en Tobago"
+  },
+  {
+    "NL_SHORT": "Tuvalu"
+  },
+  {
+    "NL_SHORT": "Taiwan, Chinese provincie"
+  },
+  {
+    "NL_SHORT": "Tanzanië"
+  },
+  {
+    "NL_SHORT": "Oekraëne"
+  },
+  {
+    "NL_SHORT": "Oeganda"
+  },
+  {
+    "NL_SHORT": "Kleine afgelegen eilanden van de Verenigde Staten"
+  },
+  {
+    "NL_SHORT": "Verenigde Staten"
+  },
+  {
+    "NL_SHORT": "Uruguay"
+  },
+  {
+    "NL_SHORT": "Oezbekistan"
+  },
+  {
+    "NL_SHORT": "Vaticaanstad"
+  },
+  {
+    "NL_SHORT": "Heilige stoel"
+  },
+  {
+    "NL_SHORT": "Saint Vincent en de Grenadines"
+  },
+  {
+    "NL_SHORT": "Noord-Vietnam"
+  },
+  {
+    "NL_SHORT": "Venezuela"
+  },
+  {
+    "NL_SHORT": "Britse Maagdeneilanden"
+  },
+  {
+    "NL_SHORT": "Amerikaanse Maagdeneilanden"
+  },
+  {
+    "NL_SHORT": "Zuid-Vietnam"
+  },
+  {
+    "NL_SHORT": "Vietnam"
+  },
+  {
+    "NL_SHORT": "Vanuatu"
+  },
+  {
+    "NL_SHORT": "Wallis en Futuna"
+  },
+  {
+    "NL_SHORT": "Wake-eiland"
+  },
+  {
+    "NL_SHORT": "Samoa"
+  },
+  {
+    "NL_SHORT": "Onbekend"
+  },
+  {
+    "NL_SHORT": "Zuid-Jemen"
+  },
+  {
+    "NL_SHORT": "Jemen"
+  },
+  {
+    "NL_SHORT": "Noord-Jemen"
+  },
+  {
+    "NL_SHORT": "Mayotte"
+  },
+  {
+    "NL_SHORT": "Joegoslavië"
+  },
+  {
+    "NL_SHORT": "Joegoslavië"
+  },
+  {
+    "NL_SHORT": "Zuid-Afrika"
+  },
+  {
+    "NL_SHORT": "Zambia"
+  },
+  {
+    "NL_SHORT": "Zaëre"
+  },
+  {
+    "NL_SHORT": "Zimbabwe"
+  }
+]

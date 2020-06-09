@@ -1,16 +1,9 @@
 import LoginForm from "../../components/security/LoginForm";
 import Layout from "../../components/Layout";
 import Link from "next/link";
-import Router from "next/router";
-import { parseCookies } from "nookies";
+import { withAuth, isAuth } from "../../helpers/helpers";
 
-export default ({ stars }) => {
-  const cookies = parseCookies();
-
-  if (typeof cookies.jwtToken !== "undefined") {
-    Router.push("/account");
-  }
-
+export default () => {
   return (
     <>
       <Layout
@@ -20,10 +13,15 @@ export default ({ stars }) => {
         <LoginForm></LoginForm>
         <Link href="/account/registreer">
           <a className="login_registreer">
-            <span>{stars} registreer nu</span>
+            <span>registreer nu</span>
           </a>
         </Link>
       </Layout>
     </>
   );
+};
+
+export const getServerSideProps = async (ctx) => {
+  withAuth(ctx, `/account`);
+  return { props: {} };
 };

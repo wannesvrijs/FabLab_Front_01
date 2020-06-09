@@ -3,8 +3,9 @@ import Link from "next/link";
 import axios from "axios";
 import Nieuws from "../components/main/Nieuws";
 import Events from "../components/main/Events";
+import { isAuth } from "../helpers/helpers";
 
-export default ({ nieuws, events }) => {
+export default ({ nieuws, events, isAuth }) => {
   return (
     <>
       <Layout
@@ -18,13 +19,13 @@ export default ({ nieuws, events }) => {
           </a>
         </Link>
         <Nieuws data={nieuws}></Nieuws>
-        <Events data={events}></Events>
+        <Events data={events} isAuth={isAuth}></Events>
       </Layout>
     </>
   );
 };
 
-export const getServerSideProps = async () => {
+export const getServerSideProps = async (ctx) => {
   const requestOne = axios.get(`${process.env.NEXT_PUBLIC_API_ENDPOINT}nieuws`);
   const requestTwo = axios.get(`${process.env.NEXT_PUBLIC_API_ENDPOINT}events`);
 
@@ -34,6 +35,7 @@ export const getServerSideProps = async () => {
     props: {
       nieuws: nieuws.data,
       events: events.data,
+      isAuth: isAuth(ctx),
     },
   };
 };

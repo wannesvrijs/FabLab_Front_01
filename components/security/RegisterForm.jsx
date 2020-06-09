@@ -2,7 +2,7 @@ import { useForm } from "../../hooks/formhooks";
 import classNames from "classnames";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { getLanden } from "../../store/landen";
+import landenList from "../../store/landenList.json";
 import Router from "next/router";
 
 export default () => {
@@ -181,11 +181,13 @@ export default () => {
           })}
           value={inputs.useLand || ""}
         />
-        <datalist id="dataList">
-          {landen.data.map((land) => (
-            <option key={land.id} value={land.landNaam} />
-          ))}
-        </datalist>
+        {inputs.useLand && inputs.useLand.length > 2 && (
+          <datalist id="dataList">
+            {landenList.map((land, index) => (
+              <option key={index} value={land.NL_SHORT} />
+            ))}
+          </datalist>
+        )}
 
         <label htmlFor="login_gemeente">gemeente:</label>
         <input

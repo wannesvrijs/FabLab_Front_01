@@ -1,5 +1,4 @@
 export default ({ data }) => {
-  console.log(data);
   return data["hydra:member"].map((item) => (
     <>
       <h3>{item.infoSubtitel}</h3>

@@ -336,3 +336,126 @@ table {
 .error {
   color: $oranje;
 }
+// -------------------------- NAV2 ---------------------
+
+.navigatie {
+  color: $zwart;
+  &:hover {
+    color: $blauw;
+  }
+  div {
+    display: flex;
+    align-items: center;
+    a {
+      margin-right: auto;
+      @include intro;
+    }
+    .hamburger {
+      width: 10px;
+      height: 10px;
+      background-color: red;
+    }
+  }
+  ul {
+    & > li {
+      .profielsvg {
+        display: none;
+      }
+      ul {
+        li {
+          overflow: hidden;
+          max-height: 0;
+          transition: max-height 500ms ease;
+        }
+      }
+      &:hover {
+        li {
+          max-height: 150px;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: $md) {
+  .navigatie {
+    display: flex;
+    align-items: center;
+    div {
+      margin-right: auto;
+      a {
+        display: inline;
+      }
+      .hamburger {
+        display: none;
+      }
+    }
+    & > ul {
+      display: flex;
+      & > li {
+        position: relative;
+        .profielsvg {
+          display: inline;
+        }
+        a span {
+          display: none;
+        }
+        ul {
+          position: absolute;
+
+          li {
+            overflow: hidden;
+            max-height: 0;
+            transition: max-height 500ms ease;
+          }
+        }
+        &:hover {
+          li {
+            max-height: 150px;
+          }
+        }
+      }
+    }
+  }
+}
+
+// @media (min-width: $md) {
+//   .navigatie {
+//     display: flex;
+//     align-items: center;
+//     a {
+//       color: $zwart;
+//       &:hover {
+//         color: $blauw;
+//       }
+//     }
+//     & > a {
+//       margin-right: auto;
+//       @include intro;
+//       padding: 0 1.5rem;
+//     }
+//     & > ul {
+//       display: flex;
+//       & > li {
+//         padding: 0 1.5rem;
+//         position: relative;
+//         ul {
+//           display: none;
+//           position: absolute;
+//         }
+//         &:hover {
+//           ul {
+//             display: block;
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
+
+.profielsvg {
+  stroke: $zwart;
+  &:hover {
+    stroke: $blauw;
+  }
+}

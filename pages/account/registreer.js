@@ -1,16 +1,9 @@
 import Layout from "../../components/Layout";
 import Registerform from "../../components/security/Registerform";
 import Link from "next/link";
-import Router from "next/router";
-import { parseCookies } from "nookies";
+import { withAuth } from "../../helpers/helpers";
 
-export default () => {
-  const cookies = parseCookies();
-
-  if (typeof cookies.jwtToken !== "undefined") {
-    Router.push("/account");
-  }
-
+export default (props) => {
   return (
     <>
       <Layout
@@ -26,4 +19,9 @@ export default () => {
       </Layout>
     </>
   );
+};
+
+export const getServerSideProps = async (ctx) => {
+  withAuth(ctx, `/account`);
+  return { props: {} };
 };
