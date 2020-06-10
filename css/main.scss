@@ -50,14 +50,14 @@ a {
 
 // --------------------------------------------FORMS----------------------------------
 
-input:hover,
+input[type="text"]:hover,
 select:hover {
   height: 2rem;
   margin-top: 0;
   border-bottom: 3px solid $groen;
 }
 
-input:focus,
+input[type="text"]:focus,
 select:focus {
   height: 2rem;
   outline: none;
@@ -65,7 +65,7 @@ select:focus {
   border-bottom: 3px solid $groen;
 }
 
-input {
+input[type="text"] {
   appearance: none;
   border-radius: 0px;
   background: transparent;

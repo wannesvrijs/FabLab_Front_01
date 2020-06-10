@@ -123,8 +123,8 @@ const Dropzone = () => {
       ) : (
         ""
       )}
-      <a className="drop-container" onClick={fileInputClicked}>
-        klik hier
+      <a onClick={fileInputClicked}>
+        <span>Upload afbeeldingen</span>
       </a>
       <input
         ref={fileInputRef}
