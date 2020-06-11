@@ -2,26 +2,23 @@
 /* INITIAL STATE */
 /*****************/
 const initialState = {
-  isAuth: false,
-  loading: false,
+  id: "",
+  vn: "",
+  an: "",
 };
 
 /*********/
 /* TYPES */
 /*********/
-const SETAUTH = "SETAUTH";
-const DELETEAUTH = "DELETEAUTH";
+const SETUSER = "SETUSER";
 
 /*******************/
 /* ACTION CREATORS */
 /*******************/
 
-export const setAuth = () => ({
-  type: SETAUTH,
-});
-
-export const deleteAuth = () => ({
-  type: DELETEAUTH,
+export const setUser = (data) => ({
+  type: SETUSER,
+  payload: data,
 });
 
 /***********/
@@ -29,15 +26,11 @@ export const deleteAuth = () => ({
 /***********/
 export default (state = initialState, { type, payload }) => {
   switch (type) {
-    case SETAUTH:
+    case SETUSER:
       return {
-        ...state,
-        isAuth: true,
-      };
-    case DELETEAUTH:
-      return {
-        ...state,
-        isAuth: false,
+        id: payload.id,
+        vn: payload.vn,
+        an: payload.an,
       };
     default:
       return state;

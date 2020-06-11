@@ -1,17 +1,8 @@
 import Layout from "../../components/Layout";
-import Router from "next/router";
-import { parseCookies, setCookie, destroyCookie } from "nookies";
 import MyAccount from "../../components/acccount/MyAccount";
-import { withoutAuth } from "../../helpers/helpers";
+import { withoutAuth, logout } from "../../helpers/helpers";
 
 export default (props) => {
-  const cookies = parseCookies;
-
-  const logout = () => {
-    destroyCookie(null, "jwtToken");
-    Router.push("/");
-  };
-
   return (
     <>
       <Layout

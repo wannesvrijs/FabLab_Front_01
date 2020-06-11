@@ -1,20 +1,34 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
-import postReducer from "./posts";
-import landReducer from "./landen";
-import authReducer from "./auth";
+import { createWrapper } from "next-redux-wrapper";
+import storage from "redux-persist/lib/storage"; // defaults to localStorage for web
+import { persistStore, persistReducer } from "redux-persist";
+
+import fabReducer from "./myfabmoments";
+import userReducer from "./user";
 import thunk from "redux-thunk";
 import logger from "redux-logger";
 
-const initialState = {};
 const middleware = [thunk, logger];
 
-export default createStore(
+const persistConfig = {
+  key: "root",
+  storage,
+};
+
+const persistedReducer = persistReducer(
+  persistConfig,
   combineReducers({
-    post: postReducer,
-    landen: landReducer,
-    auth: authReducer,
-  }),
-  initialState,
+    myfabmoments: fabReducer,
+    user: userReducer,
+  })
+);
+
+export const store = createStore(
+  persistedReducer,
   composeWithDevTools(applyMiddleware(...middleware))
 );
+export const persistor = persistStore(store);
+
+const makeStore = () => store;
+export default createWrapper(makeStore);

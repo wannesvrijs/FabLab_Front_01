@@ -1,4 +1,6 @@
-import { parseCookies } from "nookies";
+import { parseCookies, destroyCookie } from "nookies";
+import Router from "next/router";
+import { persistor } from "../store";
 
 export const withAuth = (ctx, url) => {
   const cookies = parseCookies(ctx);
@@ -21,4 +23,11 @@ export const withoutAuth = (ctx, url) => {
 export const isAuth = (ctx) => {
   const cookies = parseCookies(ctx);
   return typeof cookies.jwtToken === "undefined" ? false : true;
+};
+
+export const logout = () => {
+  persistor.purge();
+  const cookies = parseCookies;
+  destroyCookie(null, "jwtToken");
+  Router.push("/");
 };
