@@ -17,7 +17,6 @@ const LOADFABMOMENTS = "LOADFABMOMENTS";
 const SETFABMOMENTS = "SETFABMOMENTS";
 const ADDFABMOMENTS = "ADDFABMOMENTS";
 const ERRORFABMOMENTS = "ERRORFABMOMENTS";
-const CLEARFABMOMENTS = "CLEARFABMOMENTS";
 
 /*******************/
 /* ACTION CREATORS */
@@ -62,9 +61,6 @@ export const errorFabmoments = (msg) => ({
   type: ERRORFABMOMENTS,
   payload: msg,
 });
-export const clearFabmoments = () => ({
-  type: CLEARFABMOMENTS,
-});
 
 /***********/
 /* REDUCER */
@@ -94,12 +90,6 @@ export default (state = initialState, { type, payload }) => {
         ...state,
         loading: false,
         error: payload,
-      };
-    case CLEARFABMOMENTS:
-      return {
-        loading: false,
-        error: "",
-        data: [],
       };
     default:
       return state;

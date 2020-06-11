@@ -3,8 +3,8 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import { createWrapper } from "next-redux-wrapper";
 import storage from "redux-persist/lib/storage"; // defaults to localStorage for web
 import { persistStore, persistReducer } from "redux-persist";
-
-import fabReducer from "./myfabmoments";
+import fabCreatorReducer from "./myFabCreators";
+import fabReducer from "./myFabmoments";
 import userReducer from "./user";
 import thunk from "redux-thunk";
 import logger from "redux-logger";
@@ -19,7 +19,8 @@ const persistConfig = {
 const persistedReducer = persistReducer(
   persistConfig,
   combineReducers({
-    myfabmoments: fabReducer,
+    myFabCreators: fabCreatorReducer,
+    myFabmoments: fabReducer,
     user: userReducer,
   })
 );

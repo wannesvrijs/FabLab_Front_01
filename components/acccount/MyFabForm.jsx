@@ -5,6 +5,7 @@ export default () => {
   const onCreation = () => {
     console.log(inputs.fabDatum);
   };
+
   const { inputs, errors, handleInputChange, handleSubmit } = useForm(
     onCreation
   );
