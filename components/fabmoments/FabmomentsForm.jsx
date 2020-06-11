@@ -15,21 +15,21 @@ export default ({ materiaal, techniek }) => {
   const { inputs, errors, handleInputChange, handleSubmit } = useForm(onSearch);
 
   const materiaalChangeHandler = (e) => {
-    const { name, checked } = e.target;
+    const { value, checked } = e.target;
     if (checked) {
-      setMaterialen([...materialen, name]);
+      setMaterialen([...materialen, value]);
     } else {
-      setMaterialen([...materialen.filter((mat) => mat !== name)]);
+      setMaterialen([...materialen.filter((mat) => mat !== value)]);
     }
   };
 
   const techniekChangeHandler = (e) => {
-    const { name, checked } = e.target;
+    const { value, checked } = e.target;
 
     if (checked) {
-      setTechnieken([...technieken, name]);
+      setTechnieken([...technieken, value]);
     } else {
-      setTechnieken([...technieken.filter((mat) => mat !== name)]);
+      setTechnieken([...technieken.filter((mat) => mat !== value)]);
     }
   };
 
@@ -77,7 +77,7 @@ export default ({ materiaal, techniek }) => {
             value={techniek.mcatNaam}
             onChange={techniekChangeHandler}
           />
-          <label for={techniek.mcatNaam}>{techniek.mcatNaam}</label>{" "}
+          <label htmlFor={techniek.mcatNaam}>{techniek.mcatNaam}</label>{" "}
         </>
       ))}
 
@@ -91,7 +91,7 @@ export default ({ materiaal, techniek }) => {
             value={materiaal.matNaam}
             onChange={materiaalChangeHandler}
           />
-          <label for={materiaal.matNaam}>{materiaal.matNaam}</label>{" "}
+          <label htmlFor={materiaal.matNaam}>{materiaal.matNaam}</label>{" "}
         </>
       ))}
 

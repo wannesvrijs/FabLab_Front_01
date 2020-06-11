@@ -1,14 +1,47 @@
 import { useForm } from "../../hooks/formhooks";
 import classNames from "classnames";
+import { useSelector, useDispatch } from "react-redux";
+import { useState } from "react";
+import { createFabmoments } from "../../store/myFabmoments";
 
 export default () => {
   const onCreation = () => {
-    console.log(inputs.fabDatum);
+    dispatch(
+      createFabmoments({
+        fabTitel: inputs.fabTitel,
+        fabOmschrijving: inputs.fabOmschrijving,
+        fabDatum: inputs.fabDatum,
+        fabMats: materialen.map((materiaal) => ({ fabmatMat: materiaal })),
+        fabmaches: machines.map((machine) => ({ fabmachMach: machine })),
+      })
+    );
   };
 
+  const { myFabCreators } = useSelector((state) => state);
   const { inputs, errors, handleInputChange, handleSubmit } = useForm(
     onCreation
   );
+  const [materialen, setMaterialen] = useState([]);
+  const [machines, setMachines] = useState([]);
+  const dispatch = useDispatch();
+
+  const materiaalChangeHandler = (e) => {
+    const { checked, value } = e.target;
+    if (checked) {
+      setMaterialen([...materialen, value]);
+    } else {
+      setMaterialen([...materialen.filter((mat) => mat !== value)]);
+    }
+  };
+
+  const machineChangeHandler = (e) => {
+    const { checked, value } = e.target;
+    if (checked) {
+      setMachines([...machines, value]);
+    } else {
+      setMachines([...machines.filter((mach) => mach !== value)]);
+    }
+  };
 
   return (
     <>
@@ -52,6 +85,36 @@ export default () => {
           value={inputs.fabDatum || ""}
         />
 
+        <p>Gebruikte materialen</p>
+        {myFabCreators.materials.map((materiaal) => (
+          <>
+            <input
+              type="checkbox"
+              id={materiaal.matNaam}
+              name={materiaal.matNaam}
+              value={materiaal["@id"]}
+              onChange={materiaalChangeHandler}
+            />
+            <label htmlFor={materiaal.matNaam}>{materiaal.matNaam}</label>{" "}
+          </>
+        ))}
+
+        <p>Gebruikte machines</p>
+        {myFabCreators.machines.map((machine) => (
+          <>
+            <input
+              type="checkbox"
+              id={machine.machNaam}
+              name={machine.machNaam}
+              value={machine["@id"]}
+              onChange={machineChangeHandler}
+            />
+            <label htmlFor={machine.machNaam}>
+              {machine.machNaam}
+              <span className="tiny">{` (${machine.machMcat.mcatNaam})`}</span>
+            </label>{" "}
+          </>
+        ))}
         <button type="submit">Post</button>
       </form>
       <hr />

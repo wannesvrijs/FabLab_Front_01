@@ -36,15 +36,18 @@ export const getFabmoments = (useId, page = 1) => (dispatch) => {
     .catch((error) => dispatch(errorFabmoments("error loading API")));
 };
 
-// export const createFabmoments = (data) => (dispatch) => {
-//   dispatch(loafFabmoments());
-//   axios
-//     .post(`${NEXT_PUBLIC_API_ENDPOINT}fabmoments`)
-//     .then((result) => {
-//       dispatch(addFabmoments(result.data.Search));
-//     })
-//     .catch((error) => dispatch(errorFabmoments("error posting Fabmoment")));
-// };
+export const createFabmoments = (data) => (dispatch) => {
+  const cookies = parseCookies();
+  dispatch(loadFabmoments());
+  axios
+    .post(`${process.env.NEXT_PUBLIC_API_ENDPOINT}fabmoments`, data, {
+      headers: { Authorization: `Bearer ${cookies.jwtToken}` },
+    })
+    .then((result) => {
+      dispatch(addFabmoments(data));
+    })
+    .catch((error) => dispatch(errorFabmoments("error posting Fabmoment")));
+};
 
 export const loadFabmoments = () => ({
   type: LOADFABMOMENTS,
@@ -83,7 +86,7 @@ export default (state = initialState, { type, payload }) => {
       return {
         ...state,
         loading: false,
-        data: [...payload, ...state.data],
+        data: [payload, ...state.data],
       };
     case ERRORFABMOMENTS:
       return {
