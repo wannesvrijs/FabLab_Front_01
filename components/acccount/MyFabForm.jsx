@@ -12,7 +12,7 @@ export default () => {
         fabOmschrijving: inputs.fabOmschrijving,
         fabDatum: inputs.fabDatum,
         fabMats: materialen.map((materiaal) => ({ fabmatMat: materiaal })),
-        fabmaches: machines.map((machine) => ({ fabmachMach: machine })),
+        fabMaches: machines.map((machine) => ({ fabmachMach: machine })),
       })
     );
   };
