@@ -32,12 +32,12 @@
 @mixin intro($size: 1.6rem, $lineheight: 2rem, $color: $zwart) {
   font-size: $size;
   line-height: $lineheight;
-  font-weight: 300;
+  font-weight: 400;
   color: $color;
   font-family: $hoofdfont;
 }
 
-@mixin readinghead($size: 1rem, $lineheight: 1.4rem, $color: $zwart) {
+@mixin readinghead($size: 1rem, $lineheight: 2rem, $color: $zwart) {
   font-size: $size;
   line-height: $lineheight;
   font-weight: 700;
@@ -45,10 +45,10 @@
   font-family: $hoofdfont;
 }
 
-@mixin reading($size: 1rem, $lineheight: 1.3rem, $color: $zwart) {
+@mixin reading($size: 1rem, $lineheight: 1.8rem, $color: $zwart) {
   font-size: $size;
   line-height: $lineheight;
-  font-weight: 300;
+  font-weight: 400;
   color: $color;
   font-family: $hoofdfont;
 }
@@ -71,7 +71,7 @@
 @mixin tiny($color: $grijs) {
   font-size: 0.7rem;
   line-height: 1.2rem;
-  font-weight: 300;
+  font-weight: 400;
   color: $color;
   font-family: $hoofdfont;
 }

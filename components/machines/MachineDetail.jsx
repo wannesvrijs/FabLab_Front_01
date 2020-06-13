@@ -3,7 +3,7 @@ export default ({ data }) => {
     <>
       {data.machines.map((machine) => (
         <>
-          <img src={machine.machImgPad} alt={machine.machImgAlt} />
+          <img src={machine.machImgPad} alt={machine.machNaam} />
           <h2>{machine.machNaam}</h2>
           <p>{machine.machOmschrijving}</p>
           <p>afmetingen: {machine.machAfmeting}</p>

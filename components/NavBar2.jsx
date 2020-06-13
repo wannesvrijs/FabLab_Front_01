@@ -10,13 +10,16 @@ export default () => {
     <>
       <nav className="navigatie">
         <div>
-          <a
-            className={classNames({
-              navigation_active: router.pathname === "/contact",
-            })}
-          >
-            FabLab Genk
-          </a>
+          <Link href="/">
+            <a
+              className={classNames({
+                navigation_active: router.pathname === "/contact",
+              })}
+            >
+              FabLab Genk
+            </a>
+          </Link>
+
           <div className="hamburger"></div>
         </div>
         <ul>
@@ -116,9 +119,17 @@ export default () => {
           <li>
             <Link href="/account">
               <a
-                className={classNames({
-                  navigation_active: router.pathname === "/account",
-                })}
+                className={classNames(
+                  "nav_account",
+                  {
+                    navigation_active: router.pathname === "/account",
+                  },
+                  { navigation_active: router.pathname === "/account/login" },
+                  {
+                    navigation_active:
+                      router.pathname === "/account/registreer",
+                  }
+                )}
               >
                 <Icon className="profilepic" />
                 <span>Mijn Account</span>
