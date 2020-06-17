@@ -1,10 +1,8 @@
-export default ({ data }) => {
-  return data["hydra:member"].length
-    ? data["hydra:member"].map((item) => (
-        <>
-          <h3 className="reading_head">{item.nwsTitel}</h3>
-          <p>{item.nwsOmschrijving}</p>
-        </>
-      ))
-    : "";
+export default ({ item }) => {
+  return (
+    <>
+      <h2>{item.nwsTitel}</h2>
+      <p>{item.nwsOmschrijving}</p>
+    </>
+  );
 };

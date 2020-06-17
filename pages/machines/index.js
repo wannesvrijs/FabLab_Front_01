@@ -2,26 +2,28 @@ import Layout from "../../components/Layout";
 import Machines from "../../components/machines/Machines";
 import axios from "axios";
 
-export default ({ data }) => {
+export default ({ machinecats }) => {
   return (
     <>
       <Layout
         title="Machines"
         description="Lorem ipsum sit dollor amet, moster cols vadum. Hequer lostin vanam"
       >
-        <Machines data={data}></Machines>
+        {machinecats["hydra:member"].map((machinecat) => (
+          <Machines machinecat={machinecat}></Machines>
+        ))}
       </Layout>
     </>
   );
 };
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
   const res = await axios.get(
     `${process.env.NEXT_PUBLIC_API_ENDPOINT}machine_categories`
   );
-  const data = res.data;
+  const machinecats = res.data;
 
   return {
-    props: { data },
+    props: { machinecats },
   };
 };

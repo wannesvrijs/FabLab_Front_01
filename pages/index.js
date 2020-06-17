@@ -2,10 +2,9 @@ import Layout from "../components/Layout";
 import Link from "next/link";
 import axios from "axios";
 import Nieuws from "../components/main/Nieuws";
-import Events from "../components/main/Events";
-import { isAuth } from "../helpers/helpers";
+import Event from "../components/main/Event";
 
-export default ({ nieuws, events, isAuth }) => {
+export default ({ nieuws, events }) => {
   return (
     <>
       <Layout
@@ -18,14 +17,18 @@ export default ({ nieuws, events, isAuth }) => {
             <span>Lees meer</span>
           </a>
         </Link>
-        <Nieuws data={nieuws}></Nieuws>
-        <Events data={events} isAuth={isAuth}></Events>
+        {nieuws.length && nieuws.map((item) => <Nieuws item={item}></Nieuws>)}
+        <div className="event">
+          <h3>Events</h3>
+          {events.length &&
+            events.map((event) => <Event event={event}></Event>)}
+        </div>
       </Layout>
     </>
   );
 };
 
-export const getServerSideProps = async (ctx) => {
+export async function getStaticProps() {
   const requestOne = axios.get(`${process.env.NEXT_PUBLIC_API_ENDPOINT}nieuws`);
   const requestTwo = axios.get(`${process.env.NEXT_PUBLIC_API_ENDPOINT}events`);
 
@@ -33,9 +36,8 @@ export const getServerSideProps = async (ctx) => {
 
   return {
     props: {
-      nieuws: nieuws.data,
-      events: events.data,
-      isAuth: isAuth(ctx),
+      nieuws: nieuws.data["hydra:member"],
+      events: events.data["hydra:member"],
     },
   };
-};
+}

@@ -1,5 +1,3 @@
-export default ({ data }) => {
-  return data["hydra:member"].map((fabmoment) => (
-    <p>{fabmoment.fabOmschrijving}</p>
-  ));
+export default ({ fabmoment }) => {
+  return <p>{fabmoment.fabTitel}</p>;
 };

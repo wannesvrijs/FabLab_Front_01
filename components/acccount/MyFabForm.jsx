@@ -3,16 +3,20 @@ import classNames from "classnames";
 import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
 import { createFabmoments } from "../../store/myFabmoments";
+import Dropzone from "./Dropzone";
 
-export default () => {
+export default ({ newFabmoment, setNewFabmoment }) => {
   const onCreation = () => {
     dispatch(
       createFabmoments({
-        fabTitel: inputs.fabTitel,
-        fabOmschrijving: inputs.fabOmschrijving,
-        fabDatum: inputs.fabDatum,
-        fabMats: materialen.map((materiaal) => ({ fabmatMat: materiaal })),
-        fabMaches: machines.map((machine) => ({ fabmachMach: machine })),
+        textual: {
+          fabTitel: inputs.fabTitel,
+          fabOmschrijving: inputs.fabOmschrijving,
+          fabDatum: inputs.fabDatum,
+          fabMats: materialen.map((materiaal) => ({ fabmatMat: materiaal })),
+          fabMaches: machines.map((machine) => ({ fabmachMach: machine })),
+        },
+        files: validFiles,
       })
     );
   };
@@ -23,6 +27,11 @@ export default () => {
   );
   const [materialen, setMaterialen] = useState([]);
   const [machines, setMachines] = useState([]);
+
+  //dropzone states
+  const [validFiles, setValidFiles] = useState([]);
+  const [unsupportedFiles, setUnsupportedFiles] = useState([]);
+
   const dispatch = useDispatch();
 
   const materiaalChangeHandler = (e) => {
@@ -43,8 +52,21 @@ export default () => {
     }
   };
 
+  const dropzoneProps = {
+    validFiles,
+    setValidFiles,
+    unsupportedFiles,
+    setUnsupportedFiles,
+  };
+
   return (
     <>
+      {unsupportedFiles.length === 0 && validFiles.length > 0 && (
+        <p>valid files have been added</p>
+      )}
+
+      <Dropzone {...dropzoneProps} />
+
       <form onSubmit={handleSubmit}>
         <label htmlFor="titel">titel:</label>
         <input

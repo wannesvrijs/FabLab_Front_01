@@ -15,6 +15,7 @@ export const withoutAuth = (ctx, url) => {
   const cookies = parseCookies(ctx);
 
   if (typeof cookies.jwtToken === "undefined") {
+    persistor.purge();
     ctx.res.statusCode = 302;
     ctx.res.setHeader("Location", url);
   }

@@ -1,13 +1,14 @@
 import { useRef, useState, useEffect } from "react";
 import axios from "axios";
 
-const Dropzone = () => {
+export default ({
+  validFiles,
+  setValidFiles,
+  unsupportedFiles,
+  setUnsupportedFiles,
+}) => {
   const fileInputRef = useRef();
-  const modalImageRef = useRef();
-  const modalRef = useRef();
   const [selectedFiles, setSelectedFiles] = useState([]);
-  const [validFiles, setValidFiles] = useState([]);
-  const [unsupportedFiles, setUnsupportedFiles] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
@@ -28,10 +29,6 @@ const Dropzone = () => {
     }
   };
 
-  const fileInputClicked = () => {
-    fileInputRef.current.click();
-  };
-
   const handleFiles = (files) => {
     for (let i = 0; i < files.length; i++) {
       if (validateFile(files[i])) {
@@ -43,6 +40,10 @@ const Dropzone = () => {
         setUnsupportedFiles((prevArray) => [...prevArray, files[i]]);
       }
     }
+  };
+
+  const fileInputClicked = () => {
+    fileInputRef.current.click();
   };
 
   const validateFile = (file) => {
@@ -63,13 +64,6 @@ const Dropzone = () => {
     return parseFloat((size / Math.pow(k, i)).toFixed(2)) + " " + sizes[i];
   };
 
-  const fileType = (fileName) => {
-    return (
-      fileName.substring(fileName.lastIndexOf(".") + 1, fileName.length) ||
-      fileName
-    );
-  };
-
   const removeFile = (name) => {
     const index = validFiles.findIndex((e) => e.name === name);
     const index2 = selectedFiles.findIndex((e) => e.name === name);
@@ -84,40 +78,8 @@ const Dropzone = () => {
     }
   };
 
-  const openImageModal = (file) => {
-    const reader = new FileReader();
-    modalRef.current.style.display = "block";
-    reader.readAsDataURL(file);
-    reader.onload = function (e) {
-      modalImageRef.current.style.backgroundImage = `url(${e.target.result})`;
-    };
-  };
-
-  const closeModal = () => {
-    modalRef.current.style.display = "none";
-    modalImageRef.current.style.backgroundImage = "none";
-  };
-
-  const uploadFiles = async () => {
-    for (let i = 0; i < validFiles.length; i++) {
-      const formData = new FormData();
-      formData.append("file", validFiles[i]);
-      axios
-        .post("http://localhost:8000/api/media_objects", formData)
-        .catch(() => {});
-    }
-  };
-
   return (
     <>
-      {/* button to upload the files had to be automated */}
-      {unsupportedFiles.length === 0 && validFiles.length ? (
-        <button className="file-upload-btn" onClick={() => uploadFiles()}>
-          Upload Files
-        </button>
-      ) : (
-        ""
-      )}
       {unsupportedFiles.length ? (
         <p className="error">Please remove all unsupported files.</p>
       ) : (
@@ -139,15 +101,8 @@ const Dropzone = () => {
         {validFiles.map((data, i) => (
           <div className="file-status-bar" key={i}>
             {/* keep this check for browsers not supporting the 'accept' */}
-            <div
-              onClick={
-                !data.invalid
-                  ? () => openImageModal(data)
-                  : () => removeFile(data.name)
-              }
-            >
-              <div className="file-type-logo"></div>
-              <div className="file-type">{fileType(data.name)}</div>
+            <div onClick={data.invalid ? () => removeFile(data.name) : ""}>
+              <img className="detail-img" src={URL.createObjectURL(data)}></img>
               <span className={`file-name ${data.invalid ? "file-error" : ""}`}>
                 {data.name}
               </span>
@@ -163,15 +118,6 @@ const Dropzone = () => {
           </div>
         ))}
       </div>
-      <div className="modal" ref={modalRef}>
-        <div className="overlay"></div>
-        <span className="close" onClick={() => closeModal()}>
-          X
-        </span>
-        <div className="modal-image" ref={modalImageRef}></div>
-      </div>
     </>
   );
 };
-
-export default Dropzone;

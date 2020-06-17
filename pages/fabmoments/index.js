@@ -10,7 +10,9 @@ export default ({ data, materiaal, techniek }) => {
         title="Fabmoments"
         description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat, magni? Quia, illum id? Quos quis perspiciatis molestias at commodi nisi, eligendi vero omnis velit dolorem officia! Architecto laborum error ad."
       >
-        <Fabmoments data={data}></Fabmoments>
+        {data["hydra:member"].map((fabmoment) => (
+          <Fabmoments fabmoment={fabmoment}></Fabmoments>
+        ))}
         <FabmomentsForm
           materiaal={materiaal}
           techniek={techniek}

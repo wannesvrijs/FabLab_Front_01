@@ -36,17 +36,42 @@ export const getFabmoments = (useId, page = 1) => (dispatch) => {
     .catch((error) => dispatch(errorFabmoments("error loading API")));
 };
 
-export const createFabmoments = (data) => (dispatch) => {
+export const createFabmoments = ({ textual, files }) => async (dispatch) => {
   const cookies = parseCookies();
+
   dispatch(loadFabmoments());
-  axios
-    .post(`${process.env.NEXT_PUBLIC_API_ENDPOINT}fabmoments`, data, {
+
+  const resone = await axios.post(
+    `${process.env.NEXT_PUBLIC_API_ENDPOINT}fabmoments`,
+    textual,
+    {
       headers: { Authorization: `Bearer ${cookies.jwtToken}` },
-    })
-    .then((result) => {
-      dispatch(addFabmoments(data));
-    })
-    .catch((error) => dispatch(errorFabmoments("error posting Fabmoment")));
+    }
+  );
+  const id = resone.data["@id"];
+
+  files.forEach((file) => {
+    const formData = new FormData();
+    formData.append("file", file);
+    axios
+      .post("http://localhost:8000/api/media_objects", formData)
+      .catch(() => {});
+  });
+
+  // dispatch(addFabmoments(data));
+  // .catch((error) => dispatch(errorFabmoments("error posting Fabmoment")));
+};
+
+// console.log(result.data['@id']);
+
+const uploadFiles = async () => {
+  for (let i = 0; i < validFiles.length; i++) {
+    const formData = new FormData();
+    formData.append("file", validFiles[i]);
+    axios
+      .post("http://localhost:8000/api/media_objects", formData)
+      .catch(() => {});
+  }
 };
 
 export const loadFabmoments = () => ({

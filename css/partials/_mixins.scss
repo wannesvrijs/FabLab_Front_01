@@ -9,7 +9,7 @@
 
 //fonts
 
-@mixin titel($size: 6rem, $lineheight: 6rem, $color: $blauw) {
+@mixin titel($size: 4.5rem, $lineheight: 4.5rem, $color: $blauw) {
   font-size: $size;
   line-height: $lineheight;
   font-weight: 700;
@@ -29,7 +29,7 @@
   text-transform: capitalize;
 }
 
-@mixin intro($size: 1.6rem, $lineheight: 2rem, $color: $zwart) {
+@mixin intro($size: 1.4rem, $lineheight: 1.8rem, $color: $zwart) {
   font-size: $size;
   line-height: $lineheight;
   font-weight: 400;
@@ -37,15 +37,16 @@
   font-family: $hoofdfont;
 }
 
-@mixin readinghead($size: 1rem, $lineheight: 2rem, $color: $zwart) {
+@mixin readinghead($size: 0.9rem, $lineheight: 1.8rem, $color: $zwart) {
   font-size: $size;
   line-height: $lineheight;
-  font-weight: 700;
+  font-weight: 400;
   color: $color;
   font-family: $hoofdfont;
+  text-transform: uppercase;
 }
 
-@mixin reading($size: 1rem, $lineheight: 1.8rem, $color: $zwart) {
+@mixin reading($size: 0.9rem, $lineheight: 1.8rem, $color: $zwart) {
   font-size: $size;
   line-height: $lineheight;
   font-weight: 400;
@@ -53,7 +54,8 @@
   font-family: $hoofdfont;
 }
 
-@mixin link() {
+@mixin link($size: 0.9rem) {
+  font-size: $size;
   padding-bottom: 0;
   margin: 0;
   color: $zwart;
