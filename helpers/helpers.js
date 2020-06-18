@@ -15,7 +15,6 @@ export const withoutAuth = (ctx, url) => {
   const cookies = parseCookies(ctx);
 
   if (typeof cookies.jwtToken === "undefined") {
-    persistor.purge();
     ctx.res.statusCode = 302;
     ctx.res.setHeader("Location", url);
   }
@@ -27,8 +26,8 @@ export const isAuth = (ctx) => {
 };
 
 export const logout = () => {
+  // const cookies = parseCookies();
+  destroyCookie(null, "jwtToken", { path: "/" });
   persistor.purge();
-  const cookies = parseCookies;
-  destroyCookie(null, "jwtToken");
   Router.push("/");
 };

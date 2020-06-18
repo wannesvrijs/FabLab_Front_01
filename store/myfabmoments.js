@@ -48,16 +48,19 @@ export const createFabmoments = ({ textual, files }) => async (dispatch) => {
       headers: { Authorization: `Bearer ${cookies.jwtToken}` },
     }
   );
-  const id = resone.data["@id"];
+  const id = resone.data.id;
 
   files.forEach((file) => {
     const formData = new FormData();
     formData.append("file", file);
+    formData.append("id", id);
     axios
-      .post("http://localhost:8000/api/media_objects", formData)
+      .post("http://localhost:8000/api/fab_imgs", formData, {
+        headers: { Authorization: `Bearer ${cookies.jwtToken}` },
+      })
       .catch(() => {});
   });
-
+  // TODO
   // dispatch(addFabmoments(data));
   // .catch((error) => dispatch(errorFabmoments("error posting Fabmoment")));
 };

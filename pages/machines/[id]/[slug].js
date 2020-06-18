@@ -6,7 +6,9 @@ export default ({ data }) => {
   return (
     <>
       <Layout title={data.mcatNaam} description={data.mcatOmschrijving}>
-        <MachineDetail data={data}></MachineDetail>
+        {data.machines.map((machine) => (
+          <MachineDetail machine={machine}></MachineDetail>
+        ))}
       </Layout>
     </>
   );
@@ -22,8 +24,6 @@ export async function getStaticPaths() {
   const paths = machinecats.map((machinecat) => ({
     params: { id: machinecat.id.toString(), slug: machinecat.slug },
   }));
-
-  console.log(paths);
 
   // We'll pre-render only these paths at build time.
   // { fallback: false } means other routes should 404.

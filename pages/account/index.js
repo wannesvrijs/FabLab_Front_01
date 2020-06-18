@@ -10,11 +10,10 @@ export default (props) => {
         description="Een FabLab (Fabrication – of Fabulous – Laboratory) is een kleinschalige werkplaats met een aanbod van computergestuurde gereedschappen met het doel om 'bijna alles' te kunnen maken."
       >
         <MyAccount />
+        <a>
+          <span onClick={logout}>logout</span>
+        </a>
       </Layout>
-
-      <a>
-        <span onClick={logout}>logout</span>
-      </a>
     </>
   );
 };
