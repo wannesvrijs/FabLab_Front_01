@@ -1,5 +1,5 @@
 import axios from "axios";
-import { parseCookies, destroyCookie } from "nookies";
+import { parseCookies } from "nookies";
 
 /*****************/
 /* INITIAL STATE */

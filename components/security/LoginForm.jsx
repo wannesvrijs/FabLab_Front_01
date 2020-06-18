@@ -2,8 +2,7 @@ import { useForm } from "../../hooks/formhooks";
 import classNames from "classnames";
 import axios from "axios";
 import Router from "next/router";
-import { parseCookies, setCookie, destroyCookie } from "nookies";
-import jwt from "jwt-decode";
+import { parseCookies, setCookie } from "nookies";
 import { setUser } from "../../store/user";
 import { useDispatch } from "react-redux";
 

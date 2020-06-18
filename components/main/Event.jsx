@@ -2,17 +2,38 @@ import Link from "next/link";
 import { parseCookies } from "nookies";
 import { useState } from "react";
 import classNames from "classnames";
+import axios from "axios";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
 
 export default ({ event }) => {
   const [bodyIsActive, setBodyIsActive] = useState(false);
+  const [isIngeschreven, setIsIngeschreven] = useState(false);
+  const cookies = parseCookies();
+  const { user } = useSelector((state) => state);
+
+  useEffect(() => {
+    setIsIngeschreven(
+      event.inschrijvings.some(
+        (inschrijving) => inschrijving.insUse === `/api/users/${user.id}`
+      )
+    );
+  }, []);
 
   const isAuth = () => {
-    const cookies = parseCookies(ctx);
     return typeof cookies.jwtToken === "undefined" ? false : true;
   };
 
-  const handleButtonClick = () => {
-    console.log("ingeschreven!");
+  const handleButtonClick = async (insEve) => {
+    setIsIngeschreven(!isIngeschreven);
+    const res = await axios.post(
+      `${process.env.NEXT_PUBLIC_API_ENDPOINT}inschrijvings`,
+      { insEve },
+      {
+        headers: { Authorization: `Bearer ${cookies.jwtToken}` },
+      }
+    );
+    const data = res.data;
   };
 
   const toggleNews = () => {
@@ -92,8 +113,17 @@ export default ({ event }) => {
           <div className="event-inschrijven">
             {event.eveMetInschrijvingen &&
               (event.inschrijvings.length < event.eveMaxPers ? (
-                isAuth ? (
-                  <button onClick={handleButtonClick}>Schrijf me in!</button>
+                isAuth() ? (
+                  isIngeschreven ? (
+                    <p>
+                      je bent reeds ingeschreven, wijzig inschrijvingen op je
+                      account
+                    </p>
+                  ) : (
+                    <button onClick={() => handleButtonClick(event["@id"])}>
+                      Schrijf me in!
+                    </button>
+                  )
                 ) : (
                   <p className="tiny">
                     <Link href="/account/login">
@@ -105,10 +135,17 @@ export default ({ event }) => {
               ) : (
                 <>
                   <p className="tiny">{event.eveTitel} is reeds volzet</p>
-                  {isAuth ? (
-                    <button onClick={handleButtonClick}>
-                      Zet me op de wachtlijst
-                    </button>
+                  {isAuth() ? (
+                    isIngeschreven ? (
+                      <p>
+                        je bent reeds ingeschreven, wijzig inschrijvingen op je
+                        account
+                      </p>
+                    ) : (
+                      <button onClick={() => handleButtonClick(event["@id"])}>
+                        zet me op de wachtlijst
+                      </button>
+                    )
                   ) : (
                     <p className="tiny">
                       <Link href="/account/login">
