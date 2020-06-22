@@ -9,7 +9,7 @@
 
 //fonts
 
-@mixin titel($size: 4.5rem, $lineheight: 4.5rem, $color: $blauw) {
+@mixin titel($size: 4.5rem, $lineheight: 4.5rem, $color: $groen) {
   font-size: $size;
   line-height: $lineheight;
   font-weight: 700;
@@ -29,7 +29,7 @@
   text-transform: capitalize;
 }
 
-@mixin intro($size: 1.4rem, $lineheight: 1.8rem, $color: $zwart) {
+@mixin intro($size: 1.6rem, $lineheight: 2rem, $color: $zwart) {
   font-size: $size;
   line-height: $lineheight;
   font-weight: 400;

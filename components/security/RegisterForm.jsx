@@ -23,7 +23,7 @@ export default () => {
     axios
       .post(`${process.env.NEXT_PUBLIC_API_ENDPOINT}users`, credentials)
       .then((response) => {
-        Router.push("/account/login");
+        // Router.push("/account/login");
       })
       .catch((error) => {
         console.log(error);

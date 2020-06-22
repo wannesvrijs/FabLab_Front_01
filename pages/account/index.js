@@ -2,7 +2,8 @@ import Layout from "../../components/Layout";
 import MyAccount from "../../components/acccount/MyAccount";
 import { withoutAuth, logout } from "../../helpers/helpers";
 import { parseCookies } from "nookies";
-import { useSelector } from "react-redux";
+import jwt_decode from "jwt-decode";
+import axios from "axios";
 
 export default (props) => {
   return (
@@ -24,6 +25,8 @@ export const getServerSideProps = async (ctx) => {
   withoutAuth(ctx, `/account/login`);
   const cookies = parseCookies(ctx);
 
+  const useId = jwt_decode(cookies.jwtToken).id;
+
   const requestOne = axios.get(
     `${process.env.NEXT_PUBLIC_API_ENDPOINT}inschrijvings`,
     {
@@ -31,14 +34,13 @@ export const getServerSideProps = async (ctx) => {
     }
   );
   const requestTwo = axios.get(
-    `${process.env.NEXT_PUBLIC_API_ENDPOINT}machinerechts`,
+    `${process.env.NEXT_PUBLIC_API_ENDPOINT}machine_rechts`,
     {
       headers: { Authorization: `Bearer ${cookies.jwtToken}` },
     }
   );
   const requestThree = axios.get(
-    ///////////////////////////////////////////////??????USERIDIDIIDCNDOICNIDCNDICNDICNIDNCUSERID USER ID
-    `${process.env.NEXT_PUBLIC_API_ENDPOINT}users/${user.id}`,
+    `${process.env.NEXT_PUBLIC_API_ENDPOINT}users/${useId}`,
     {
       headers: { Authorization: `Bearer ${cookies.jwtToken}` },
     }

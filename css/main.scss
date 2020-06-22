@@ -34,12 +34,19 @@ select {
   @include readinghead;
 }
 
+a {
+  @include link;
+}
+
 .tiny {
   @include tiny;
 }
 
-a {
-  @include link;
+header {
+  h1 {
+    padding-bottom: 1rem;
+  }
+  padding: 7rem 0 3rem 0;
 }
 
 //--------------------------------------------CONTAINER--------------------------------
@@ -57,16 +64,18 @@ body {
 .main-container {
   min-height: 100vh;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 2.5rem;
+}
+
+@media (min-width: $md) {
+  header {
+    width: $c-4;
+  }
 }
 
 @media (min-width: $md) {
   .main-container {
     padding: 0 3rem;
-    header {
-      display: block;
-      width: 50%;
-    }
   }
 }
 
@@ -76,47 +85,256 @@ body {
   }
 }
 
-// ------------------------------------MAIN------------------------------------------
+// --------------------------------------- NAV ---------------------------------
 
-// ------ nieuws -----
+.profielsvg {
+  stroke: $zwart;
+  &:hover {
+    stroke: $blauw;
+  }
+}
+.navigation_active {
+  color: $blauw;
+  svg {
+    stroke: $blauw;
+  }
+}
+
+.navigatie {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  color: $zwart;
+  & > div {
+    display: flex;
+    align-items: center;
+    a {
+      white-space: nowrap;
+      margin-right: auto;
+      @include intro;
+    }
+    .hamburger {
+      width: 30px;
+      height: 30px;
+      background-image: url("data:image/svg+xml,%3Csvg id='Laag_1' data-name='Laag 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 17.72'%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill:%231d1d1b;stroke:%231d1d1b;stroke-miterlimit:10;stroke-width:2.3px;%7D%3C/style%3E%3C/defs%3E%3Ctitle%3ENaamloos-1%3C/title%3E%3Cline class='cls-1' y1='1' x2='30' y2='1'/%3E%3Cline class='cls-1' y1='16.72' x2='30' y2='16.72'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+      &.hamburger_open {
+        background-image: url("data:image/svg+xml,%3Csvg id='Laag_1' data-name='Laag 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22.63 22.63'%3E%3Ctitle%3ENaamloos-1%3C/title%3E%3Cline x1='0.71' y1='21.92' x2='21.92' y2='0.71' style='fill:%231d1d1b;stroke:%231d1d1b;stroke-miterlimit:10;stroke-width:1.7px'/%3E%3Cline x1='0.71' y1='0.71' x2='21.92' y2='21.92' style='fill:%231d1d1b;stroke:%231d1d1b;stroke-miterlimit:10;stroke-width:1.7px'/%3E%3C/svg%3E");
+      }
+    }
+  }
+  & > ul {
+    display: none;
+    &.nav_maindropdown_open {
+      display: block;
+    }
+
+    & > li {
+      .profielsvg {
+        display: none;
+      }
+      span {
+        font-family: $hoofdfont;
+        border-bottom: none;
+      }
+      ul {
+        display: none;
+        &.nav_subdropdown_open {
+          display: block;
+        }
+        li {
+          overflow: hidden;
+          max-height: 0;
+          transition: max-height 500ms ease;
+        }
+      }
+      &:hover {
+        li {
+          max-height: 150px;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: $md) {
+  .nav_account {
+    border-bottom: none;
+  }
+  .navigatie {
+    display: flex;
+    align-items: center;
+    div {
+      margin-right: auto;
+      a {
+        display: inline;
+      }
+      .hamburger {
+        display: none;
+      }
+    }
+    & > ul {
+      display: flex;
+      & > li {
+        padding: 0 0.7rem;
+        position: relative;
+        &:last-child {
+          padding-right: 0;
+        }
+        .profielsvg {
+          display: inline;
+        }
+        a span {
+          display: none;
+        }
+        ul {
+          position: absolute;
+          display: block;
+          li {
+            overflow: hidden;
+            max-height: 0;
+            transition: max-height 500ms ease;
+          }
+        }
+        &:hover {
+          li {
+            max-height: 150px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 880px) {
+  .navigatie {
+    & > ul {
+      & > li {
+        padding: 0 1.2rem;
+      }
+    }
+  }
+}
+
+// ------------------------------------MAIN------------------------------------------
+//---------topper--------
+.main-topper {
+  h1 {
+    @include titel;
+    color: $zwart;
+  }
+  .link-button {
+    margin-top: auto;
+    margin-left: auto;
+    width: $c-4;
+    a span {
+      margin: 0;
+      border-bottom: none;
+    }
+  }
+}
+
+@media (min-width: $md) {
+  .main-topper {
+    width: 100%;
+    display: flex;
+    & > div {
+      width: $c-4;
+    }
+    h1 {
+      @include titel;
+      font-size: 5.5rem;
+      color: $zwart;
+    }
+    .link-button {
+      margin-top: auto;
+      margin-left: auto;
+      width: $c-2;
+
+      a span {
+        margin: 0;
+        border-bottom: none;
+      }
+    }
+  }
+}
+
+// ------ EVENTS ---------
+
+:focus,
+:focus {
+  outline: none;
+  outline-color: transparent;
+  outline-style: none;
+  outline-width: 0px;
+}
+
+.event-container {
+  h3 {
+    line-height: 1.1rem;
+  }
+  padding: 35px 0 70px 0;
+  border-top: 3px solid $lichtgrijs;
+}
 
 .event {
   display: block;
   .event-head {
+    padding: 0.5rem 0;
     display: flex;
     justify-content: space-between;
-    border-bottom: 1px solid #5793ea;
+    border-top: 3px solid $lichtgrijs;
+    -webkit-box-shadow: 0 4px 6px -6px white;
+    -moz-box-shadow: 0 4px 6px -6px white;
+    box-shadow: 0 4px 6px -6px white;
+    &:hover {
+      color: $blauw;
+      cursor: pointer;
+    }
     p {
       text-transform: uppercase;
     }
     & > p {
       display: block;
-      width: $c-3;
+      width: $c-2;
     }
     .event-right {
-      width: $c-5;
+      align-items: center;
+      width: $c-6;
       display: flex;
       justify-content: space-between;
     }
   }
   .event-body {
-    display: none;
-    margin-bottom: 50px;
-    &.event-active {
-      display: block;
-    }
+    width: 100%;
+  }
+  img {
+    width: 100%;
   }
   .event-omschrijving {
     margin-bottom: 1.8rem;
   }
   .event-inschrijven {
+    padding: 3rem 0 2rem 0;
     right: 0;
     text-align: right;
+    a {
+      @include tiny;
+      color: $blauw;
+    }
+    button {
+      width: $c-4;
+    }
   }
 }
 
 @media (min-width: $sm) {
+  .event-container {
+    display: flex;
+  }
   .event {
+    margin-left: auto;
     width: $c-6;
     .event-head {
       & > p {
@@ -127,20 +345,6 @@ body {
         width: $c-6;
         display: flex;
         justify-content: space-between;
-      }
-    }
-    .event-body {
-      display: none;
-      &.event-active {
-        display: flex;
-        justify-content: space-between;
-      }
-      img {
-        display: block;
-        width: $c-2;
-      }
-      .event-text {
-        width: $c-6;
       }
     }
   }
@@ -148,13 +352,12 @@ body {
 
 @media (min-width: $md) {
   .event {
-    width: $c-6;
+    width: $c-4;
   }
 }
 
 @media (min-width: $lg) {
   .event {
-    width: $c-4;
     .event-head {
       & > p {
         width: $c-2;
@@ -163,13 +366,42 @@ body {
         width: $c-6;
       }
     }
-    .event-body {
-      img {
-        width: $c-3;
-      }
-      .event-text {
-        width: $c-5;
-      }
+  }
+}
+
+// ----------------nieuws ---------
+
+.nieuws {
+  border-top: 3px solid $lichtgrijs;
+  padding: 35px 0 70px 0;
+
+  & > h3 {
+    display: none;
+  }
+  display: flex;
+  justify-content: space-between;
+
+  width: $c-8;
+  .nws_allert {
+    width: $c-2;
+    @include titel;
+    line-height: 3.5rem;
+    color: $oranje;
+    display: block;
+  }
+  .nws_Content {
+    width: $c-6;
+    display: block;
+  }
+}
+
+@media (min-width: $md) {
+  .nieuws {
+    .nws_allert {
+      width: $c-4;
+    }
+    .nws_Content {
+      width: $c-4;
     }
   }
 }
@@ -230,9 +462,14 @@ select {
 }
 
 button {
-  background: transparent;
+  background: $groen;
   border-radius: 0;
-  border: 3px solid $blauw;
+  border-style: none;
+  @include reading;
+  font-family: $linkfont;
+  color: $wit;
+  padding: 0.5rem 0.5rem;
+  text-align: center;
 }
 
 label {
@@ -364,113 +601,4 @@ table {
 
 .error {
   color: $oranje;
-}
-// --------------------------------------- NAV ---------------------------------
-
-.navigatie {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  color: $zwart;
-  div {
-    display: flex;
-    align-items: center;
-    padding: 0 2rem;
-    a {
-      white-space: nowrap;
-      margin-right: auto;
-      @include intro;
-    }
-    .hamburger {
-      width: 30px;
-      height: 30px;
-      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280, 90, 211, 1%29' stroke-miterlimit='10' stroke-width='3' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
-    }
-  }
-  & > ul {
-    padding: 0 2rem;
-
-    & > li {
-      .profielsvg {
-        display: none;
-      }
-      span {
-        font-family: $hoofdfont;
-        border-bottom: none;
-      }
-      ul {
-        li {
-          overflow: hidden;
-          max-height: 0;
-          transition: max-height 500ms ease;
-        }
-      }
-      &:hover {
-        li {
-          max-height: 150px;
-        }
-      }
-    }
-  }
-}
-
-.profielsvg {
-  stroke: $zwart;
-  &:hover {
-    stroke: $blauw;
-  }
-}
-
-.navigation_active {
-  border-bottom: 2px $blauw solid;
-  svg {
-    stroke: $blauw;
-  }
-}
-
-@media (min-width: $md) {
-  .nav_account {
-    border-bottom: none;
-  }
-  .navigatie {
-    display: flex;
-    align-items: center;
-    div {
-      margin-right: auto;
-      padding: 0 2rem;
-      a {
-        display: inline;
-      }
-      .hamburger {
-        display: none;
-      }
-    }
-    & > ul {
-      padding-right: 1rem;
-      display: flex;
-      & > li {
-        padding: 0 1rem;
-        position: relative;
-        .profielsvg {
-          display: inline;
-        }
-        a span {
-          display: none;
-        }
-        ul {
-          position: absolute;
-
-          li {
-            overflow: hidden;
-            max-height: 0;
-            transition: max-height 500ms ease;
-          }
-        }
-        &:hover {
-          li {
-            max-height: 150px;
-          }
-        }
-      }
-    }
-  }
 }

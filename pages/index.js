@@ -10,18 +10,19 @@ export default ({ nieuws, events }) => {
       <Layout
         title="FabLab Genk"
         description="Een FabLab (Fabrication – of Fabulous – Laboratory) is een kleinschalige werkplaats met een aanbod van computergestuurde gereedschappen met het doel om 'bijna alles' te kunnen maken."
-        titleclass="hoofd"
+        topperClass="main-topper"
       >
-        <Link href="/info/fablab">
-          <a>
-            <span>Lees meer</span>
-          </a>
-        </Link>
-        {nieuws.length && nieuws.map((item) => <Nieuws item={item}></Nieuws>)}
-        <div className="event">
+        <section className="nieuws">
+          <h3>nieuws</h3>
+          <p className="nws_allert">!</p>
+          {nieuws.length && nieuws.map((item) => <Nieuws item={item}></Nieuws>)}
+        </section>
+        <div className="event-container">
           <h3>Events</h3>
-          {events.length &&
-            events.map((event) => <Event event={event}></Event>)}
+          <section className="event">
+            {events.length &&
+              events.map((event) => <Event event={event}></Event>)}
+          </section>
         </div>
       </Layout>
     </>

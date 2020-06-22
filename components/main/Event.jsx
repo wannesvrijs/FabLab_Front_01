@@ -1,14 +1,21 @@
 import Link from "next/link";
 import { parseCookies } from "nookies";
 import { useState } from "react";
-import classNames from "classnames";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
+import { IoMdArrowDown, IoMdArrowForward } from "react-icons/io";
+import {
+  Accordion,
+  AccordionItem,
+  AccordionItemHeading,
+  AccordionItemButton,
+  AccordionItemPanel,
+} from "react-accessible-accordion";
 
 export default ({ event }) => {
-  const [bodyIsActive, setBodyIsActive] = useState(false);
   const [isIngeschreven, setIsIngeschreven] = useState(false);
+  const [expanded, setExpanded] = useState(false);
   const cookies = parseCookies();
   const { user } = useSelector((state) => state);
 
@@ -24,6 +31,10 @@ export default ({ event }) => {
     return typeof cookies.jwtToken === "undefined" ? false : true;
   };
 
+  const rotateArrow = () => {
+    setExpanded(!expanded);
+  };
+
   const handleButtonClick = async (insEve) => {
     setIsIngeschreven(!isIngeschreven);
     const res = await axios.post(
@@ -34,10 +45,6 @@ export default ({ event }) => {
       }
     );
     const data = res.data;
-  };
-
-  const toggleNews = () => {
-    setBodyIsActive(bodyIsActive ? false : true);
   };
 
   const formatDateTitel = (datum) => {
@@ -86,79 +93,82 @@ export default ({ event }) => {
   };
 
   return (
-    <>
-      <div className="event-head">
-        <p>{formatDateTitel(event.eveStart)}</p>
-        <div className="event-right">
-          <p>{event.eveTitel}</p>
-          <a className="arrow" onClick={toggleNews}>
-            VVV
-          </a>
-        </div>
-      </div>
-      <div
-        className={classNames("event-body", {
-          "event-active": bodyIsActive,
-        })}
-      >
-        <img src={event.eveImgPad} alt={event.eveTitel} />
-        <div className="event-text">
-          <p className="event-omschrijving">{event.eveOmschrijving}</p>
-          <p>Aanvang: {formatDateTime(event.eveStart)}</p>
-          <p>Einde: {formatDateTime(event.eveStop) || "–"}</p>
-          {event.evePrijs && <p>Prijs: €{event.evePrijs}.00</p>}
-          {event.eveMaxPers && (
-            <p>Max. aantal deelnemers: {event.eveMaxPers}</p>
-          )}
-          <div className="event-inschrijven">
-            {event.eveMetInschrijvingen &&
-              (event.inschrijvings.length < event.eveMaxPers ? (
-                isAuth() ? (
-                  isIngeschreven ? (
-                    <p>
-                      je bent reeds ingeschreven, wijzig inschrijvingen op je
-                      account
-                    </p>
-                  ) : (
-                    <button onClick={() => handleButtonClick(event["@id"])}>
-                      Schrijf me in!
-                    </button>
-                  )
-                ) : (
-                  <p className="tiny">
-                    <Link href="/account/login">
-                      <a>log in </a>
-                    </Link>
-                    om je in te schrijven
-                  </p>
-                )
-              ) : (
-                <>
-                  <p className="tiny">{event.eveTitel} is reeds volzet</p>
-                  {isAuth() ? (
-                    isIngeschreven ? (
-                      <p>
-                        je bent reeds ingeschreven, wijzig inschrijvingen op je
-                        account
-                      </p>
+    <Accordion allowZeroExpanded={true} onChange={rotateArrow}>
+      <AccordionItem>
+        <AccordionItemHeading>
+          <AccordionItemButton>
+            <div className="event-head">
+              <p>{formatDateTitel(event.eveStart)}</p>
+              <div className="event-right">
+                <p>{event.eveTitel}</p>
+                {expanded ? <IoMdArrowDown /> : <IoMdArrowForward />}
+              </div>
+            </div>
+          </AccordionItemButton>
+        </AccordionItemHeading>
+        <AccordionItemPanel>
+          <div className="event-body">
+            <img src="/randompic.jpg" alt={event.eveTitel} />
+            <div className="event-text">
+              <p className="event-omschrijving">{event.eveOmschrijving}</p>
+              <p>Aanvang: {formatDateTime(event.eveStart)}</p>
+              <p>Einde: {formatDateTime(event.eveStop) || "–"}</p>
+              {event.evePrijs && <p>Prijs: €{event.evePrijs}.00</p>}
+              {event.eveMaxPers && (
+                <p>Max. aantal deelnemers: {event.eveMaxPers}</p>
+              )}
+              <div className="event-inschrijven">
+                {event.eveMetInschrijvingen &&
+                  (event.inschrijvings.length < event.eveMaxPers ? (
+                    isAuth() ? (
+                      isIngeschreven ? (
+                        <p className="tiny">
+                          je bent ingeschreven, wijzig inschrijvingen op de
+                          accountpagina
+                        </p>
+                      ) : (
+                        <button onClick={() => handleButtonClick(event["@id"])}>
+                          Schrijf me in!
+                        </button>
+                      )
                     ) : (
-                      <button onClick={() => handleButtonClick(event["@id"])}>
-                        zet me op de wachtlijst
-                      </button>
+                      <p className="tiny">
+                        <Link href="/account/login">
+                          <a>log in </a>
+                        </Link>
+                        om je in te schrijven
+                      </p>
                     )
                   ) : (
-                    <p className="tiny">
-                      <Link href="/account/login">
-                        <a>log in </a>
-                      </Link>
-                      om je op de wachtlijst te zetten
-                    </p>
-                  )}
-                </>
-              ))}
+                    <>
+                      {isAuth() ? (
+                        isIngeschreven ? (
+                          <p className="tiny">
+                            je bent ingeschreven, wijzig inschrijvingen op de
+                            accountpagina
+                          </p>
+                        ) : (
+                          <button
+                            onClick={() => handleButtonClick(event["@id"])}
+                          >
+                            zet me op de wachtlijst
+                          </button>
+                        )
+                      ) : (
+                        <p className="tiny">
+                          <Link href="/account/login">
+                            <a>log in </a>
+                          </Link>
+                          om je op de wachtlijst te zetten
+                        </p>
+                      )}
+                    </>
+                  ))}
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-    </>
+        </AccordionItemPanel>
+      </AccordionItem>
+    </Accordion>
   );
 };

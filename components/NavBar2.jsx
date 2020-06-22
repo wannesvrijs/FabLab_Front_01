@@ -3,9 +3,21 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import classNames from "classnames";
 import Icon from "../public/Icon";
+import { useState } from "react";
 
 export default () => {
   const router = useRouter();
+  const [mainDropdown, setMainDropdown] = useState(false);
+  const [subDropdown, setSubDropdown] = useState(false);
+
+  const toggleMainDropdown = () => {
+    setMainDropdown(!mainDropdown);
+  };
+
+  const toggleSubDropdown = () => {
+    setSubDropdown(!subDropdown);
+  };
+
   return (
     <>
       <nav className="navigatie">
@@ -20,9 +32,18 @@ export default () => {
             </a>
           </Link>
 
-          <div className="hamburger"></div>
+          <div
+            onClick={toggleMainDropdown}
+            className={classNames("hamburger", {
+              hamburger_open: mainDropdown,
+            })}
+          ></div>
         </div>
-        <ul>
+        <ul
+          className={classNames({
+            nav_maindropdown_open: mainDropdown,
+          })}
+        >
           <li>
             <Link href="/machines">
               <a
@@ -57,8 +78,12 @@ export default () => {
             </Link>
           </li>
           <li>
-            <a>Info</a>
-            <ul>
+            <a onClick={toggleSubDropdown}>Info</a>
+            <ul
+              className={classNames({
+                nav_subdropdown_open: subDropdown,
+              })}
+            >
               <li>
                 <Link href="/info/fablab">
                   <a

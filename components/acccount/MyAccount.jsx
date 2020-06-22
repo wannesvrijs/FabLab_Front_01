@@ -7,7 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getFabmoments } from "../../store/myFabmoments";
 import { getFabCreators } from "../../store/myFabCreators";
 
-export default () => {
+export default ({ props: { inschrijvingen, machinerecht, userdata } }) => {
   const [fab, setFab] = useState(false);
   const [eve, setEve] = useState(false);
   const [recht, setRecht] = useState(false);
@@ -46,15 +46,15 @@ export default () => {
 
       <h2>My Events</h2>
       <button onClick={handleShowEvents}>SHOW</button>
-      {eve && <MyEvents />}
+      {eve && <MyEvents inschrijvingen={inschrijvingen} />}
 
       <h2>My Rechten</h2>
       <button onClick={handleShowRechten}>SHOW</button>
-      {recht && <MyRechten />}
+      {recht && <MyRechten machinerecht={machinerecht} />}
 
       <h2>My Info</h2>
       <button onClick={handleShowInfo}>SHOW</button>
-      {info && <MyInfo />}
+      {info && <MyInfo userdata={userdata} />}
     </>
   );
 };

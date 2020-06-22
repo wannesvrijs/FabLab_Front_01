@@ -3,18 +3,18 @@ import Navbar2 from "./NavBar2";
 import Topper from "./Topper";
 import Footer from "./Footer";
 
-export default ({ title, description, titleclass, children }) => {
+export default ({ title, description, topperClass, children }) => {
   return (
     <>
       <Head>
         <title>{title}</title>
       </Head>
-      <Navbar2></Navbar2>
       <div className="main-container">
+        <Navbar2></Navbar2>
         <Topper
           title={title}
           description={description}
-          titleclass={titleclass || ""}
+          topperClass={topperClass || ""}
         ></Topper>
         <main>{children}</main>
       </div>
