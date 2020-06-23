@@ -9,7 +9,9 @@ export default ({ data }) => {
         title="Faq"
         description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat, magni? Quia, illum id? Quos quis perspiciatis molestias at commodi nisi, eligendi vero omnis velit dolorem officia! Architecto laborum error ad."
       >
-        <Faq data={data}></Faq>
+        {data["hydra:member"].map((faqcat) => (
+          <Faq key={faqcat["@id"]} faqcat={faqcat}></Faq>
+        ))}
       </Layout>
     </>
   );

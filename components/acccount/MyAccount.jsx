@@ -44,7 +44,6 @@ export default ({ props: { inschrijvingen, machinerecht, userdata } }) => {
       {fab && <MyFabmoments />}
 
       <h2 onClick={handleShowEvents}>Agenda</h2>
-
       <section className="event account-event">
         {eve &&
           inschrijvingen.map((inschrijving) => (
@@ -53,7 +52,10 @@ export default ({ props: { inschrijvingen, machinerecht, userdata } }) => {
       </section>
 
       <h2 onClick={handleShowRechten}>Machinerecht</h2>
-      {recht && <MyRechten machinerecht={machinerecht} />}
+      <section className="event account-event">
+        {recht && <h3>Mijn behaalde machinerechten</h3>}
+        {recht && machinerecht.map((mrecht) => <MyRechten mrecht={mrecht} />)}
+      </section>
 
       <h2 onClick={handleShowInfo}>Mijn Details</h2>
       {info && <MyInfo userdata={userdata} />}

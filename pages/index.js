@@ -15,13 +15,18 @@ export default ({ nieuws, events }) => {
         <section className="nieuws">
           <h3>nieuws</h3>
           <p className="nws_allert">!</p>
-          {nieuws.length && nieuws.map((item) => <Nieuws item={item}></Nieuws>)}
+          {nieuws.length &&
+            nieuws.map((item) => (
+              <Nieuws key={item["@id"]} item={item}></Nieuws>
+            ))}
         </section>
         <div className="event-container">
           <h3>Events</h3>
           <section className="event">
             {events.length &&
-              events.map((event) => <Event event={event}></Event>)}
+              events.map((event) => (
+                <Event key={event["@id"]} event={event}></Event>
+              ))}
           </section>
         </div>
       </Layout>

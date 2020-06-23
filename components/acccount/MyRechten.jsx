@@ -1,8 +1,22 @@
-import { useEffect } from "react";
+import { useState } from "react";
 
-export default ({ machinerecht }) => {
-  useEffect(() => {
-    console.log(machinerecht);
-  }, []);
-  return <p>myRechten</p>;
+export default ({ mrecht }) => {
+  console.log(mrecht);
+
+  const formatDateTitel = (datum) => {
+    const d = new Date(datum);
+    const date = d.toLocaleDateString("en-GB");
+    return date.split("/").slice(0, 3).join("–");
+  };
+
+  return (
+    <>
+      <div className="event-head">
+        <p>{formatDateTitel(mrecht.createdAt)}</p>
+        <div className="event-right">
+          <p>{mrecht.mrechMach.machNaam}</p>
+        </div>
+      </div>
+    </>
+  );
 };
