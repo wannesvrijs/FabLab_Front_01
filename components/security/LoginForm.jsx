@@ -31,30 +31,56 @@ export default () => {
 
   const { inputs, errors, handleInputChange, handleSubmit } = useForm(onSignUp);
 
+  const handleFocus = (e) => {
+    const target = e.target;
+    target.parentNode.classList.add("float-active");
+  };
+
+  const handleBlur = (e) => {
+    const target = e.target;
+    if (!target.value) {
+      target.parentNode.classList.remove("float-active");
+    }
+  };
+
   return (
     <>
       <form className="login_form" onSubmit={handleSubmit}>
-        <label htmlFor="email">email:</label>
-        <input
-          id="email"
-          type="email"
-          name="email"
-          onChange={handleInputChange}
-          className={classNames("input", { inputerror: errors.email })}
-          value={inputs.email || ""}
-        />
+        <div class="float-container">
+          <label htmlFor="email">email</label>
+          <input
+            id="email"
+            type="text"
+            name="email"
+            onChange={handleInputChange}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
+            className={classNames("input", { inputerror: errors.email })}
+            value={inputs.email || ""}
+          />
+          {!errors.email || (
+            <p className="inputAllertMessage">Geef een geldig emailadres in</p>
+          )}
+        </div>
 
-        <label htmlFor="wachtwoord">wachtwoord:</label>
-        <input
-          id="wachtwoord"
-          type="password"
-          name="password"
-          onChange={handleInputChange}
-          className={classNames("input", {
-            inputerror: errors.password,
-          })}
-          value={inputs.password || ""}
-        />
+        <div class="float-container">
+          <label htmlFor="wachtwoord">wachtwoord:</label>
+          <input
+            id="wachtwoord"
+            type="password"
+            name="password"
+            onChange={handleInputChange}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
+            className={classNames("input", {
+              inputerror: errors.password,
+            })}
+            value={inputs.password || ""}
+          />
+          {!errors.password || (
+            <p className="inputAllertMessage">Geef een geldig wachtwoord in</p>
+          )}
+        </div>
 
         <button type="submit">submit</button>
       </form>

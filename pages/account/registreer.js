@@ -1,22 +1,27 @@
-import Layout from "../../components/Layout";
 import Registerform from "../../components/security/Registerform";
 import Link from "next/link";
 import { withAuth } from "../../helpers/helpers";
+import Layout_skeleton from "../../components/Layout_skeleton";
 
 export default (props) => {
   return (
     <>
-      <Layout
-        title="Registreer"
-        description="Registreer je om nieuwe fabmoments te creeren, inschrijvingen te maken..."
-      >
-        <Registerform></Registerform>
-        <Link href="/account/registreer">
-          <a className="login_registreer">
-            <span>login</span>
-          </a>
-        </Link>
-      </Layout>
+      <Layout_skeleton title="Registreer" style="dark">
+        <div className="split_content">
+          <header className="login-topper">
+            <h1>Registreren</h1>
+            <p className="topper_content">
+              Registreer of{" "}
+              <Link href="/account/login">
+                <a className="login_registreer">meld je aan</a>
+              </Link>
+            </p>
+          </header>
+          <main>
+            <Registerform></Registerform>
+          </main>
+        </div>
+      </Layout_skeleton>
     </>
   );
 };

@@ -1,22 +1,27 @@
 import LoginForm from "../../components/security/LoginForm";
-import Layout from "../../components/Layout";
 import Link from "next/link";
 import { withAuth, isAuth } from "../../helpers/helpers";
+import Layout_skeleton from "../../components/Layout_skeleton";
 
 export default () => {
   return (
     <>
-      <Layout
-        title="Login"
-        description="Log je hier in om nieuwe fabmoments te creeren, inschrijvingen te raadplegen..."
-      >
-        <LoginForm></LoginForm>
-        <Link href="/account/registreer">
-          <a className="login_registreer">
-            <span>registreer nu</span>
-          </a>
-        </Link>
-      </Layout>
+      <Layout_skeleton title="Login" style="dark">
+        <div className="split_content">
+          <header className="login-topper">
+            <h1>Aanmelden</h1>
+            <p className="topper_content">
+              Meld aan of{" "}
+              <Link href="/account/registreer">
+                <a className="login_registreer">registreer nu</a>
+              </Link>
+            </p>
+          </header>
+          <main>
+            <LoginForm></LoginForm>
+          </main>
+        </div>
+      </Layout_skeleton>
     </>
   );
 };

@@ -1,5 +1,5 @@
 import Head from "next/head";
-import Navbar2 from "./NavBar2";
+import NavBar from "./NavBar";
 import Topper from "./Topper";
 import Footer from "./Footer";
 
@@ -9,8 +9,8 @@ export default ({ title, description, topperClass, children }) => {
       <Head>
         <title>{title}</title>
       </Head>
-      <div className="main-container">
-        <Navbar2></Navbar2>
+      <div className={`main-container`}>
+        <NavBar></NavBar>
         <Topper
           title={title}
           description={description}

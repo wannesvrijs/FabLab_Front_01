@@ -40,20 +40,22 @@ export default ({ props: { inschrijvingen, machinerecht, userdata } }) => {
 
   return (
     <>
-      <h2>My fabmoments</h2>
-      <button onClick={handleShowFabmoments}>SHOW</button>
+      <h2 onClick={handleShowFabmoments}>Fabmoments</h2>
       {fab && <MyFabmoments />}
 
-      <h2>My Events</h2>
-      <button onClick={handleShowEvents}>SHOW</button>
-      {eve && <MyEvents inschrijvingen={inschrijvingen} />}
+      <h2 onClick={handleShowEvents}>Agenda</h2>
 
-      <h2>My Rechten</h2>
-      <button onClick={handleShowRechten}>SHOW</button>
+      <section className="event account-event">
+        {eve &&
+          inschrijvingen.map((inschrijving) => (
+            <MyEvents inschrijving={inschrijving} />
+          ))}
+      </section>
+
+      <h2 onClick={handleShowRechten}>Machinerecht</h2>
       {recht && <MyRechten machinerecht={machinerecht} />}
 
-      <h2>My Info</h2>
-      <button onClick={handleShowInfo}>SHOW</button>
+      <h2 onClick={handleShowInfo}>Mijn Details</h2>
       {info && <MyInfo userdata={userdata} />}
     </>
   );

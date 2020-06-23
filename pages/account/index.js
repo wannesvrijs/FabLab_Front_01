@@ -1,22 +1,26 @@
-import Layout from "../../components/Layout";
 import MyAccount from "../../components/acccount/MyAccount";
 import { withoutAuth, logout } from "../../helpers/helpers";
 import { parseCookies } from "nookies";
 import jwt_decode from "jwt-decode";
 import axios from "axios";
+import Layout_skeleton from "../../components/Layout_skeleton";
 
 export default (props) => {
   return (
     <>
-      <Layout
-        title="Mijn Account Genk"
-        description="Een FabLab (Fabrication – of Fabulous – Laboratory) is een kleinschalige werkplaats met een aanbod van computergestuurde gereedschappen met het doel om 'bijna alles' te kunnen maken."
-      >
-        <MyAccount props={props} />
-        <a>
-          <span onClick={logout}>logout</span>
-        </a>
-      </Layout>
+      <Layout_skeleton title="Mijn profiel" style="dark">
+        <header className="login-topper account-overview-topper">
+          <h1>Mijn Profiel</h1>
+          <p className="topper_content">
+            <a>
+              <span onClick={logout}>logout</span>
+            </a>
+          </p>
+        </header>
+        <main className="account-overview">
+          <MyAccount props={props} />
+        </main>
+      </Layout_skeleton>
     </>
   );
 };

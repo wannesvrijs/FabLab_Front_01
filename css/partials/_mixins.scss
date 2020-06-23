@@ -9,53 +9,88 @@
 
 //fonts
 
-@mixin titel($size: 4.5rem, $lineheight: 4.5rem, $color: $groen) {
-  font-size: $size;
-  line-height: $lineheight;
+@mixin titel($color: $groen) {
+  font-size: 3rem;
+  line-height: 3rem;
   font-weight: 700;
-  letter-spacing: -0.3rem;
+  letter-spacing: -0.04em;
   color: $color;
   font-family: $hoofdfont;
   text-transform: capitalize;
+
+  @media (min-width: $sm) {
+    font-size: 3.5rem;
+    line-height: 3.5rem;
+  }
+
+  @media (min-width: $md) {
+    font-size: 4rem;
+    line-height: 4rem;
+  }
+
+  @media (min-width: $lg) {
+    font-size: 4.5rem;
+    line-height: 4.5rem;
+  }
 }
 
-@mixin subtitel($size: 4.5rem, $lineheight: 4.5rem, $color: $blauw) {
-  font-size: $size;
-  line-height: $lineheight;
+@mixin subtitel($color: $blauw) {
+  font-size: 3rem;
+  line-height: 3rem;
   font-weight: 700;
-  letter-spacing: -0.3rem;
+  letter-spacing: -0.04em;
   color: $color;
   font-family: $hoofdfont;
   text-transform: capitalize;
+
+  @media (min-width: $sm) {
+    font-size: 3.5rem;
+    line-height: 3.5rem;
+  }
+
+  @media (min-width: $md) {
+    font-size: 4rem;
+    line-height: 4rem;
+  }
+
+  @media (min-width: $lg) {
+    font-size: 4.5rem;
+    line-height: 4.5rem;
+  }
 }
 
-@mixin intro($size: 1.6rem, $lineheight: 2rem, $color: $zwart) {
-  font-size: $size;
-  line-height: $lineheight;
+@mixin intro($color: $zwart) {
+  font-size: 1.3rem;
+  line-height: 1.7rem;
   font-weight: 400;
   color: $color;
   font-family: $hoofdfont;
+
+  @media (min-width: $md) {
+    font-size: 1.6rem;
+    line-height: 2rem;
+  }
 }
 
-@mixin readinghead($size: 0.9rem, $lineheight: 1.8rem, $color: $zwart) {
-  font-size: $size;
-  line-height: $lineheight;
+@mixin readinghead($color: $zwart) {
+  font-size: 1rem;
+  line-height: 1.8rem;
   font-weight: 400;
   color: $color;
   font-family: $hoofdfont;
   text-transform: uppercase;
 }
 
-@mixin reading($size: 0.9rem, $lineheight: 1.8rem, $color: $zwart) {
-  font-size: $size;
-  line-height: $lineheight;
+@mixin reading($color: $zwart) {
+  font-size: 1rem;
+  line-height: 1.8rem;
   font-weight: 400;
   color: $color;
   font-family: $hoofdfont;
 }
 
-@mixin link($size: 0.9rem) {
-  font-size: $size;
+@mixin link {
+  font-size: 1rem;
   padding-bottom: 0;
   margin: 0;
   color: $zwart;
@@ -71,8 +106,8 @@
 }
 
 @mixin tiny($color: $grijs) {
-  font-size: 0.7rem;
-  line-height: 1.2rem;
+  font-size: 0.8rem;
+  line-height: 1.4rem;
   font-weight: 400;
   color: $color;
   font-family: $hoofdfont;

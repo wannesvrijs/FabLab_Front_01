@@ -49,22 +49,36 @@ header {
   padding: 7rem 0 3rem 0;
 }
 
-//--------------------------------------------CONTAINER--------------------------------
-
-body {
-  background-size: 6px 6px;
-  background-image: linear-gradient(
-      to right,
-      rgb(237, 237, 237) 0.5px,
-      transparent 1px
-    ),
-    linear-gradient(to bottom, rgb(231, 231, 231) 0.5px, transparent 1px);
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// --------------------------------------------CONTAINER---------------------------------------------------------
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+@media (min-width: $md) {
+  .split_content {
+    display: flex;
+  }
 }
 
 .main-container {
   min-height: 100vh;
   margin: 0 auto;
   padding: 0 2.5rem;
+  background-size: 7px 7px;
+  background-image: linear-gradient(
+      to right,
+      rgb(242, 242, 242) 0.5px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, rgb(242, 242, 242) 0.5px, transparent 1px);
+
+  &.dark {
+    background-color: $grijs;
+    background-image: linear-gradient(
+        to right,
+        $griddonker 0.5px,
+        transparent 1px
+      ),
+      linear-gradient(to bottom, $griddonker 0.5px, transparent 1px);
+  }
 }
 
 @media (min-width: $md) {
@@ -85,21 +99,9 @@ body {
   }
 }
 
-// --------------------------------------- NAV ---------------------------------
-
-.profielsvg {
-  stroke: $zwart;
-  &:hover {
-    stroke: $blauw;
-  }
-}
-.navigation_active {
-  color: $blauw;
-  svg {
-    stroke: $blauw;
-  }
-}
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// --------------------------------------------NAVIGATIE---------------------------------------------------------
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 .navigatie {
   padding-top: 1rem;
   padding-bottom: 1rem;
@@ -111,6 +113,13 @@ body {
       white-space: nowrap;
       margin-right: auto;
       @include intro;
+      line-height: 1.6em;
+      &:hover {
+        color: $blauw;
+      }
+      &.navigation_active {
+        color: $blauw;
+      }
     }
     .hamburger {
       width: 30px;
@@ -131,6 +140,16 @@ body {
     }
 
     & > li {
+      a {
+        @include intro;
+        line-height: 1.6em;
+        &:hover {
+          color: $blauw;
+        }
+        &.navigation_active {
+          color: $blauw;
+        }
+      }
       .profielsvg {
         display: none;
       }
@@ -158,7 +177,20 @@ body {
   }
 }
 
-@media (min-width: $md) {
+.profielsvg {
+  stroke: $zwart;
+  &:hover {
+    stroke: $blauw;
+  }
+}
+.navigation_active {
+  color: $blauw;
+  svg {
+    stroke: $blauw;
+  }
+}
+
+@media (min-width: 790px) {
   .nav_account {
     border-bottom: none;
   }
@@ -181,6 +213,9 @@ body {
         position: relative;
         &:last-child {
           padding-right: 0;
+        }
+        a {
+          font-size: 1rem;
         }
         .profielsvg {
           display: inline;
@@ -216,9 +251,121 @@ body {
     }
   }
 }
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// --------------------------------------------FOOTER---------------------------------------------------------
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+footer {
+  background-color: $oranje;
+  min-height: 200px;
+  width: 100%;
+}
 
-// ------------------------------------MAIN------------------------------------------
-//---------topper--------
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// --------------------------------------------FORMS---------------------------------------------------------
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+.input-geboorte {
+  color: transparent;
+}
+
+div.splitter {
+  height: 3rem;
+}
+
+.float-container {
+  box-sizing: border-box;
+  position: relative;
+  width: 100%;
+  margin-bottom: 18px;
+
+  label {
+    text-transform: uppercase;
+    color: $donker;
+    font-size: 16px;
+    position: absolute;
+    transform-origin: top left;
+    transform: translate(0, 16px) scale(1);
+    transition: all 0.1s ease-in-out; //speed
+  }
+
+  /** active label */
+  &.float-active {
+    label {
+      //move the x coordinate and reduce size
+      transform: translate(0, -2px) scale(0.8);
+    }
+    .input-geboorte {
+      color: $wit;
+    }
+  }
+}
+
+input,
+select {
+  width: 100%;
+  padding: 16px 0 0px;
+  margin-bottom: 2px;
+  background: none;
+  border-style: none;
+  border-bottom: 1px solid $wit;
+  color: $wit;
+}
+
+select {
+  -webkit-appearance: none;
+  -webkit-border-radius: 0px;
+  border-radius: 0px;
+  background-image: linear-gradient(60deg, transparent 60%, $zwart 40%),
+    linear-gradient(120deg, $zwart 40%, transparent 40%);
+  background-position: calc(100% - 12px) 25px, calc(100% - 3.5px) 25px;
+  background-size: 8.5px 8.5px;
+  background-color: transparent;
+  background-repeat: no-repeat;
+
+  -moz-appearance: none;
+  display: block;
+}
+.inputerror {
+  border-bottom: 1px solid $lichtoranje;
+}
+.inputAllertMessage {
+  @include tiny($lichtoranje);
+  font-weight: 500;
+  text-align: right;
+}
+
+button {
+  background: $groen;
+  border-radius: 0;
+  border-style: none;
+  @include reading;
+  font-family: $linkfont;
+  color: $wit;
+  padding: 0.5rem 0.5rem;
+  text-align: center;
+}
+
+/* Change autocomplete styles in WebKit */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  border-bottom: 1px solid $groen;
+  -webkit-text-fill-color: $wit;
+  -webkit-box-shadow: 0 0 0px 1000px $grijs inset;
+  box-shadow: 0 0 0px 1000px $grijs inset;
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// --------------------------------------------MAIN---------------------------------------------------------
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//=========================================TOPPER===========================================
 .main-topper {
   h1 {
     @include titel;
@@ -244,7 +391,6 @@ body {
     }
     h1 {
       @include titel;
-      font-size: 5.5rem;
       color: $zwart;
     }
     .link-button {
@@ -260,7 +406,7 @@ body {
   }
 }
 
-// ------ EVENTS ---------
+//=========================================EVENTS===========================================
 
 :focus,
 :focus {
@@ -369,7 +515,7 @@ body {
   }
 }
 
-// ----------------nieuws ---------
+//=========================================NIEUWS===========================================
 
 .nieuws {
   border-top: 3px solid $lichtgrijs;
@@ -406,99 +552,122 @@ body {
   }
 }
 
-// --------------------------------------------FORMS----------------------------------
-
-input[type="text"]:hover,
-select:hover {
-  height: 2rem;
-  margin-top: 0;
-  border-bottom: 3px solid $groen;
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// --------------------------------------------ACCOUNT---------------------------------------------------------
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+.dark {
+  button {
+    background-color: $blauw;
+  }
 }
 
-input[type="text"]:focus,
-select:focus {
-  height: 2rem;
-  outline: none;
-  margin-top: 0;
-  border-bottom: 3px solid $groen;
-}
-
-input[type="text"] {
-  appearance: none;
-  border-radius: 0px;
-  background: transparent;
-  height: calc(2rem - 1px);
-  border: 0;
-  border-bottom: 2px solid $groen;
-  width: 100%;
-  margin-top: 1px;
-}
-
-select {
-  -webkit-appearance: none;
-  -webkit-border-radius: 0px;
-  border-radius: 0px;
-  background-image: linear-gradient(45deg, transparent 50%, $groen 50%),
-    linear-gradient(135deg, $groen 50%, transparent 50%);
-  background-position: calc(100% - 4px) center, 100% center;
-  background-size: 5px 5px, 5px 5px, 1px 1.5em;
-  background-color: transparent;
-  background-repeat: no-repeat;
-  border: 0;
-  margin-top: 1px;
-  border-bottom: 2px solid $groen;
-
-  -moz-appearance: none;
+.split_content {
   display: block;
-  padding: 0.3rem;
-  height: calc(2rem - 1px);
-  width: 100%;
-}
-.inputerror {
-  border-bottom: 2px solid $oranje;
-}
-.inputAllertMessage {
-  @include tiny($oranje);
+  main {
+    display: block;
+  }
 }
 
-button {
-  background: $groen;
-  border-radius: 0;
-  border-style: none;
-  @include reading;
-  font-family: $linkfont;
-  color: $wit;
-  padding: 0.5rem 0.5rem;
-  text-align: center;
-}
-
-label {
-  margin: 0;
-  text-transform: capitalize;
-}
-
-/////-------------------------------------footer------------------
-footer {
-  background-color: $oranje;
-  min-height: 200px;
-  width: 100%;
-}
-//-------------------------------------------STORE-------------------------------
-
-table {
-  div {
-    width: 1em;
-    height: 1em;
-    &.out_of_stock {
-      background-color: $oranje;
-    }
-    &.in_stock {
-      background-color: $blauw;
+@media (min-width: 880px) {
+  .split_content {
+    display: flex;
+    main {
+      padding-top: 8.5rem;
+      width: $c-4;
+      margin-left: auto;
+      button {
+        width: $c-4;
+        margin-top: 3rem;
+      }
+      form {
+        margin-bottom: 10rem;
+      }
     }
   }
 }
 
-// -----------------------DROPZONE------------------------------
+//=========================================LOGIN===========================================
+
+.login-topper {
+  h1 {
+    color: $blauw;
+  }
+  a {
+    @include intro;
+    border-bottom: 3px solid $blauw;
+    &:hover {
+      color: $blauw;
+    }
+  }
+}
+
+//=========================================OVERVIEW===========================================
+
+.account-overview {
+  padding-top: 2rem;
+
+  h2 {
+    @include titel;
+    color: $lichtgrijs;
+    &:hover {
+      color: $wit;
+      cursor: pointer;
+    }
+  }
+}
+
+@media (min-width: $md) {
+  .account-overview-topper {
+    position: absolute;
+  }
+
+  .account-overview {
+    padding-top: 7rem;
+
+    h2 {
+      width: $c-4;
+      color: $lichtgrijs;
+      margin-left: auto;
+    }
+  }
+}
+
+//=========================================AGENDA===========================================
+
+.account-event {
+  .event-head {
+    box-shadow: none;
+  }
+}
+
+.react-tiny-popover-container {
+  background-color: $donker;
+  padding: 2em 3em;
+  position: fixed !important;
+  left: 0 !important;
+  right: 0 !important;
+  top: 0 !important;
+  bottom: 0 !important;
+  width: $c-3;
+  height: 4em;
+  margin-top: auto !important;
+  margin-bottom: auto !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  color: $lichtgrijs;
+}
+.popover-backdrop {
+  position: fixed;
+  background-color: rgba($color: $donker, $alpha: 0.5);
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+//=========================================DROPZONE===========================================
 
 .file-input {
   display: none;
@@ -533,7 +702,6 @@ table {
 .file-type {
   display: inline-block !important;
   position: absolute;
-  font-size: 12px;
   font-weight: 700;
   line-height: 13px;
   margin-top: 25px;
@@ -601,4 +769,21 @@ table {
 
 .error {
   color: $oranje;
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// --------------------------------------------MATERIAAL & PRIJZEN--------------------------------------------
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+table {
+  div {
+    width: 1em;
+    height: 1em;
+    &.out_of_stock {
+      background-color: $oranje;
+    }
+    &.in_stock {
+      background-color: $blauw;
+    }
+  }
 }
