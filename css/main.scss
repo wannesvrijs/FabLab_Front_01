@@ -811,15 +811,63 @@ select:-webkit-autofill:focus {
 // --------------------------------------------MATERIAAL & PRIJZEN--------------------------------------------
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-table {
-  div {
-    width: 1em;
-    height: 1em;
-    &.out_of_stock {
-      background-color: $oranje;
+.out_of_stock {
+  background-color: $oranje;
+  border: 2px solid $oranje;
+}
+.in_stock {
+  border: 2px solid $blauw;
+}
+.stock_indicator {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  margin-bottom: -0.1em;
+}
+
+.store-table {
+  .store-table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .scat-row {
+    border-top: 3px solid $lichtgrijs;
+    padding-top: 0.5em;
+    padding-bottom: 2em;
+    .scat-titel {
+      padding-bottom: 0.5em;
     }
-    &.in_stock {
-      background-color: $blauw;
+    .sub-mat {
+      .sub-mat-item {
+        display: flex;
+        align-items: center;
+        .mat-afmeting {
+          margin-left: auto;
+          width: $c-5;
+        }
+        .mat-price {
+          width: $c-2;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: $xl) {
+  .store-table {
+    .scat-row {
+      display: flex;
+      padding-top: 0.8em;
+
+      .scat-titel {
+        width: $c-3;
+      }
+      .sub-mat {
+        width: $c-5;
+        margin-left: auto;
+      }
     }
   }
 }

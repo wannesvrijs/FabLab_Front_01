@@ -73,24 +73,34 @@
 }
 
 @mixin readinghead($color: $zwart) {
-  font-size: 1rem;
-  line-height: 1.8rem;
+  font-size: 0.9rem;
+  line-height: 1.5rem;
   font-weight: 400;
   color: $color;
   font-family: $hoofdfont;
   text-transform: uppercase;
+
+  @media (min-width: $sm) {
+    font-size: 1rem;
+    line-height: 1.8rem;
+  }
 }
 
 @mixin reading($color: $zwart) {
-  font-size: 1rem;
-  line-height: 1.8rem;
+  font-size: 0.9rem;
+  line-height: 1.5rem;
   font-weight: 400;
   color: $color;
   font-family: $hoofdfont;
+
+  @media (min-width: $sm) {
+    font-size: 1rem;
+    line-height: 1.8rem;
+  }
 }
 
 @mixin link {
-  font-size: 1rem;
+  font-size: 0.9rem;
   padding-bottom: 0;
   margin: 0;
   color: $zwart;
@@ -103,12 +113,21 @@
     padding-bottom: 0;
     border-bottom: 1px solid $blauw;
   }
+
+  @media (min-width: $sm) {
+    font-size: 1rem;
+  }
 }
 
 @mixin tiny($color: $grijs) {
-  font-size: 0.8rem;
-  line-height: 1.4rem;
+  font-size: 0.7rem;
+  line-height: 1.3rem;
   font-weight: 400;
   color: $color;
   font-family: $hoofdfont;
+
+  @media (min-width: $sm) {
+    font-size: 0.8rem;
+    line-height: 1.4rem;
+  }
 }
