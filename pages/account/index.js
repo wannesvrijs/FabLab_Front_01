@@ -8,7 +8,11 @@ import Layout_skeleton from "../../components/Layout_skeleton";
 export default (props) => {
   return (
     <>
-      <Layout_skeleton title="Mijn profiel" style="dark">
+      <Layout_skeleton
+        title="Mijn profiel"
+        description="Mijn FabLab profiel"
+        style="dark"
+      >
         <header className="login-topper account-overview-topper">
           <h1>Mijn Profiel</h1>
         </header>

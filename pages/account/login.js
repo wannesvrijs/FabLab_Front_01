@@ -6,7 +6,11 @@ import Layout_skeleton from "../../components/Layout_skeleton";
 export default () => {
   return (
     <>
-      <Layout_skeleton title="Login" style="dark">
+      <Layout_skeleton
+        title="Login"
+        description="Meld aan of registreer nu"
+        style="dark"
+      >
         <div className="split_content">
           <header className="login-topper">
             <h1>Aanmelden</h1>

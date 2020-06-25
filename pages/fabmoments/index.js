@@ -7,7 +7,12 @@ import Paginator from "../../components/Paginator";
 export default ({ data, materiaal, techniek }) => {
   return (
     <>
-      <Layout_skeleton title="Fabmoments">
+      <Layout_skeleton
+        title="Fabmoments"
+        description="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non
+              omnis beatae labore iste cum fugiat, nobis doloremque ab aut
+              quaerat."
+      >
         <header className="fabmoments-topper">
           <div className="fabmoments_titel">
             <h1>Fabmoments</h1>
