@@ -22,17 +22,50 @@ export default ({ newFabmoment, setNewFabmoment }) => {
   };
 
   const { myFabCreators } = useSelector((state) => state);
-  const { inputs, errors, handleInputChange, handleSubmit } = useForm(
-    onCreation
-  );
+  const {
+    inputs,
+    errors,
+    handleInputChange,
+    handleSubmit,
+    setErrors,
+  } = useForm(onCreation);
   const [materialen, setMaterialen] = useState([]);
   const [machines, setMachines] = useState([]);
 
   //dropzone states
   const [validFiles, setValidFiles] = useState([]);
   const [unsupportedFiles, setUnsupportedFiles] = useState([]);
+  const [error, setError] = useState("");
+  const [violations, setViolations] = useState({});
 
   const dispatch = useDispatch();
+
+  //handle the label class for inputstyling
+  //handle deleting the violation
+  const handleFocus = (e) => {
+    const { [e.target.name]: undefined, ...rest } = violations;
+    setViolations(rest);
+    const target = e.target;
+    target.parentNode.classList.add("float-active");
+  };
+
+  //handle the label class for inputstyling
+  const handleBlur = (e) => {
+    const target = e.target;
+    if (!target.value) {
+      target.parentNode.classList.remove("float-active");
+    }
+  };
+
+  //handle all erros or validation errors coming from the server
+  const violationAndErrorHandler = (name, errormsg) => {
+    if (errors[name] && errors[name] == true) {
+      return <p className="inputAllertMessage">{errormsg}</p>;
+    }
+    if (violations[name]) {
+      return <p className="inputAllertMessage">{violations[name]}</p>;
+    }
+  };
 
   const materiaalChangeHandler = (e) => {
     const { checked, value } = e.target;
@@ -68,44 +101,59 @@ export default ({ newFabmoment, setNewFabmoment }) => {
       <Dropzone {...dropzoneProps} />
 
       <form onSubmit={handleSubmit}>
-        <label htmlFor="titel">titel:</label>
-        <input
-          id="titel"
-          type="text"
-          name="fabTitel"
-          onChange={handleInputChange}
-          className={classNames("input", { inputerror: errors.fabTitel })}
-          value={inputs.fabTitel || ""}
-        />
-        {!errors.fabTitel || (
-          <p className="inputAllertMessage">Geef een titel op</p>
-        )}
+        <div className="float-container">
+          <label htmlFor="titel">titel:</label>
+          <input
+            id="titel"
+            type="text"
+            name="fabTitel"
+            onChange={handleInputChange}
+            onBlur={handleBlur}
+            onFocus={handleFocus}
+            className={classNames("input", {
+              inputerror: errors.fabTitel || violations.fabTitel,
+            })}
+            value={inputs.fabTitel || ""}
+          />
+          {violationAndErrorHandler("fabTitel", "Vul een geldige titel in.")}
+        </div>
 
-        <label htmlFor="titel">omschrijving:</label>
-        <textarea
-          id="omschrijving"
-          name="fabOmschrijving"
-          onChange={handleInputChange}
-          className={classNames("input", {
-            inputerror: errors.fabOmschrijving,
-          })}
-          value={inputs.fabOmschrijving || ""}
-        />
-        {!errors.fabOmschrijving || (
-          <p className="inputAllertMessage">Geef een omschrijving op</p>
-        )}
+        <div className="float-container">
+          <label htmlFor="titel">omschrijving:</label>
+          <div
+            contentEditable="true"
+            id="omschrijving"
+            name="fabOmschrijving"
+            onChange={handleInputChange}
+            onBlur={handleBlur}
+            onFocus={handleFocus}
+            className={classNames("input div-edit", {
+              inputerror: errors.fabOmschrijving || violations.fabOmschrijving,
+            })}
+            value={inputs.fabOmschrijving || ""}
+          />
+          {violationAndErrorHandler(
+            "fabOmschrijving",
+            "Vul een geldige omschrijving in."
+          )}
+        </div>
 
-        <label htmlFor="datum">Gerealiseerd op:</label>
-        <input
-          id="datum"
-          type="date"
-          name="fabDatum"
-          onChange={handleInputChange}
-          className={classNames("input", {
-            inputerror: errors.fabDatum,
-          })}
-          value={inputs.fabDatum || ""}
-        />
+        <div className="float-container">
+          <label htmlFor="datum">Gerealiseerd op:</label>
+          <input
+            id="datum"
+            type="date"
+            name="fabDatum"
+            onChange={handleInputChange}
+            onBlur={handleBlur}
+            onFocus={handleFocus}
+            className={classNames("input", "input-geboorte", {
+              inputerror: errors.fabDatum || violations.fabDatum,
+            })}
+            value={inputs.fabDatum || ""}
+          />
+          {violationAndErrorHandler("fabDatum", "Vul een geldige datum in.")}
+        </div>
 
         <p>Gebruikte materialen</p>
         {myFabCreators.materials.map((materiaal) => (

@@ -21,17 +21,28 @@ export default ({ data, materiaal, techniek }) => {
               omnis beatae labore iste cum fugiat, nobis doloremque ab aut
               quaerat.
             </p>
+            <Paginator
+              totalItems={data["hydra:totalItems"]}
+              classing="paginate-lg"
+            ></Paginator>
           </div>
           <FabmomentsForm
             materiaal={materiaal}
             techniek={techniek}
           ></FabmomentsForm>
-          <Paginator totalItems={data["hydra:totalItems"]}></Paginator>
+          <Paginator
+            totalItems={data["hydra:totalItems"]}
+            classing="paginate-sm"
+          ></Paginator>
         </header>
-        <main>
+        <main className="fabmoment-overview">
           {data["hydra:member"].map((fabmoment) => (
             <Fabmoments fabmoment={fabmoment}></Fabmoments>
           ))}
+          <Paginator
+            totalItems={data["hydra:totalItems"]}
+            classing="paginate-bottom"
+          ></Paginator>
         </main>
       </Layout_skeleton>
     </>
@@ -65,6 +76,9 @@ export const getServerSideProps = async (ctx) => {
         `fabMaches.fabmachMach.machMcat.mcatNaam=${ctx.query.t}`
       );
     }
+  }
+  if (ctx.query.page) {
+    queryParams.push(`page=${ctx.query.page}`);
   }
 
   const joinedQueryParams = queryParams.join("&");

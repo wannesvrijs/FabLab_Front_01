@@ -319,6 +319,14 @@ select {
   color: $wit;
 }
 
+.div-edit {
+  border-style: none;
+  border-bottom: 1px solid $wit;
+  background-color: transparent;
+  height: 400px;
+  width: 100%;
+}
+
 select {
   -webkit-appearance: none;
   -webkit-border-radius: 0px;
@@ -697,6 +705,12 @@ select:-webkit-autofill:focus {
 @media (min-width: $md) {
   .account-overview-topper {
     position: absolute;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    h1 {
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
   }
 
   .account-overview {
@@ -1096,6 +1110,8 @@ select:-webkit-autofill:focus {
 // --------------------------------------------FABMOMENTS---------------------------------------------------------
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+//=========================================Topper===========================================
+
 .fabmoments-topper {
   .fabmoments_titel {
   }
@@ -1103,7 +1119,50 @@ select:-webkit-autofill:focus {
   }
 }
 
+@media (min-width: $lg) {
+  .fabmoments-topper {
+    .fabmoment-form {
+      margin-left: auto;
+      width: $c-2;
+    }
+  }
+}
+
+//=========================================paginator===========================================
+
+.paginate {
+  margin-top: 2rem;
+  .pagination-label {
+    @include intro;
+    display: block;
+    color: $grijs;
+  }
+  .page-nrs {
+    display: block;
+    a {
+      @include intro;
+      padding: 0.3em;
+      padding-left: 0em;
+      margin-right: 1.5rem;
+      &:hover {
+        color: $blauw;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.paginate-lg {
+  display: none;
+}
+
 @media (min-width: $md) {
+  .paginate-lg {
+    display: block;
+  }
+  .paginate-sm {
+    display: none;
+  }
   .fabmoments-topper {
     width: 100%;
     display: flex;
@@ -1117,10 +1176,80 @@ select:-webkit-autofill:focus {
   }
 }
 
-@media (min-width: $lg) {
-  .fabmoments-topper {
-    .fabmoment-form {
-      width: $c-2;
+//=========================================overview===========================================
+.fabmoment-overview {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  .fabmoment-card {
+    width: 100%;
+    img {
+      width: 100%;
+      cursor: pointer;
+    }
+    .fabmoment-titel {
+      padding: 1em 0 0.5em 0;
+      border-bottom: 3px solid $lichtgrijs;
+      margin-bottom: 0.5em;
+      text-transform: uppercase;
+      &:hover {
+        color: $blauw;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+@media (min-width: $md) {
+  .fabmoment-overview {
+    .fabmoment-card {
+      width: $c-4;
+    }
+  }
+}
+
+//=========================================detail===========================================
+
+.fabmoment-carousel {
+  position: relative;
+  width: 100%;
+  height: 60vh;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  svg {
+    width: 3em;
+    height: 3em;
+    fill: $zwart;
+    position: absolute;
+    margin-top: auto;
+    margin-bottom: auto;
+    top: 0;
+    bottom: 0;
+    &:hover {
+      fill: $blauw;
+      cursor: pointer;
+    }
+    &.carousel-prev {
+      left: 0;
+    }
+    &.carousel-next {
+      right: 0;
+    }
+  }
+}
+
+@media (min-width: $md) {
+  .fabmoment-detail-container {
+    display: flex;
+    .fabmoment-carousel {
+      width: $c-4;
+      margin-right: auto;
+    }
+    .fab-detail-content {
+      width: $c-4;
     }
   }
 }

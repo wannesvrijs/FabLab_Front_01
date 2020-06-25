@@ -62,7 +62,7 @@ export default ({ materiaal, techniek }) => {
           "float-active": Router.query.s,
         })}
       >
-        <label htmlFor="fabmoments_searchfield">zoek op zoekterm: </label>
+        <label htmlFor="fabmoments_searchfield">zoek op zoekterm </label>
         <input
           id="fabmoments_searchfield"
           type="text"
