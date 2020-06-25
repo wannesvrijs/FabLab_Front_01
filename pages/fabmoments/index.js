@@ -1,23 +1,34 @@
-import Layout from "../../components/Layout";
 import Fabmoments from "../../components/fabmoments/Fabmoments";
 import FabmomentsForm from "../../components/fabmoments/FabmomentsForm";
 import axios from "axios";
+import Layout_skeleton from "../../components/Layout_skeleton";
+import Paginator from "../../components/Paginator";
 
 export default ({ data, materiaal, techniek }) => {
   return (
     <>
-      <Layout
-        title="Fabmoments"
-        description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat, magni? Quia, illum id? Quos quis perspiciatis molestias at commodi nisi, eligendi vero omnis velit dolorem officia! Architecto laborum error ad."
-      >
-        {data["hydra:member"].map((fabmoment) => (
-          <Fabmoments fabmoment={fabmoment}></Fabmoments>
-        ))}
-        <FabmomentsForm
-          materiaal={materiaal}
-          techniek={techniek}
-        ></FabmomentsForm>
-      </Layout>
+      <Layout_skeleton title="Fabmoments">
+        <header className="fabmoments-topper">
+          <div className="fabmoments_titel">
+            <h1>Fabmoments</h1>
+            <p className="topper_content">
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non
+              omnis beatae labore iste cum fugiat, nobis doloremque ab aut
+              quaerat.
+            </p>
+          </div>
+          <FabmomentsForm
+            materiaal={materiaal}
+            techniek={techniek}
+          ></FabmomentsForm>
+          <Paginator totalItems={data["hydra:totalItems"]}></Paginator>
+        </header>
+        <main>
+          {data["hydra:member"].map((fabmoment) => (
+            <Fabmoments fabmoment={fabmoment}></Fabmoments>
+          ))}
+        </main>
+      </Layout_skeleton>
     </>
   );
 };

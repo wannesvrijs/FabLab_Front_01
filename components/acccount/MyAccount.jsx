@@ -6,6 +6,7 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getFabmoments } from "../../store/myFabmoments";
 import { getFabCreators } from "../../store/myFabCreators";
+import { logout } from "../../helpers/helpers";
 
 export default ({ props: { inschrijvingen, machinerecht, userdata } }) => {
   const [fab, setFab] = useState(false);
@@ -59,6 +60,10 @@ export default ({ props: { inschrijvingen, machinerecht, userdata } }) => {
 
       <h2 onClick={handleShowInfo}>Mijn Details</h2>
       {info && <MyInfo userdata={userdata} />}
+
+      <a>
+        <span onClick={logout}>Afmelden</span>
+      </a>
     </>
   );
 };

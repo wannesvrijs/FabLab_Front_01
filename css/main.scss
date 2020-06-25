@@ -19,6 +19,14 @@ h2 {
 h3,
 .topper_content {
   @include intro;
+  margin-bottom: 3rem;
+}
+
+@media (min-width: $md) {
+  h3,
+  .topper_content {
+    margin-bottom: 0;
+  }
 }
 
 p,
@@ -46,7 +54,7 @@ header {
   h1 {
     padding-bottom: 1rem;
   }
-  padding: 7rem 0 3rem 0;
+  padding: 8rem 0 5rem 0;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -279,9 +287,9 @@ div.splitter {
   margin-bottom: 18px;
 
   label {
+    @include reading;
     text-transform: uppercase;
     color: $donker;
-    font-size: 16px;
     position: absolute;
     transform-origin: top left;
     transform: translate(0, 16px) scale(1);
@@ -359,6 +367,41 @@ select:-webkit-autofill:focus {
   -webkit-text-fill-color: $wit;
   -webkit-box-shadow: 0 0 0px 1000px $grijs inset;
   box-shadow: 0 0 0px 1000px $grijs inset;
+}
+
+.fabmoment-form {
+  .float-container {
+    label {
+      color: $grijs;
+    }
+  }
+
+  input,
+  select {
+    border-bottom: 1px solid $zwart;
+    color: $zwart;
+  }
+
+  select {
+    background-image: linear-gradient(60deg, transparent 60%, $blauw 40%),
+      linear-gradient(120deg, $blauw 40%, transparent 40%);
+    background-position: calc(100% - 12px) 25px, calc(100% - 3.5px) 25px;
+  }
+
+  /* Change autocomplete styles in WebKit */
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  textarea:-webkit-autofill,
+  textarea:-webkit-autofill:hover,
+  textarea:-webkit-autofill:focus,
+  select:-webkit-autofill,
+  select:-webkit-autofill:hover,
+  select:-webkit-autofill:focus {
+    -webkit-text-fill-color: $zwart;
+    -webkit-box-shadow: 0 0 0px 1000px $wit inset;
+    box-shadow: 0 0 0px 1000px $wit inset;
+  }
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -608,7 +651,7 @@ select:-webkit-autofill:focus {
   .split_content {
     display: flex;
     main {
-      padding-top: 8.5rem;
+      padding-top: 10.5rem;
       width: $c-4;
       margin-left: auto;
       button {
@@ -630,7 +673,7 @@ select:-webkit-autofill:focus {
   }
   a {
     @include intro;
-    border-bottom: 3px solid $blauw;
+    border-bottom: 2px solid $blauw;
     &:hover {
       color: $blauw;
     }
@@ -658,7 +701,7 @@ select:-webkit-autofill:focus {
   }
 
   .account-overview {
-    padding-top: 7rem;
+    padding-top: 8rem;
 
     h2 {
       width: $c-4;
@@ -678,6 +721,7 @@ select:-webkit-autofill:focus {
 
 .react-tiny-popover-container {
   background-color: $donker;
+  border: 1px solid $oranje;
   padding: 2em 3em;
   position: fixed !important;
   left: 0 !important;
@@ -685,12 +729,21 @@ select:-webkit-autofill:focus {
   top: 0 !important;
   bottom: 0 !important;
   width: $c-3;
-  height: 4em;
+  height: fit-content;
   margin-top: auto !important;
   margin-bottom: auto !important;
   margin-left: auto !important;
   margin-right: auto !important;
   color: $lichtgrijs;
+  button {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    margin-top: 3em;
+    display: block;
+    margin-right: 0;
+    margin-left: auto;
+    background-color: $oranje;
+  }
 }
 .popover-backdrop {
   position: fixed;
@@ -826,8 +879,20 @@ select:-webkit-autofill:focus {
   margin-bottom: -0.1em;
 }
 
+.shop-topper {
+  border-bottom: 3px solid $lichtgrijs;
+  margin-bottom: 6em;
+}
+
+@media (min-width: $md) {
+  .shop-topper {
+    border-bottom: none;
+  }
+}
+
 .store-table {
   .store-table-header {
+    margin-bottom: 2em;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -868,6 +933,192 @@ select:-webkit-autofill:focus {
         width: $c-5;
         margin-left: auto;
       }
+    }
+  }
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// --------------------------------------------MACHINES--------------------------------------------
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+.machine-main {
+  border-top: 3px solid $lichtgrijs;
+  padding: 6em 0 7em 0;
+}
+
+.mcat-container {
+  margin-bottom: 5rem;
+  img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 1em;
+  }
+  .mcat-content {
+    .mcat-titel {
+      padding-top: 20px;
+    }
+    .mcat-omschrijving {
+      padding-bottom: 1em;
+    }
+    .machine-item {
+      display: flex;
+      align-items: center;
+      p {
+        width: $c-7;
+        margin-left: auto;
+      }
+    }
+    button {
+      margin-top: 3em;
+      display: block;
+      margin-left: auto;
+      margin-right: 0;
+      width: $c-4;
+      a span {
+        border-bottom: none;
+      }
+    }
+  }
+}
+
+@media (min-width: $md) {
+  .mcat-container {
+    display: flex;
+    & > a {
+      width: $c-4;
+      margin-right: auto;
+      img {
+        margin: 0;
+      }
+    }
+    .mcat-content {
+      width: $c-4;
+      .mcat-titel {
+        padding-top: 30px;
+        border-top: 3px solid $lichtgrijs;
+      }
+      button {
+      }
+    }
+  }
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// --------------------------------------------MACHINE-DETAIL-------------------------------------------------
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+.machine-detail-topper {
+  button {
+    width: $c-4;
+  }
+}
+
+.machine-detail-main {
+  border-top: 3px solid $lichtgrijs;
+  padding: 6em 0 7em 0;
+}
+
+.mach-container {
+  margin-bottom: 5rem;
+  display: flex;
+  flex-direction: column-reverse;
+
+  .iframe-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 30px;
+    height: 0;
+    overflow: hidden;
+  }
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 2em;
+  }
+
+  .mach-content {
+    .mach-titel {
+      display: flex;
+      align-items: center;
+      padding-top: 1em;
+      margin-bottom: 0.5rem;
+      .stock_indicator {
+        width: 1.2rem;
+        height: 1.2rem;
+        border-width: 2px;
+      }
+      h2 {
+        margin-bottom: 0;
+        width: $c-7;
+        margin-left: auto;
+      }
+    }
+    .mach-omschrijving {
+      padding-bottom: 1em;
+    }
+    span {
+      margin-top: 1em;
+      text-transform: uppercase;
+      display: block;
+    }
+  }
+}
+
+@media (min-width: $md) {
+  .mach-container {
+    display: flex;
+    flex-direction: row;
+
+    .mach-visuals {
+      width: $c-4;
+      margin-right: auto;
+    }
+    .mach-content {
+      width: $c-4;
+      .mach-titel {
+        padding-top: 30px;
+        border-top: 3px solid $lichtgrijs;
+      }
+    }
+  }
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// --------------------------------------------FABMOMENTS---------------------------------------------------------
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+.fabmoments-topper {
+  .fabmoments_titel {
+  }
+  .fabmoment-form {
+  }
+}
+
+@media (min-width: $md) {
+  .fabmoments-topper {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    .fabmoments_titel {
+      width: $c-4;
+    }
+    .fabmoment-form {
+      width: $c-4;
+    }
+  }
+}
+
+@media (min-width: $lg) {
+  .fabmoments-topper {
+    .fabmoment-form {
+      width: $c-2;
     }
   }
 }

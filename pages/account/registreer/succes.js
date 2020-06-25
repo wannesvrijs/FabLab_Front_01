@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Head from "next/head";
 
-export default ({ mail }) => {
+export default ({ email }) => {
   return (
     <>
       <Head>
@@ -13,7 +13,7 @@ export default ({ mail }) => {
             <h1>Registreren</h1>
             <p className="topper_content">
               Uw registratie werd ontvangen. Activeer uw profiel via de link die
-              werd verstuurd naar: {mail}
+              werd verstuurd naar: {email}
             </p>
           </header>
           <main></main>

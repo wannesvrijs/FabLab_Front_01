@@ -14,6 +14,8 @@ import Popover from "react-tiny-popover";
 export default ({ inschrijving }) => {
   const [expanded, setExpanded] = useState(false);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+  const [isDeleted, setIsDeleted] = useState(false);
+
   const cookies = parseCookies();
 
   const rotateArrow = () => {
@@ -22,13 +24,18 @@ export default ({ inschrijving }) => {
   };
 
   const handleButtonClick = async (insId) => {
-    const res = await axios.delete(
-      `${process.env.NEXT_PUBLIC_API_ENDPOINT}inschrijvings/${insId}`,
-      {
-        headers: { Authorization: `Bearer ${cookies.jwtToken}` },
-      }
-    );
-    const data = res.data;
+    try {
+      const res = await axios.delete(
+        `${process.env.NEXT_PUBLIC_API_ENDPOINT}inschrijvings/${insId}`,
+        {
+          headers: { Authorization: `Bearer ${cookies.jwtToken}` },
+        }
+      );
+      setIsDeleted(true);
+    } catch (error) {
+      console.log(error);
+      setIsDeleted(false);
+    }
   };
 
   const formatDateTitel = (datum) => {
@@ -78,62 +85,64 @@ export default ({ inschrijving }) => {
 
   return (
     <>
-      <Accordion allowZeroExpanded={true} onChange={rotateArrow}>
-        <AccordionItem>
-          <AccordionItemHeading>
-            <AccordionItemButton>
-              <div className="event-head">
-                <p>{formatDateTitel(inschrijving.insEve.eveStart)}</p>
-                <div className="event-right">
-                  <p>{inschrijving.insEve.eveTitel}</p>
-                  {expanded ? <IoMdArrowDown /> : <IoMdArrowForward />}
+      {!isDeleted && (
+        <Accordion allowZeroExpanded={true} onChange={rotateArrow}>
+          <AccordionItem>
+            <AccordionItemHeading>
+              <AccordionItemButton>
+                <div className="event-head">
+                  <p>{formatDateTitel(inschrijving.insEve.eveStart)}</p>
+                  <div className="event-right">
+                    <p>{inschrijving.insEve.eveTitel}</p>
+                    {expanded ? <IoMdArrowDown /> : <IoMdArrowForward />}
+                  </div>
+                </div>
+              </AccordionItemButton>
+            </AccordionItemHeading>
+            <AccordionItemPanel>
+              <div className="event-body">
+                <img src="/randompic.jpg" alt={inschrijving.insEve.eveTitel} />
+                <div className="event-text">
+                  <p className="event-omschrijving">
+                    {inschrijving.insEve.eveOmschrijving}
+                  </p>
+                  <p>Aanvang: {formatDateTime(inschrijving.insEve.eveStart)}</p>
+                  <p>
+                    Einde: {formatDateTime(inschrijving.insEve.eveStop) || "–"}
+                  </p>
+                  {event.evePrijs && (
+                    <p>Prijs: €{inschrijving.insEve.evePrijs}.00</p>
+                  )}
+                  <div className="event-inschrijven">
+                    {isPopoverOpen && <div className="popover-backdrop"></div>}
+                    <Popover
+                      isOpen={isPopoverOpen}
+                      disableReposition // prevents automatic readjustment of content position that keeps your popover content within your window's bounds
+                      onClickOutside={() => setIsPopoverOpen(false)} // handle click events outside of the popover/target here!
+                      content={
+                        <div>
+                          Ben je zeker dat je je wil uitschrijven voor{" "}
+                          {inschrijving.insEve.eveTitel}?
+                          <button
+                            onClick={() => handleButtonClick(inschrijving.id)}
+                          >
+                            Ja, schrijf me uit.
+                          </button>
+                        </div>
+                      }
+                    >
+                      <button onClick={() => setIsPopoverOpen(!isPopoverOpen)}>
+                        {" "}
+                        Schrijf me uit
+                      </button>
+                    </Popover>
+                  </div>
                 </div>
               </div>
-            </AccordionItemButton>
-          </AccordionItemHeading>
-          <AccordionItemPanel>
-            <div className="event-body">
-              <img src="/randompic.jpg" alt={inschrijving.insEve.eveTitel} />
-              <div className="event-text">
-                <p className="event-omschrijving">
-                  {inschrijving.insEve.eveOmschrijving}
-                </p>
-                <p>Aanvang: {formatDateTime(inschrijving.insEve.eveStart)}</p>
-                <p>
-                  Einde: {formatDateTime(inschrijving.insEve.eveStop) || "–"}
-                </p>
-                {event.evePrijs && (
-                  <p>Prijs: €{inschrijving.insEve.evePrijs}.00</p>
-                )}
-                <div className="event-inschrijven">
-                  {isPopoverOpen && <div className="popover-backdrop"></div>}
-                  <Popover
-                    isOpen={isPopoverOpen}
-                    disableReposition // prevents automatic readjustment of content position that keeps your popover content within your window's bounds
-                    onClickOutside={() => setIsPopoverOpen(false)} // handle click events outside of the popover/target here!
-                    content={
-                      <div>
-                        Ben je zeker dat je je wil uitschrijven voor{" "}
-                        {inschrijving.insEve.eveTitel}?
-                        <button
-                          onClick={() => handleButtonClick(inschrijving.id)}
-                        >
-                          Ja, schrijf me uit.
-                        </button>
-                      </div>
-                    }
-                  >
-                    <button onClick={() => setIsPopoverOpen(!isPopoverOpen)}>
-                      {" "}
-                      Schrijf me uit
-                    </button>
-                  </Popover>
-                </div>
-              </div>
-            </div>
-          </AccordionItemPanel>
-        </AccordionItem>
-      </Accordion>
+            </AccordionItemPanel>
+          </AccordionItem>
+        </Accordion>
+      )}
     </>
   );
 };

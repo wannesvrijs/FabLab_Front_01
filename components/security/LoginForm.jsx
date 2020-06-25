@@ -82,7 +82,7 @@ export default () => {
           )}
         </div>
 
-        <button type="submit">submit</button>
+        <button type="submit">Aanmelden</button>
       </form>
     </>
   );

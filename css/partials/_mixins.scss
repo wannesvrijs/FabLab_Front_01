@@ -9,7 +9,7 @@
 
 //fonts
 
-@mixin titel($color: $groen) {
+@mixin titel($color: $zwart) {
   font-size: 3rem;
   line-height: 3rem;
   font-weight: 700;
@@ -60,20 +60,20 @@
 }
 
 @mixin intro($color: $zwart) {
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   line-height: 1.7rem;
   font-weight: 400;
   color: $color;
   font-family: $hoofdfont;
 
   @media (min-width: $md) {
-    font-size: 1.6rem;
-    line-height: 2rem;
+    font-size: 1.5rem;
+    line-height: 1.9rem;
   }
 }
 
 @mixin readinghead($color: $zwart) {
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   line-height: 1.5rem;
   font-weight: 400;
   color: $color;
@@ -81,21 +81,21 @@
   text-transform: uppercase;
 
   @media (min-width: $sm) {
-    font-size: 1rem;
-    line-height: 1.8rem;
+    font-size: 0.9rem;
+    line-height: 1.5rem;
   }
 }
 
 @mixin reading($color: $zwart) {
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   line-height: 1.5rem;
   font-weight: 400;
   color: $color;
   font-family: $hoofdfont;
 
   @media (min-width: $sm) {
-    font-size: 1rem;
-    line-height: 1.8rem;
+    font-size: 0.9rem;
+    line-height: 1.5rem;
   }
 }
 

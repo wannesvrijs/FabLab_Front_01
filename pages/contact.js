@@ -3,7 +3,10 @@ import Layout_skeleton from "../components/Layout_skeleton";
 
 export default () => {
   return (
-    <Layout_skeleton title="Contact">
+    <Layout_skeleton
+      title="Contact"
+      description="Neem contact op met ons via mail of telefoon of kom gewoon eens langs."
+    >
       <div className="contact">
         <header className="contact-topper">
           <h1>Contact</h1>

@@ -8,6 +8,7 @@ export default ({ machinecats }) => {
       <Layout
         title="Machines"
         description="Lorem ipsum sit dollor amet, moster cols vadum. Hequer lostin vanam"
+        mainClass="machine-main"
       >
         {machinecats["hydra:member"].map((machinecat) => (
           <Machines machinecat={machinecat}></Machines>

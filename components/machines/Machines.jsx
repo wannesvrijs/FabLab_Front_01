@@ -2,6 +2,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
+import { textAbstract } from "../../helpers/helpers";
 
 export default ({ machinecat }) => {
   // we make the static data populate the state
@@ -29,21 +30,35 @@ export default ({ machinecat }) => {
   }, []);
 
   return (
-    <>
-      <img src={machineCatData.mcatImgPad} alt={machineCatData.mcatNaam} />
-      <h2>{machineCatData.mcatNaam}</h2>
-      <p>{machineCatData.mcatOmschrijving}</p>
-      {machineCatData.machines.map((machine) => (
-        <>
-          <p>{machine.machNaam}</p>
-          <p>{machine.machBeschikbaar ? "beschikbaar" : "DEFECT"}</p>
-        </>
-      ))}
+    <div className="mcat-container">
       <Link href={`machines/${machineCatData.id}/${machineCatData.slug}`}>
         <a>
-          <span>lees meer...</span>
+          <img src="/randompic.jpg" alt={machineCatData.mcatNaam} />
         </a>
       </Link>
-    </>
+      <div className="mcat-content">
+        <h2 className="mcat-titel">{machineCatData.mcatNaam}</h2>
+        <p className="mcat-omschrijving">
+          {textAbstract(machineCatData.mcatOmschrijving, 140)}
+        </p>
+        {machineCatData.machines.map((machine) => (
+          <div className="machine-item">
+            <div
+              className={`stock_indicator ${
+                machine.machBeschikbaar ? "in_stock" : "out_of_stock"
+              }`}
+            ></div>
+            <p>{machine.machNaam}</p>
+          </div>
+        ))}
+        <Link href={`machines/${machineCatData.id}/${machineCatData.slug}`}>
+          <button>
+            <a>
+              <span>lees meer...</span>
+            </a>
+          </button>
+        </Link>
+      </div>
+    </div>
   );
 };

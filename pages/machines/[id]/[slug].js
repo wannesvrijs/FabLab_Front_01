@@ -1,15 +1,30 @@
-import Layout from "../../../components/Layout";
 import axios from "axios";
 import MachineDetail from "../../../components/machines/MachineDetail";
+import Layout_skeleton from "../../../components/Layout_skeleton";
+import Link from "next/link";
 
 export default ({ data }) => {
   return (
     <>
-      <Layout title={data.mcatNaam} description={data.mcatOmschrijving}>
-        {data.machines.map((machine) => (
-          <MachineDetail machine={machine}></MachineDetail>
-        ))}
-      </Layout>
+      <Layout_skeleton
+        title={data.mcatNaam}
+        description={data.mcatOmschrijving}
+      >
+        <header className="machine-detail-topper">
+          <h1>{data.mcatNaam}</h1>
+          <p className="topper_content">{data.mcatOmschrijving}</p>
+          <Link href="/machines">
+            <button>
+              <a>ga terug</a>
+            </button>
+          </Link>
+        </header>
+        <main className="machine-detail-main">
+          {data.machines.map((machine) => (
+            <MachineDetail machine={machine}></MachineDetail>
+          ))}
+        </main>
+      </Layout_skeleton>
     </>
   );
 };
