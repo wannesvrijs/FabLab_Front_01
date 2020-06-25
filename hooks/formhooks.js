@@ -29,22 +29,9 @@ export const useForm = (callback) => {
   return {
     handleSubmit,
     handleInputChange,
+    setInputs,
     inputs,
     setErrors,
     errors,
   };
 };
-
-// export const useField = (str = "", errorSupport = false) => {
-//   const [value, setValue] = useState(str);
-//   const [error, setError] = useState(false);
-//   const onChange = (e) => {
-//     setError(false);
-//     setValue(e.target.value);
-//   };
-//   if (errorSupport) {
-//     return { value, onChange, error, setError, setValue };
-//   } else {
-//     return { value, onChange };
-//   }
-// };

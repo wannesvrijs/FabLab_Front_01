@@ -1,6 +1,7 @@
 import { useForm } from "../../hooks/formhooks";
 import classNames from "classnames";
 import Router from "next/router";
+import { useEffect, useState } from "react";
 
 export default ({ materiaal, techniek }) => {
   const onSearch = () => {
@@ -8,7 +9,22 @@ export default ({ materiaal, techniek }) => {
     Router.push(`/fabmoments?${combinedQueryParams}`);
   };
 
-  const { inputs, errors, handleInputChange, handleSubmit } = useForm(onSearch);
+  const {
+    inputs,
+    errors,
+    handleInputChange,
+    handleSubmit,
+    setInputs,
+  } = useForm(onSearch);
+
+  useEffect(() => {
+    setInputs({
+      ...inputs,
+      searchstring: Router.query.s,
+      techniek: Router.query.t,
+      materiaal: Router.query.m,
+    });
+  }, []);
 
   const handleFocus = (e) => {
     const target = e.target;
@@ -41,7 +57,11 @@ export default ({ materiaal, techniek }) => {
 
   return (
     <form className="fabmoment-form" onSubmit={handleSubmit}>
-      <div class="float-container">
+      <div
+        className={classNames("float-container", {
+          "float-active": Router.query.s,
+        })}
+      >
         <label htmlFor="fabmoments_searchfield">zoek op zoekterm: </label>
         <input
           id="fabmoments_searchfield"
@@ -55,7 +75,11 @@ export default ({ materiaal, techniek }) => {
         />
       </div>
 
-      <div class="float-container">
+      <div
+        className={classNames("float-container", {
+          "float-active": Router.query.t,
+        })}
+      >
         <label htmlFor="techniek">techniek</label>
         <select
           name="techniek"
@@ -73,7 +97,12 @@ export default ({ materiaal, techniek }) => {
         </select>
       </div>
 
-      <div class="float-container">
+      <div
+        className={classNames("float-container", {
+          "float-active": Router.query.m,
+        })}
+      >
+        {" "}
         <label htmlFor="materiaal">materiaal</label>
         <select
           name="materiaal"
