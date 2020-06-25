@@ -44,3 +44,9 @@ export const textAbstract = (text, length) => {
   text = text.substring(0, last);
   return text + "...";
 };
+
+//----------------------------------------------- VALIDATION ---------------------------------
+
+export const validateMail = (mail) => {
+  return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail);
+};

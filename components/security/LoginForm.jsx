@@ -5,13 +5,21 @@ import Router from "next/router";
 import { parseCookies, setCookie } from "nookies";
 import { setUser } from "../../store/user";
 import { useDispatch } from "react-redux";
+import { useState } from "react";
+import { validateMail } from "../../helpers/helpers";
 
 export default () => {
   const cookies = parseCookies();
   const dispatch = useDispatch();
+  const [error, setError] = useState("");
 
   const onSignUp = () => {
     const credentials = { email: inputs.email, password: inputs.password };
+
+    if (Object.values(errors).includes(true)) {
+      setError("Vul alle velden correct in.");
+      return;
+    }
 
     axios
       .post(`${process.env.NEXT_PUBLIC_API_ENDPOINT}login`, credentials)
@@ -24,12 +32,20 @@ export default () => {
         dispatch(setUser(response.data.data));
         Router.push("/account");
       })
-      .catch((error) => {
-        console.log(error);
+      .catch((err) => {
+        if (err.response.status === 401) {
+          setError(`Er werd geen geldig profiel gevonden voor ${inputs.email}`);
+        }
       });
   };
 
-  const { inputs, errors, handleInputChange, handleSubmit } = useForm(onSignUp);
+  const {
+    inputs,
+    errors,
+    setErrors,
+    handleInputChange,
+    handleSubmit,
+  } = useForm(onSignUp);
 
   const handleFocus = (e) => {
     const target = e.target;
@@ -40,6 +56,12 @@ export default () => {
     const target = e.target;
     if (!target.value) {
       target.parentNode.classList.remove("float-active");
+    }
+  };
+
+  const validateLoginMail = (e) => {
+    if (!validateMail(e.target.value)) {
+      setErrors({ ...errors, ["email"]: true });
     }
   };
 
@@ -54,17 +76,20 @@ export default () => {
             name="email"
             onChange={handleInputChange}
             onFocus={handleFocus}
-            onBlur={handleBlur}
+            onBlur={(e) => {
+              handleBlur(e);
+              validateLoginMail(e);
+            }}
             className={classNames("input", { inputerror: errors.email })}
             value={inputs.email || ""}
           />
           {!errors.email || (
-            <p className="inputAllertMessage">Geef een geldig emailadres in</p>
+            <p className="inputAllertMessage">Vul een geldig emailadres in.</p>
           )}
         </div>
 
         <div class="float-container">
-          <label htmlFor="wachtwoord">wachtwoord:</label>
+          <label htmlFor="wachtwoord">wachtwoord</label>
           <input
             id="wachtwoord"
             type="password"
@@ -78,9 +103,11 @@ export default () => {
             value={inputs.password || ""}
           />
           {!errors.password || (
-            <p className="inputAllertMessage">Geef een geldig wachtwoord in</p>
+            <p className="inputAllertMessage">Vul een geldig wachtwoord in.</p>
           )}
         </div>
+
+        {error && <p className="tiny error-dark">{error}</p>}
 
         <button type="submit">Aanmelden</button>
       </form>

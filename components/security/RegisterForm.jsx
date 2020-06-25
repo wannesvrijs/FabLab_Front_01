@@ -3,6 +3,7 @@ import classNames from "classnames";
 import axios from "axios";
 import landenList from "../../store/landenList.json";
 import Router from "next/router";
+import { useState } from "react";
 
 export default () => {
   const onSignUp = () => {
@@ -26,7 +27,21 @@ export default () => {
         Router.push(`/account/registreer/succes?e=${inputs.email}`);
       })
       .catch((error) => {
-        console.log(error);
+        //reformat error response message to similar format as the errors-state {fieldname : errormesage, ...}
+        if (error.response.status === 400) {
+          let newViolationObject = {};
+          error.response.data.violations.map(
+            (violation) =>
+              (newViolationObject = {
+                ...newViolationObject,
+                [violation.propertyPath]: violation.message,
+              })
+          );
+          setViolations(newViolationObject);
+          setError("Vul alle velden correct in.");
+        } else {
+          setError("Er liep iets mis, probeer later opnieuw.");
+        }
       });
   };
 
@@ -37,16 +52,33 @@ export default () => {
     handleInputChange,
     handleSubmit,
   } = useForm(onSignUp);
+  const [error, setError] = useState("");
+  const [violations, setViolations] = useState({});
 
+  //handle the label class for inputstyling
+  //handle deleting the violation
   const handleFocus = (e) => {
+    const { [e.target.name]: undefined, ...rest } = violations;
+    setViolations(rest);
     const target = e.target;
     target.parentNode.classList.add("float-active");
   };
 
+  //handle the label class for inputstyling
   const handleBlur = (e) => {
     const target = e.target;
     if (!target.value) {
       target.parentNode.classList.remove("float-active");
+    }
+  };
+
+  //handle all erros or validation errors coming from the server
+  const violationAndErrorHandler = (name, errormsg) => {
+    if (errors[name] && errors[name] == true) {
+      return <p className="inputAllertMessage">{errormsg}</p>;
+    }
+    if (violations[name]) {
+      return <p className="inputAllertMessage">{violations[name]}</p>;
     }
   };
 
@@ -85,7 +117,7 @@ export default () => {
   return (
     <>
       <form onSubmit={handleSubmit} className="register_form">
-        <div class="float-container">
+        <div className="float-container">
           <label htmlFor="vn">voornaam</label>
           <input
             id="vn"
@@ -97,15 +129,15 @@ export default () => {
               handleBlur(e);
             }}
             onFocus={handleFocus}
-            className={classNames("input", { inputerror: errors.useVn })}
+            className={classNames("input", {
+              inputerror: errors.useVn || violations.useVn,
+            })}
             value={inputs.useVn || ""}
           />
-          {!errors.useVn || (
-            <p className="inputAllertMessage">Geef een geldige voornaam in</p>
-          )}
+          {violationAndErrorHandler("useVn", "Vul een geldige voornaam in.")}
         </div>
 
-        <div class="float-container">
+        <div className="float-container">
           <label htmlFor="login_an">achternaam</label>
           <input
             id="login_an"
@@ -117,15 +149,15 @@ export default () => {
               handleBlur(e);
             }}
             onFocus={handleFocus}
-            className={classNames("input", { inputerror: errors.useAn })}
+            className={classNames("input", {
+              inputerror: errors.useAn || violations.useAn,
+            })}
             value={inputs.useAn || ""}
           />
-          {!errors.useAn || (
-            <p className="inputAllertMessage">Geef een geldige achternaam in</p>
-          )}
+          {violationAndErrorHandler("useAn", "Vul een geldige achternaam in.")}
         </div>
 
-        <div class="float-container">
+        <div className="float-container">
           <label htmlFor="login_email">email</label>
           <input
             id="login_email"
@@ -134,15 +166,15 @@ export default () => {
             onChange={handleInputChange}
             onBlur={handleBlur}
             onFocus={handleFocus}
-            className={classNames("input", { inputerror: errors.email })}
+            className={classNames("input", {
+              inputerror: errors.email || violations.email,
+            })}
             value={inputs.email || ""}
           />
-          {!errors.email || (
-            <p className="inputAllertMessage">Geef een geldig mailadres in</p>
-          )}
+          {violationAndErrorHandler("email", "Vul een geldig mailadres in.")}
         </div>
 
-        <div class="float-container">
+        <div className="float-container">
           <label htmlFor="login_wachtwoord">wachtwoord</label>
           <input
             id="login_wachtwoord"
@@ -155,18 +187,17 @@ export default () => {
             }}
             onFocus={handleFocus}
             className={classNames("input", {
-              inputerror: errors.password,
+              inputerror: errors.password || violations.password,
             })}
             value={inputs.password || ""}
           />
-          {!errors.password || (
-            <p className="inputAllertMessage">
-              Je wachtwoord moet minimaal 8 tekens bevatten
-            </p>
+          {violationAndErrorHandler(
+            "password",
+            "Je wachtwoord moet minimaal 8 tekens bevatten."
           )}
         </div>
 
-        <div class="float-container">
+        <div className="float-container">
           <label htmlFor="login_herhaal_wachtwoord">herhaal wachtwoord</label>
           <input
             id="login_herhaal_wachtwoord"
@@ -179,20 +210,19 @@ export default () => {
             }}
             onFocus={handleFocus}
             className={classNames("input", {
-              inputerror: errors.herhaalPassword,
+              inputerror: errors.herhaalPassword || violations.herhaalPassword,
             })}
             value={inputs.herhaalPassword || ""}
           />
-          {!errors.herhaalPassword || (
-            <p className="inputAllertMessage">
-              De wachtwoorden komen niet overeen
-            </p>
+          {violationAndErrorHandler(
+            "herhaalPassword",
+            "De wachtwoorden komen niet overeen."
           )}
         </div>
         {/* ------------------------------------------------ Persoonsgegevens ---------------------------------- */}
 
         <div className="splitter"></div>
-        <div class="float-container">
+        <div className="float-container">
           <label htmlFor="login_tel">Telefoonnummer</label>
           <input
             id="login_tel"
@@ -204,9 +234,10 @@ export default () => {
             className={classNames("input")}
             value={inputs.useTel || ""}
           />
+          {violationAndErrorHandler("useTel", "")}
         </div>
 
-        <div class="float-container">
+        <div className="float-container">
           <label htmlFor="login_geboorte">Geboortedatum</label>
           <input
             id="login_geboorte"
@@ -216,13 +247,17 @@ export default () => {
             onBlur={handleBlur}
             onFocus={handleFocus}
             className={classNames("input", "input-geboorte", {
-              inputerror: errors.useGeboorte,
+              inputerror: errors.useGeboorte || violations.useGeboorte,
             })}
             value={inputs.useGeboorte || ""}
           />
+          {violationAndErrorHandler(
+            "useGeboorte",
+            "Vul een geldige geboortedatum in."
+          )}
         </div>
 
-        <div class="float-container">
+        <div className="float-container">
           <label htmlFor="login_land">land</label>
           <input
             id="login_land"
@@ -233,7 +268,7 @@ export default () => {
             onBlur={handleBlur}
             onFocus={handleFocus}
             className={classNames("input", {
-              inputerror: errors.useLand,
+              inputerror: errors.useLand || violations.useLand,
             })}
             value={inputs.useLand || ""}
           />
@@ -244,9 +279,10 @@ export default () => {
               ))}
             </datalist>
           )}
+          {violationAndErrorHandler("useLand", "Vul een geldig land in.")}
         </div>
 
-        <div class="float-container">
+        <div className="float-container">
           <label htmlFor="login_gemeente">gemeente</label>
           <input
             id="login_gemeente"
@@ -256,13 +292,17 @@ export default () => {
             onBlur={handleBlur}
             onFocus={handleFocus}
             className={classNames("input", {
-              inputerror: errors.useGemeente,
+              inputerror: errors.useGemeente || violations.useGemeente,
             })}
             value={inputs.useGemeente || ""}
           />
+          {violationAndErrorHandler(
+            "useGemeente",
+            "Vul een geldige gemeente in."
+          )}
         </div>
 
-        <div class="float-container">
+        <div className="float-container">
           <label htmlFor="login_postcode">postcode</label>
           <input
             id="login_postcode"
@@ -272,16 +312,20 @@ export default () => {
             onBlur={handleBlur}
             onFocus={handleFocus}
             className={classNames("input", {
-              inputerror: errors.usePostcode,
+              inputerror: errors.usePostcode || violations.usePostcode,
             })}
             value={inputs.usePostcode || ""}
           />
+          {violationAndErrorHandler(
+            "usePostcode",
+            "Vul een geldige postcode in."
+          )}
         </div>
 
         {/* ------------------------------------------------ EXTRA INFO ---------------------------------- */}
 
         <div className="splitter"></div>
-        <div class="float-container">
+        <div className="float-container">
           <label htmlFor="login_beroep">Beroep</label>
           <select
             name="useBeroep"
@@ -289,21 +333,21 @@ export default () => {
             onChange={handleInputChange}
             onBlur={handleBlur}
             onFocus={handleFocus}
-            className={classNames("input", { inputerror: errors.useBeroep })}
+            className={classNames("input", {
+              inputerror: errors.useBeroep || violations.useBeroep,
+            })}
             value={inputs.useBeroep || ""}
           >
             <option value=""></option>
             <option value="Student">Student</option>
             <option value="Andere">Andere</option>
           </select>
-          {!errors.useBeroep || (
-            <p className="inputAllertMessage">Geef een geldig beroep in</p>
-          )}
+          {violationAndErrorHandler("useBeroep", "Vul een geldig beroep in.")}
         </div>
 
         {inputs.useBeroep === "Student" && (
           <>
-            <div class="float-container">
+            <div className="float-container">
               <label htmlFor="login_school">School</label>
               <input
                 id="login_school"
@@ -313,16 +357,17 @@ export default () => {
                 onBlur={handleBlur}
                 onFocus={handleFocus}
                 className={classNames("input", {
-                  inputerror: errors.useSchool,
+                  inputerror: errors.useSchool || violations.useSchool,
                 })}
                 value={inputs.useSchool || ""}
               />
-              {!errors.useSchool || (
-                <p className="inputAllertMessage">Geef een geldige school in</p>
+              {violationAndErrorHandler(
+                "useSchool",
+                "Vul een geldige school in."
               )}
             </div>
 
-            <div class="float-container">
+            <div className="float-container">
               <label htmlFor="login_richting">Richting</label>
               <input
                 id="login_richting"
@@ -332,18 +377,18 @@ export default () => {
                 onBlur={handleBlur}
                 onFocus={handleFocus}
                 className={classNames("input", {
-                  inputerror: errors.useRichting,
+                  inputerror: errors.useRichting || violations.useRichting,
                 })}
                 value={inputs.useRichting || ""}
               />
-              {!errors.useRichting || (
-                <p className="inputAllertMessage">
-                  Geef een geldige richting in
-                </p>
+              {violationAndErrorHandler(
+                "useRichting",
+                "Vul een geldige richting in."
               )}
             </div>
           </>
         )}
+        {error && <p className="tiny error-dark">{error}</p>}
 
         <button type="submit">Registreer</button>
       </form>

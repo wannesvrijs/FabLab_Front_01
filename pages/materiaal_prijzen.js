@@ -5,7 +5,12 @@ import axios from "axios";
 export default ({ data }) => {
   return (
     <>
-      <Layout_skeleton title="Materiaal & prijzen">
+      <Layout_skeleton
+        title="Materiaal & prijzen"
+        description=" Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non
+              omnis beatae labore iste cum fugiat, nobis doloremque ab aut
+              quaerat."
+      >
         <div className="split_content">
           <header className="shop-topper">
             <h1>Materiaal & Prijzen</h1>
