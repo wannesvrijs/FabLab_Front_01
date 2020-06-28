@@ -12,23 +12,26 @@ export default ({ nieuws, events }) => {
         description="Een FabLab (Fabrication – of Fabulous – Laboratory) is een kleinschalige werkplaats met een aanbod van computergestuurde gereedschappen met het doel om 'bijna alles' te kunnen maken."
         topperClass="main-topper"
       >
-        <section className="nieuws">
-          <h3>nieuws</h3>
-          <p className="nws_allert">!</p>
-          {nieuws.length &&
-            nieuws.map((item) => (
+        {nieuws.length > 0 && (
+          <section className="nieuws">
+            <h3>nieuws</h3>
+            <p className="nws_allert">!</p>
+
+            {nieuws.map((item) => (
               <Nieuws key={item["@id"]} item={item}></Nieuws>
             ))}
-        </section>
-        <div className="event-container">
-          <h3>Events</h3>
-          <section className="event">
-            {events.length &&
-              events.map((event) => (
+          </section>
+        )}
+        {events.length > 0 && (
+          <div className="event-container">
+            <h3>Events</h3>
+            <section className="event">
+              {events.map((event) => (
                 <Event key={event["@id"]} event={event}></Event>
               ))}
-          </section>
-        </div>
+            </section>
+          </div>
+        )}
       </Layout>
     </>
   );

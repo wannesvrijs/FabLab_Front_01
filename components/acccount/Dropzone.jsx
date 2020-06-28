@@ -1,11 +1,16 @@
 import { useRef, useState, useEffect } from "react";
 import axios from "axios";
+import { MdClose } from "react-icons/Md";
+import { forceShort } from "../../helpers/helpers";
+import { AiOutlinePlus } from "react-icons/ai";
 
 export default ({
   validFiles,
   setValidFiles,
   unsupportedFiles,
   setUnsupportedFiles,
+  violations,
+  setViolations,
 }) => {
   const fileInputRef = useRef();
   const [selectedFiles, setSelectedFiles] = useState([]);
@@ -23,7 +28,19 @@ export default ({
     setValidFiles([...filteredArr]);
   }, [selectedFiles]);
 
+  const violationAndErrorHandler = (name) => {
+    if (violations[name]) {
+      return (
+        <p className="inputAllertMessage">
+          Een van de bestanden is te groot, de maximale grootte is 2MB
+        </p>
+      );
+    }
+  };
+
   const filesSelected = () => {
+    const { fabimgImgFile: undefined, ...rest } = violations;
+    setViolations(rest);
     if (fileInputRef.current.files.length) {
       handleFiles(fileInputRef.current.files);
     }
@@ -61,10 +78,12 @@ export default ({
     const k = 1024;
     const sizes = ["Bytes", "KB", "MB", "GB", "TB"];
     const i = Math.floor(Math.log(size) / Math.log(k));
-    return parseFloat((size / Math.pow(k, i)).toFixed(2)) + " " + sizes[i];
+    return parseInt(Math.ceil(size / Math.pow(k, i))) + " " + sizes[i];
   };
 
   const removeFile = (name) => {
+    const { fabimgImgFile: undefined, ...rest } = violations;
+    setViolations(rest);
     const index = validFiles.findIndex((e) => e.name === name);
     const index2 = selectedFiles.findIndex((e) => e.name === name);
     const index3 = unsupportedFiles.findIndex((e) => e.name === name);
@@ -85,9 +104,10 @@ export default ({
       ) : (
         ""
       )}
-      <a onClick={fileInputClicked}>
+      <div className="upload-box" onClick={fileInputClicked}>
+        <AiOutlinePlus />
         <span>Upload afbeeldingen</span>
-      </a>
+      </div>
       <input
         ref={fileInputRef}
         className="file-input"
@@ -101,22 +121,27 @@ export default ({
         {validFiles.map((data, i) => (
           <div className="file-status-bar" key={i}>
             {/* keep this check for browsers not supporting the 'accept' */}
-            <div onClick={data.invalid ? () => removeFile(data.name) : ""}>
-              <img className="detail-img" src={URL.createObjectURL(data)}></img>
-              <span className={`file-name ${data.invalid ? "file-error" : ""}`}>
-                {data.name}
-              </span>
-              <span className="file-size">({fileSize(data.size)})</span>{" "}
+            <div
+              className="left"
+              onClick={data.invalid ? () => removeFile(data.name) : ""}
+            >
+              <img className="detail-img" src={URL.createObjectURL(data)} />
+              <p className={`file-name ${data.invalid ? "file-error" : ""}`}>
+                {`${forceShort(data.name, 20)}${data.name.split(".").pop()}`}
+                <span className="tiny"> ({fileSize(data.size)})</span>
+              </p>
               {/* keep this check for browsers not supporting the 'accept' */}
               {data.invalid && (
                 <span className="file-error-message">({errorMessage})</span>
               )}
             </div>
-            <div className="file-remove" onClick={() => removeFile(data.name)}>
-              X
-            </div>
+            <MdClose
+              className="file-remove"
+              onClick={() => removeFile(data.name)}
+            />
           </div>
         ))}
+        {violationAndErrorHandler("fabimgImgFile")}
       </div>
     </>
   );

@@ -289,11 +289,15 @@ div.splitter {
   label {
     @include reading;
     text-transform: uppercase;
-    color: $donker;
+    color: $wit;
     position: absolute;
     transform-origin: top left;
     transform: translate(0, 16px) scale(1);
     transition: all 0.1s ease-in-out; //speed
+
+    &.label-textarea {
+      line-height: 0;
+    }
   }
 
   /** active label */
@@ -303,7 +307,11 @@ div.splitter {
       transform: translate(0, -2px) scale(0.8);
     }
     .input-geboorte {
-      color: $wit;
+      color: $zwart;
+    }
+    textarea {
+      margin-top: 0.2em;
+      @include reading;
     }
   }
 }
@@ -316,15 +324,17 @@ select {
   background: none;
   border-style: none;
   border-bottom: 1px solid $wit;
-  color: $wit;
+  color: $zwart;
 }
 
-.div-edit {
+textarea {
   border-style: none;
   border-bottom: 1px solid $wit;
   background-color: transparent;
-  height: 400px;
+  height: 200px;
   width: 100%;
+  margin-top: 0;
+  transition: all 0.1s ease-in-out;
 }
 
 select {
@@ -371,7 +381,7 @@ textarea:-webkit-autofill:focus,
 select:-webkit-autofill,
 select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
-  -webkit-text-fill-color: $wit;
+  -webkit-text-fill-color: $zwart;
   -webkit-box-shadow: 0 0 0px 1000px $grijs inset;
   box-shadow: 0 0 0px 1000px $grijs inset;
 }
@@ -385,7 +395,7 @@ select:-webkit-autofill:focus {
 
   input,
   select {
-    border-bottom: 1px solid $zwart;
+    border-bottom: 1px solid $grijs;
     color: $zwart;
   }
 
@@ -727,6 +737,9 @@ select:-webkit-autofill:focus {
 //=========================================AGENDA===========================================
 
 .account-event {
+  .account-event-box {
+    padding: 1rem 0 2rem 0;
+  }
   .event-head {
     box-shadow: none;
   }
@@ -735,13 +748,13 @@ select:-webkit-autofill:focus {
 .react-tiny-popover-container {
   background-color: $donker;
   border: 1px solid $oranje;
-  padding: 2em 3em;
+  padding: 1.5em 2em;
   position: fixed !important;
   left: 0 !important;
   right: 0 !important;
   top: 0 !important;
   bottom: 0 !important;
-  width: $c-3;
+  width: $c-6;
   height: fit-content;
   margin-top: auto !important;
   margin-bottom: auto !important;
@@ -769,111 +782,262 @@ select:-webkit-autofill:focus {
   height: 100vh;
 }
 
+@media (min-width: $md) {
+  .react-tiny-popover-container {
+    padding: 2em 3em;
+    width: $c-5;
+    button {
+      padding-left: 2rem;
+      padding-right: 2rem;
+      margin-top: 3em;
+      margin-right: 0;
+      margin-left: auto;
+    }
+  }
+}
+
+@media (min-width: $lg) {
+  .react-tiny-popover-container {
+    width: $c-3;
+  }
+}
+
+@-moz-document url-prefix() {
+  .react-tiny-popover-container {
+    max-height: 16em;
+    position: relative;
+    button {
+      position: absolute;
+      bottom: 1.5rem;
+      right: 2rem;
+    }
+  }
+  @media (min-width: $sm) {
+    .react-tiny-popover-container {
+      max-height: 14em;
+    }
+  }
+
+  @media (min-width: $lg) {
+    .react-tiny-popover-container {
+      max-height: 14em;
+      button {
+        bottom: 2rem;
+        right: 3rem;
+      }
+    }
+  }
+}
+
 //=========================================DROPZONE===========================================
 
 .file-input {
   display: none;
 }
 
-.file-upload-btn {
-  color: white;
-  outline: none;
-  background-color: $blauw;
-  padding: 8px 15px;
-  margin-bottom: 5px;
+.file-display-container {
+  width: 100%;
 }
 
-.file-display-container {
-  width: 805px;
+.file-name {
+  padding-bottom: 1em;
 }
 
 .file-status-bar {
   width: 100%;
-  vertical-align: top;
-  margin-top: 10px;
-  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   position: relative;
-  line-height: 50px;
-  height: 50px;
+  .left {
+    display: flex;
+    align-items: center;
+    .detail-img {
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+      display: none;
+    }
+    span {
+      @include reading;
+
+      &.tiny {
+        color: $donker;
+        padding: 0;
+      }
+    }
+  }
+  .file-remove {
+    width: 1.5em;
+    height: 1.5em;
+    cursor: pointer;
+    fill: $oranje;
+  }
 }
 
-.file-status-bar > div {
-  overflow: hidden;
+.error-button {
+  background-color: $oranje !important;
 }
 
-.file-type {
-  display: inline-block !important;
-  position: absolute;
-  font-weight: 700;
-  line-height: 13px;
-  margin-top: 25px;
-  padding: 0 4px;
-  border-radius: 2px;
-  color: #fff;
-  background: $blauw;
-  text-transform: uppercase;
-}
-
-.file-name {
-  display: inline-block;
-  vertical-align: top;
-  margin-left: 50px;
-  color: #4aa1f3;
-}
-
-.file-error {
-  display: inline-block;
-  vertical-align: top;
-  margin-left: 50px;
-  color: #9aa9bb;
-}
-
-.file-error-message {
-  color: $oranje;
-}
-
-.file-type-logo {
-  width: 50px;
-  height: 50px;
-  background: url(../public/generic.png) no-repeat center center;
-  background-size: 100%;
-  position: absolute;
-}
-
-.file-size {
-  display: inline-block;
-  vertical-align: top;
-  color: #30693d;
-  margin-left: 10px;
-  margin-right: 5px;
-  margin-left: 10px;
-  color: #444242;
-}
-
-.file-remove {
-  position: absolute;
-  top: 20px;
-  right: 10px;
-  line-height: 15px;
-  cursor: pointer;
-  color: $oranje;
-  margin-right: -10px;
-}
-
-.detail-img {
-  position: absolute;
-  width: 100px;
-  height: auto;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
+.file-error,
+.file-error-message,
 .error {
   color: $oranje;
 }
+
 .error-dark {
   color: $lichtoranje;
+}
+
+.upload-box {
+  margin-bottom: 1em;
+  height: 20em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid $wit;
+  &:hover {
+    border-color: $blauw;
+    cursor: pointer;
+    span {
+      color: $blauw;
+    }
+    svg {
+      fill: $blauw;
+    }
+  }
+  span {
+    color: $wit;
+  }
+  svg {
+    width: 4em;
+    height: 4em;
+    fill: $wit;
+  }
+}
+.checkboxes {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  height: 12em;
+  justify-items: space-between;
+  .checkbox {
+    width: 31%;
+    display: flex;
+    align-items: center;
+    input {
+      margin: 1em;
+      margin-left: 0;
+    }
+  }
+}
+
+.checkbox-titel {
+  color: $wit;
+  text-transform: uppercase;
+}
+
+@media (min-width: $md) {
+}
+
+input[type="checkbox"] {
+  width: auto;
+  appearance: none;
+  width: 1rem;
+  height: 1rem;
+  border: 1px solid $wit;
+  border-radius: 50%;
+  &:checked {
+    background-color: $blauw;
+  }
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+//=========================================create fabmoment===========================================
+
+.fabform-button-container {
+  margin-top: 3rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  button {
+    width: $c-4;
+  }
+}
+
+@media (min-width: $md) {
+  .my-fabcreation {
+    margin-top: 5rem;
+    margin-bottom: 7rem;
+    display: flex;
+    justify-content: space-between;
+    .dropzone-container {
+      width: $c-4;
+    }
+    .my-fabform-container {
+      width: $c-4;
+
+      .input-datum-container {
+        width: $c-4;
+        margin-left: auto;
+      }
+    }
+  }
+}
+
+.omschrijving-container {
+  margin-top: 2rem;
+}
+
+//=========================================my fabmoment carousel===========================================
+
+.my-fabmoments-carousel {
+  padding-top: 3rem;
+  padding-bottom: 5rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  .upload-box-container {
+    width: $c-4;
+    padding-bottom: $c-4;
+    position: relative;
+    height: 0;
+    .upload-box {
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 77%;
+      position: absolute;
+    }
+  }
+  & > div {
+    margin-top: 2rem;
+    width: $c-4;
+    & > img {
+      width: 100%;
+      height: auto;
+    }
+  }
+}
+
+@media (min-width: $lg) {
+  .my-fabmoments-carousel {
+    .upload-box-container {
+      width: $c-2;
+      padding-bottom: $c-2;
+    }
+    & > div {
+      width: $c-2;
+      & > img {
+        width: 100%;
+        height: auto;
+      }
+    }
+  }
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1209,6 +1373,10 @@ select:-webkit-autofill:focus {
 }
 
 //=========================================detail===========================================
+
+.fab-detail-omschrijving {
+  white-space: pre-wrap;
+}
 
 .fabmoment-carousel {
   position: relative;

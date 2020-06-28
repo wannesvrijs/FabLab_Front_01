@@ -1,8 +1,6 @@
 import { useState } from "react";
 
 export default ({ mrecht }) => {
-  console.log(mrecht);
-
   const formatDateTitel = (datum) => {
     const d = new Date(datum);
     const date = d.toLocaleDateString("en-GB");

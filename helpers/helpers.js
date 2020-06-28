@@ -45,6 +45,25 @@ export const textAbstract = (text, length) => {
   return text + "...";
 };
 
+export const forceShort = (text, length) => {
+  if (text == null) {
+    return "";
+  }
+  if (text.length <= length) {
+    return text;
+  }
+  text = text.substring(0, length);
+  return text + "...";
+};
+
+export const imgPrefix = (endpoint, width, height, cropratio = null) => {
+  return `${
+    process.env.NEXT_PUBLIC_BASE_ENDPOINT
+  }image.php?test.jpg&width=${width}&height=${height}${
+    cropratio ? `&cropratio=${cropratio}` : ""
+  }&image=/uploads/files/${endpoint}`;
+};
+
 //----------------------------------------------- VALIDATION ---------------------------------
 
 export const validateMail = (mail) => {

@@ -10,6 +10,7 @@ import {
   AccordionItemPanel,
 } from "react-accessible-accordion";
 import Popover from "react-tiny-popover";
+import { imgPrefix } from "../../helpers/helpers";
 
 export default ({ inschrijving }) => {
   const [expanded, setExpanded] = useState(false);
@@ -19,7 +20,6 @@ export default ({ inschrijving }) => {
   const cookies = parseCookies();
 
   const rotateArrow = () => {
-    console.log(inschrijving);
     setExpanded(!expanded);
   };
 
@@ -101,7 +101,19 @@ export default ({ inschrijving }) => {
             </AccordionItemHeading>
             <AccordionItemPanel>
               <div className="event-body">
-                <img src="/randompic.jpg" alt={inschrijving.insEve.eveTitel} />
+                <img
+                  src={
+                    inschrijving.insEve.eveImgPad
+                      ? imgPrefix(
+                          `events/images/${event.eveImgPad}`,
+                          800,
+                          800,
+                          "16.1:10"
+                        )
+                      : ""
+                  }
+                  alt={inschrijving.insEve.eveTitel}
+                />
                 <div className="event-text">
                   <p className="event-omschrijving">
                     {inschrijving.insEve.eveOmschrijving}

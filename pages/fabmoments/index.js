@@ -53,7 +53,7 @@ export const getServerSideProps = async (ctx) => {
   const queryParams = [];
 
   if (ctx.query.s) {
-    queryParams.push(`fabOmschrijving=${ctx.query.s}`);
+    queryParams.push(`fabTitel=${ctx.query.s}`);
   }
   if (ctx.query.m) {
     if (typeof ctx.query.m === "object") {

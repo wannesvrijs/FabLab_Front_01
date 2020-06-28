@@ -5,6 +5,8 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { IoMdArrowDown, IoMdArrowForward } from "react-icons/io";
+import { imgPrefix } from "../../helpers/helpers";
+
 import {
   Accordion,
   AccordionItem,
@@ -108,7 +110,19 @@ export default ({ event }) => {
         </AccordionItemHeading>
         <AccordionItemPanel>
           <div className="event-body">
-            <img src="/randompic.jpg" alt={event.eveTitel} />
+            <img
+              src={
+                event.eveImgPad
+                  ? imgPrefix(
+                      `events/images/${event.eveImgPad}`,
+                      800,
+                      800,
+                      "16.1:10"
+                    )
+                  : ""
+              }
+              alt={event.eveTitel}
+            />
             <div className="event-text">
               <p className="event-omschrijving">{event.eveOmschrijving}</p>
               <p>Aanvang: {formatDateTime(event.eveStart)}</p>

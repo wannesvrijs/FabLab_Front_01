@@ -8,7 +8,7 @@ const initialState = {
   error: "",
   loading: false,
   materials: [],
-  machines: [],
+  technieken: [],
 };
 
 /*********/
@@ -23,25 +23,19 @@ const ERRORFABCREATORS = "ERRORFABCREATORS";
 /* ACTION CREATORS */
 /*******************/
 
-export const getFabCreators = (useId, page = 1) => (dispatch) => {
-  const cookies = parseCookies();
+export const getFabCreators = () => (dispatch) => {
   dispatch(loadFabCreators());
   const requestMaterials = axios.get(
-    `${process.env.NEXT_PUBLIC_API_ENDPOINT}materiaals`
+    `${process.env.NEXT_PUBLIC_API_ENDPOINT}all_materialen`
   );
-  const requestMachines = axios.get(
-    `${process.env.NEXT_PUBLIC_API_ENDPOINT}machines`
+  const requestTechnieken = axios.get(
+    `${process.env.NEXT_PUBLIC_API_ENDPOINT}all_technieken`
   );
 
   axios
-    .all([requestMaterials, requestMachines])
-    .then(([materials, machines]) => {
-      dispatch(
-        setFabCreators([
-          materials.data["hydra:member"],
-          machines.data["hydra:member"],
-        ])
-      );
+    .all([requestMaterials, requestTechnieken])
+    .then(([materials, technieken]) => {
+      dispatch(setFabCreators([materials.data, technieken.data]));
     })
     .catch((error) => dispatch(errorFabCreators("error loading API")));
 };
@@ -78,7 +72,7 @@ export default (state = initialState, { type, payload }) => {
         ...state,
         loading: false,
         materials: payload[0],
-        machines: payload[1],
+        technieken: payload[1],
       };
     case ERRORFABCREATORS:
       return {

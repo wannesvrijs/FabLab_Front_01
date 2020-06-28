@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
 import { textAbstract } from "../../helpers/helpers";
+import { imgPrefix } from "../../helpers/helpers";
 
 export default ({ machinecat }) => {
   // we make the static data populate the state
@@ -33,7 +34,18 @@ export default ({ machinecat }) => {
     <div className="mcat-container">
       <Link href={`machines/${machineCatData.id}/${machineCatData.slug}`}>
         <a>
-          <img src="/randompic.jpg" alt={machineCatData.mcatNaam} />
+          <img
+            src={
+              machineCatData.mcatImgPad
+                ? imgPrefix(
+                    `machine/images/${machineCatData.mcatImgPad}`,
+                    800,
+                    800,
+                    "16.1:10"
+                  )
+                : ""
+            }
+          />
         </a>
       </Link>
       <div className="mcat-content">

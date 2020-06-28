@@ -14,9 +14,9 @@ export default ({ fabmoment }) => {
 
 export async function getStaticPaths() {
   const res = await axios.get(
-    `${process.env.NEXT_PUBLIC_API_ENDPOINT}fabmoments?fabIsPosted=true`
+    `${process.env.NEXT_PUBLIC_API_ENDPOINT}fabmoments_posted_id`
   );
-  const fabmoments = res.data["hydra:member"];
+  const fabmoments = res.data;
 
   // Get the paths we want to pre-render based on machinecats
   const paths = fabmoments.map((fabmoment) => ({

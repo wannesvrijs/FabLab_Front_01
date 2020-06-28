@@ -1,18 +1,14 @@
 import { useState } from "react";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/Md";
+import { imgPrefix } from "../../helpers/helpers";
 
 export default ({ fabmoment }) => {
   const [arrayPosition, setArrayPosition] = useState(0);
 
-  // const imgArray = [
-  //   <img src="/randompic.jpg" alt="0" />,
-  //   <img src="/generic.png" alt="1" />,
-  // ];
-
   const imgArray = fabmoment.fabImgs.map((img) => (
     <img
       key={img.id}
-      src={img.fabimgImgPad}
+      src={imgPrefix(`fabmoments/images/${img.fabimgImgPad}`, 800, 800)}
       alt={`${fabmoment.fabTitel}-${img.fabimgImgPad}`}
     />
   ));
@@ -51,18 +47,15 @@ export default ({ fabmoment }) => {
         </div>
         <div className="fab-detail-content">
           <h2>{fabmoment.fabTitel}</h2>
-          <p>{fabmoment.fabOmschrijving}</p>
+          <p className="fab-detail-omschrijving">{fabmoment.fabOmschrijving}</p>
           <p>{formatDate(fabmoment.fabDatum)}</p>
           <p>materialen</p>
           <p>
             {fabmoment.fabMats.map((mat) => mat.fabmatMat.matNaam).join(", ")}
           </p>
-          <p>Machines</p>
+          <p>Technieken</p>
           {fabmoment.fabMaches.map((mach) => (
-            <p>
-              {mach.fabmachMach.machNaam}{" "}
-              <span className="tiny">{`(${mach.fabmachMach.machMcat.mcatNaam})`}</span>
-            </p>
+            <p>{mach.fabmachMcat.mcatNaam} </p>
           ))}
         </div>
       </div>

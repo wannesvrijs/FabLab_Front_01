@@ -68,7 +68,7 @@ export default () => {
   return (
     <>
       <form className="login_form" onSubmit={handleSubmit}>
-        <div class="float-container">
+        <div className="float-container">
           <label htmlFor="email">email</label>
           <input
             id="email"
@@ -88,7 +88,7 @@ export default () => {
           )}
         </div>
 
-        <div class="float-container">
+        <div className="float-container">
           <label htmlFor="wachtwoord">wachtwoord</label>
           <input
             id="wachtwoord"

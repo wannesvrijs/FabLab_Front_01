@@ -22,7 +22,7 @@ export default ({ props: { inschrijvingen, machinerecht, userdata } }) => {
     if (
       myFabmoments.data.length === 0 ||
       myFabCreators.materials.length === 0 ||
-      myFabCreators.machines.length === 0
+      myFabCreators.technieken.length === 0
     ) {
       dispatch(getFabmoments(user.id));
       dispatch(getFabCreators());
@@ -46,16 +46,24 @@ export default ({ props: { inschrijvingen, machinerecht, userdata } }) => {
 
       <h2 onClick={handleShowEvents}>Agenda</h2>
       <section className="event account-event">
-        {eve &&
-          inschrijvingen.map((inschrijving) => (
-            <MyEvents inschrijving={inschrijving} />
-          ))}
+        {eve && (
+          <div className="account-event-box">
+            {inschrijvingen.map((inschrijving, i) => (
+              <MyEvents inschrijving={inschrijving} key={i} />
+            ))}
+          </div>
+        )}
       </section>
 
       <h2 onClick={handleShowRechten}>Machinerecht</h2>
       <section className="event account-event">
-        {recht && <h3>Mijn behaalde machinerechten</h3>}
-        {recht && machinerecht.map((mrecht) => <MyRechten mrecht={mrecht} />)}
+        {recht && (
+          <div className="account-event-box">
+            {machinerecht.map((mrecht, i) => (
+              <MyRechten mrecht={mrecht} key={i} />
+            ))}
+          </div>
+        )}
       </section>
 
       <h2 onClick={handleShowInfo}>Mijn Details</h2>

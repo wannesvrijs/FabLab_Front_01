@@ -41,53 +41,90 @@ export const createFabmoments = ({ textual, files }) => async (dispatch) => {
 
   dispatch(loadFabmoments());
 
-  const resone = await axios.post(
-    `${process.env.NEXT_PUBLIC_API_ENDPOINT}fabmoments`,
-    textual,
-    {
+  //first we post the textual data
+  axios
+    .post(`${process.env.NEXT_PUBLIC_API_ENDPOINT}fabmoments`, textual, {
       headers: { Authorization: `Bearer ${cookies.jwtToken}` },
-    }
-  );
-  const id = resone.data.id;
+    })
 
-  files.forEach((file) => {
-    const formData = new FormData();
-    formData.append("file", file);
-    formData.append("id", id);
-    axios
-      .post("http://localhost:8000/api/fab_imgs", formData, {
-        headers: { Authorization: `Bearer ${cookies.jwtToken}` },
-      })
-      .catch(() => {});
-  });
-  // TODO
-  // dispatch(addFabmoments(data));
-  // .catch((error) => dispatch(errorFabmoments("error posting Fabmoment")));
+    //if textual data succeeds we start posting images with id that came back from post
+    .then((response) => {
+      files.every((file) => {
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("id", response.data.id);
+        axios
+          .post("http://localhost:8000/api/fab_imgs", formData, {
+            headers: { Authorization: `Bearer ${cookies.jwtToken}` },
+          })
+          //if images fail to post we add the violations and delete the textual data again (rollback)
+          .catch((error) => {
+            axios.delete(
+              `${process.env.NEXT_PUBLIC_API_ENDPOINT}fabmoments/${response.data.id}`,
+              {
+                headers: { Authorization: `Bearer ${cookies.jwtToken}` },
+              }
+            );
+
+            //we restructure the violationdata and dispatch
+            let newViolationObject = {};
+            error.response.data.violations.map(
+              (violation) =>
+                (newViolationObject = {
+                  ...newViolationObject,
+                  [violation.propertyPath]: violation.message,
+                })
+            );
+            dispatch(errorFabmoments(newViolationObject));
+            return false;
+          });
+      });
+      return response.data.id;
+    })
+    .then((response) => {
+      dispatch(addCreatedFabmoments(response));
+    })
+    //if textual data fails we restructue the errordata and dispatch
+    .catch((error) => {
+      let newViolationObject = {};
+      error.response.data.violations.map(
+        (violation) =>
+          (newViolationObject = {
+            ...newViolationObject,
+            [violation.propertyPath]: violation.message,
+          })
+      );
+      dispatch(errorFabmoments(newViolationObject));
+    });
 };
 
-// console.log(result.data['@id']);
-
-const uploadFiles = async () => {
-  for (let i = 0; i < validFiles.length; i++) {
-    const formData = new FormData();
-    formData.append("file", validFiles[i]);
-    axios
-      .post("http://localhost:8000/api/media_objects", formData)
-      .catch(() => {});
-  }
+//add after succesfull creation
+export const addCreatedFabmoments = (id) => async (dispatch) => {
+  const cookies = parseCookies();
+  axios
+    .get(`${process.env.NEXT_PUBLIC_API_ENDPOINT}fabmoments/${id}`, {
+      headers: { Authorization: `Bearer ${cookies.jwtToken}` },
+    })
+    .then((result) => {
+      dispatch(addFabmoments(result.data));
+    })
+    .catch();
 };
 
 export const loadFabmoments = () => ({
   type: LOADFABMOMENTS,
 });
-export const setFabmoments = (data) => ({
-  type: SETFABMOMENTS,
-  payload: data,
-});
+
 export const addFabmoments = (data) => ({
   type: ADDFABMOMENTS,
   payload: data,
 });
+
+export const setFabmoments = (data) => ({
+  type: SETFABMOMENTS,
+  payload: data,
+});
+
 export const errorFabmoments = (msg) => ({
   type: ERRORFABMOMENTS,
   payload: msg,
@@ -113,6 +150,7 @@ export default (state = initialState, { type, payload }) => {
     case ADDFABMOMENTS:
       return {
         ...state,
+        error: "",
         loading: false,
         data: [payload, ...state.data],
       };

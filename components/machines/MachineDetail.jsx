@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { imgPrefix } from "../../helpers/helpers";
 
 export default ({ machine }) => {
   const [beschikbaar, setBeschikbaar] = useState(false);
@@ -14,10 +15,22 @@ export default ({ machine }) => {
   return (
     <div className="mach-container">
       <div className="mach-visuals">
-        <img src="/randompic.jpg" alt={machine.machNaam} />
+        <img
+          src={
+            machine.machImgPad
+              ? imgPrefix(
+                  `machine/images/${machine.machImgPad}`,
+                  800,
+                  800,
+                  "16.1:10"
+                )
+              : ""
+          }
+          alt={machine.machNaam}
+        />
         <div className="iframe-container">
           <iframe
-            src="https://www.youtube.com/embed/8YGTMZxxcno?controls=0"
+            src={machine.machVideoPad}
             frameborder="0"
             allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen
