@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 import axios from "axios";
-import { MdClose } from "react-icons/Md";
+import { MdClose } from "react-icons/md";
 import { forceShort } from "../../helpers/helpers";
 import { AiOutlinePlus } from "react-icons/ai";
 

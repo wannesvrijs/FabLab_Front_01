@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/Md";
+import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 import { imgPrefix } from "../../helpers/helpers";
 
 export default ({ fabmoment }) => {
