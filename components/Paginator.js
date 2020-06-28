@@ -42,9 +42,10 @@ export default ({ totalItems, classing }) => {
   }
 
   return (
-    <div className={`paginate ${classing}`}>
-      <p className="pagination-label">Pagina</p>
-      <div className="page-nrs">{pagesnrs}</div>
-    </div>
+    totalPages > 1 && (
+      <div className={`paginate ${classing}`}>
+        <div className="page-nrs">{pagesnrs}</div>
+      </div>
+    )
   );
 };

@@ -69,7 +69,7 @@ header {
 .main-container {
   min-height: 100vh;
   margin: 0 auto;
-  padding: 0 2.5rem;
+  padding: 0 2.5rem 10rem 2.5rem;
   background-size: 7px 7px;
   background-image: linear-gradient(
       to right,
@@ -97,13 +97,13 @@ header {
 
 @media (min-width: $md) {
   .main-container {
-    padding: 0 3rem;
+    padding: 0 3rem 10rem 3rem;
   }
 }
 
 @media (min-width: $lg) {
   .main-container {
-    padding: 0 3.5rem;
+    padding: 0 3.5rem 10rem 3.5rem;
   }
 }
 
@@ -1001,6 +1001,16 @@ input[type="checkbox"] {
   flex-wrap: wrap;
   justify-content: space-between;
 
+  .fabmoment-card {
+    .titel {
+      border-bottom: 3px solid $lichtgrijs;
+      padding: 0.2em 0 0.4em;
+    }
+    p {
+      margin: 0.3rem 0;
+    }
+  }
+
   .upload-box-container {
     width: $c-4;
     padding-bottom: $c-4;
@@ -1193,6 +1203,14 @@ input[type="checkbox"] {
   }
 }
 
+@media (min-width: $md) {
+  .machine-detail-topper {
+    button {
+      margin-top: 3rem;
+    }
+  }
+}
+
 .machine-detail-main {
   border-top: 3px solid $lichtgrijs;
   padding: 6em 0 7em 0;
@@ -1224,6 +1242,7 @@ input[type="checkbox"] {
   }
 
   .mach-content {
+    margin-bottom: 1rem;
     .mach-titel {
       display: flex;
       align-items: center;
@@ -1280,14 +1299,9 @@ input[type="checkbox"] {
   .fabmoments_titel {
   }
   .fabmoment-form {
-  }
-}
-
-@media (min-width: $lg) {
-  .fabmoments-topper {
-    .fabmoment-form {
-      margin-left: auto;
-      width: $c-2;
+    button {
+      margin-top: 2.5rem;
+      width: 100%;
     }
   }
 }
@@ -1319,6 +1333,11 @@ input[type="checkbox"] {
 .paginate-lg {
   display: none;
 }
+.paginate-bottom {
+  display: block;
+  width: 100%;
+  margin-top: 3em;
+}
 
 @media (min-width: $md) {
   .paginate-lg {
@@ -1336,6 +1355,16 @@ input[type="checkbox"] {
     }
     .fabmoment-form {
       width: $c-4;
+      padding-top: 1.7rem;
+    }
+  }
+}
+
+@media (min-width: $lg) {
+  .fabmoments-topper {
+    .fabmoment-form {
+      margin-left: auto;
+      width: $c-2;
     }
   }
 }
@@ -1346,6 +1375,7 @@ input[type="checkbox"] {
   flex-wrap: wrap;
   justify-content: space-between;
   .fabmoment-card {
+    margin-bottom: 5rem;
     width: 100%;
     img {
       width: 100%;

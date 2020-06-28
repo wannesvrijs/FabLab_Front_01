@@ -16,7 +16,7 @@ export default ({ fabmoment }) => {
         }
         alt={fabmoment.fabTitel}
       />
-      <p>{fabmoment.fabTitel}</p>
+      <p className="titel">{fabmoment.fabTitel}</p>
       <p>{textAbstract(fabmoment.fabOmschrijving, 120)}</p>
     </div>
   );
