@@ -1,4 +1,4 @@
-import MyAccount from "../../components/acccount/MyAccount";
+import MyAccount from "../../components/account/MyAccount";
 import { withoutAuth } from "../../helpers/helpers";
 import { parseCookies } from "nookies";
 import jwt_decode from "jwt-decode";
