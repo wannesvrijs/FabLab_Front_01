@@ -1,4 +1,3 @@
-import { Container, Row, Col } from "react-bootstrap";
 import Link from "next/link";
 
 export default ({ title, description, topperClass }) => {
