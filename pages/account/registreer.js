@@ -1,4 +1,4 @@
-import Registerform from "../../components/security/Registerform";
+import Registerform from "../../components/security/RegisterForm";
 import Link from "next/link";
 import { withAuth } from "../../helpers/helpers";
 import Layout_skeleton from "../../components/Layout_skeleton";
