@@ -54,7 +54,7 @@ export const createFabmoments = ({ textual, files }) => async (dispatch) => {
         formData.append("file", file);
         formData.append("id", response.data.id);
         axios
-          .post("http://localhost:8000/api/fab_imgs", formData, {
+          .post(`${process.env.NEXT_PUBLIC_API_ENDPOINT}fab_imgs`, formData, {
             headers: { Authorization: `Bearer ${cookies.jwtToken}` },
           })
           //if images fail to post we add the violations and delete the textual data again (rollback)
