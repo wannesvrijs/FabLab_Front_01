@@ -61,7 +61,7 @@ export const imgPrefix = (endpoint, width, height, cropratio = null) => {
     process.env.NEXT_PUBLIC_BASE_ENDPOINT
   }image.php?test.jpg&width=${width}&height=${height}${
     cropratio ? `&cropratio=${cropratio}` : ""
-  }&image=/uploads/files/${endpoint}`;
+  }&image=/wdev_wannes/eindwerk/uploads/files/${endpoint}`;
 };
 
 //----------------------------------------------- VALIDATION ---------------------------------

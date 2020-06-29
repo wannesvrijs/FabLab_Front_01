@@ -1,5 +1,4 @@
 import Layout from "../components/Layout";
-import Link from "next/link";
 import axios from "axios";
 import Nieuws from "../components/main/Nieuws";
 import Event from "../components/main/Event";

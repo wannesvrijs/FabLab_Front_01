@@ -6,6 +6,8 @@
 
 @import "./partials/mixins";
 
+@import "~bootstrap/scss/bootstrap";
+
 h1 {
   @include titel;
 }
@@ -1448,4 +1450,8 @@ input[type="checkbox"] {
       width: $c-4;
     }
   }
+}
+
+button:hover {
+  cursor: pointer !important;
 }
