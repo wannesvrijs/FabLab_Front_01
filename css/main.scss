@@ -6,8 +6,6 @@
 
 @import "./partials/mixins";
 
-@import "~bootstrap/scss/bootstrap";
-
 h1 {
   @include titel;
 }
@@ -1452,6 +1450,19 @@ input[type="checkbox"] {
   }
 }
 
+button {
+  a {
+    color: $wit !important;
+  }
+  span {
+    color: $wit !important;
+  }
+}
+
 button:hover {
   cursor: pointer !important;
+}
+
+a {
+  text-decoration: none !important;
 }
