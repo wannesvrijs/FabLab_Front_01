@@ -28,7 +28,7 @@ export default ({ fabmoment }) => {
   const formatDate = (datum) => {
     const d = new Date(datum);
     const date = d.toLocaleDateString("en-GB");
-    return date.split("/").join("–");
+    return date.split("/").splice(0, 2).join("-");
   };
 
   return (
@@ -46,17 +46,20 @@ export default ({ fabmoment }) => {
           />
         </div>
         <div className="fab-detail-content">
-          <h2>{fabmoment.fabTitel}</h2>
+          <h2>
+            {fabmoment.fabTitel} <span>{formatDate(fabmoment.fabDatum)}</span>
+          </h2>
           <p className="fab-detail-omschrijving">{fabmoment.fabOmschrijving}</p>
-          <p>{formatDate(fabmoment.fabDatum)}</p>
-          <p>materialen</p>
           <p>
+            <span>materialen</span>
             {fabmoment.fabMats.map((mat) => mat.fabmatMat.matNaam).join(", ")}
           </p>
-          <p>Technieken</p>
-          {fabmoment.fabMaches.map((mach) => (
-            <p>{mach.fabmachMcat.mcatNaam} </p>
-          ))}
+          <p>
+            <span>Technieken</span>
+            {fabmoment.fabMaches
+              .map((mach) => mach.fabmachMcat.mcatNaam)
+              .join(", ")}
+          </p>
         </div>
       </div>
     </>

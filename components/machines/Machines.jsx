@@ -60,7 +60,14 @@ export default ({ machinecat }) => {
                 machine.machBeschikbaar ? "in_stock" : "out_of_stock"
               }`}
             ></div>
-            <p>{machine.machNaam}</p>
+            <p>
+              {machine.machNaam}{" "}
+              {machine.machBeschikbaar ? (
+                ""
+              ) : (
+                <span className="error">(niet beschikbaar)</span>
+              )}
+            </p>
           </div>
         ))}
         <Link href={`machines/${machineCatData.id}/${machineCatData.slug}`}>

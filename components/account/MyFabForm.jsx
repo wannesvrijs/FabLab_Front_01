@@ -157,6 +157,7 @@ export default ({ setCreateNew }) => {
               Omschrijving
             </label>
             <TextareaAutosize
+              minRows="2"
               maxRows="10"
               id="omschrijving"
               name="fabOmschrijving"

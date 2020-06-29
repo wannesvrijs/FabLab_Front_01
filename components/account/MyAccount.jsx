@@ -56,7 +56,7 @@ export default ({ props: { inschrijvingen, machinerecht, userdata } }) => {
       </section>
 
       <h2 onClick={handleShowRechten}>Machinerecht</h2>
-      <section className="event account-event">
+      <section className="event account-event account-recht">
         {recht && (
           <div className="account-event-box">
             {machinerecht.map((mrecht, i) => (

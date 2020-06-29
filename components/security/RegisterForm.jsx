@@ -24,9 +24,11 @@ export default () => {
     axios
       .post(`${process.env.NEXT_PUBLIC_API_ENDPOINT}users`, credentials)
       .then((response) => {
+        console.log(response);
         Router.push(`/account/registreer/succes?e=${inputs.email}`);
       })
       .catch((error) => {
+        console.log(error);
         //reformat error response message to similar format as the errors-state {fieldname : errormesage, ...}
         if (error.response.status === 400) {
           let newViolationObject = {};
