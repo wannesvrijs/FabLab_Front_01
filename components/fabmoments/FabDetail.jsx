@@ -36,14 +36,18 @@ export default ({ fabmoment }) => {
       <div className="fabmoment-detail-container">
         <div className="fabmoment-carousel">
           {imgArray[arrayPosition]}
-          <MdKeyboardArrowLeft
-            className="carousel-prev"
-            onClick={() => changeImage(-1)}
-          />
-          <MdKeyboardArrowRight
-            className="carousel-next"
-            onClick={() => changeImage(1)}
-          />
+          {imgArray.length > 1 && (
+            <>
+              <MdKeyboardArrowLeft
+                className="carousel-prev"
+                onClick={() => changeImage(-1)}
+              />
+              <MdKeyboardArrowRight
+                className="carousel-next"
+                onClick={() => changeImage(1)}
+              />
+            </>
+          )}
         </div>
         <div className="fab-detail-content">
           <h2>
