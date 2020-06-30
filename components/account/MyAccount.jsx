@@ -66,10 +66,10 @@ export default ({ props: { inschrijvingen, machinerecht, userdata } }) => {
         )}
       </section>
 
-      <h2 onClick={handleShowInfo}>Mijn Details</h2>
-      {info && <MyInfo userdata={userdata} />}
+      {/* <h2 onClick={handleShowInfo}>Mijn Details</h2>
+      {info && <MyInfo userdata={userdata} />} */}
 
-      <a>
+      <a className="logggggg">
         <span onClick={logout}>Afmelden</span>
       </a>
     </>

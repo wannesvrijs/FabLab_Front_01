@@ -8,6 +8,7 @@ const initialState = {
   error: "",
   loading: false,
   data: [],
+  hasloaded: false,
 };
 
 /*********/
@@ -17,6 +18,7 @@ const LOADFABMOMENTS = "LOADFABMOMENTS";
 const SETFABMOMENTS = "SETFABMOMENTS";
 const ADDFABMOMENTS = "ADDFABMOMENTS";
 const ERRORFABMOMENTS = "ERRORFABMOMENTS";
+const HASLOADED = "HASLOADED";
 
 /*******************/
 /* ACTION CREATORS */
@@ -106,10 +108,17 @@ export const addCreatedFabmoments = (id) => async (dispatch) => {
       headers: { Authorization: `Bearer ${cookies.jwtToken}` },
     })
     .then((result) => {
+      dispatch(hasLoaded(true));
       dispatch(addFabmoments(result.data));
     })
+    .then(() => dispatch(hasLoaded(false)))
     .catch();
 };
+
+export const hasLoaded = (loaded) => ({
+  type: HASLOADED,
+  payload: loaded,
+});
 
 export const loadFabmoments = () => ({
   type: LOADFABMOMENTS,
@@ -153,12 +162,18 @@ export default (state = initialState, { type, payload }) => {
         error: "",
         loading: false,
         data: [payload, ...state.data],
+        hasloaded: true,
       };
     case ERRORFABMOMENTS:
       return {
         ...state,
         loading: false,
         error: payload,
+      };
+    case HASLOADED:
+      return {
+        ...state,
+        hasloaded: payload,
       };
     default:
       return state;

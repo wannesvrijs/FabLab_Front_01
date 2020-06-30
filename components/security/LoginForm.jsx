@@ -30,7 +30,6 @@ export default () => {
           sameSite: "lax",
         });
         dispatch(setUser(response.data.data));
-        console.log(response.data.data);
         Router.push("/account");
       })
       .catch((err) => {

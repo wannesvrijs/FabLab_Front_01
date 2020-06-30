@@ -51,15 +51,17 @@ export default ({ setCreateNew }) => {
     setError("Vul alle velden correct in.");
   }, [myFabmoments.error]);
 
-  // setErrors({});
-  // setInputs({});
-  // setError("");
-  // setValidFiles([]);
-  // setUnsupportedFiles([]);
-  // setViolations({});
-  // setCreateNew(false);
-
-  useEffect(() => {}, [myFabmoments.data]);
+  useEffect(() => {
+    if (myFabmoments.hasloaded == true) {
+      setErrors({});
+      setInputs({});
+      setError("");
+      setValidFiles([]);
+      setUnsupportedFiles([]);
+      setViolations({});
+      setCreateNew(false);
+    }
+  }, [myFabmoments.data]);
 
   //handle the label class for inputstyling
   //handle deleting the violation

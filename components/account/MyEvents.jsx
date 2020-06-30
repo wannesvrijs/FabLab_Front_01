@@ -33,7 +33,6 @@ export default ({ inschrijving }) => {
       );
       setIsDeleted(true);
     } catch (error) {
-      console.log(error);
       setIsDeleted(false);
     }
   };
