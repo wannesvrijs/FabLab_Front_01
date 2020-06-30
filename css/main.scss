@@ -1524,3 +1524,9 @@ button:hover {
 a {
   text-decoration: none !important;
 }
+
+.checkbox {
+  input {
+    padding: 0;
+  }
+}
