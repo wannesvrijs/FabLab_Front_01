@@ -104,7 +104,7 @@ export default ({ inschrijving }) => {
                   src={
                     inschrijving.insEve.eveImgPad
                       ? imgPrefix(
-                          `events/images/${event.eveImgPad}`,
+                          `events/images/${inschrijving.insEve.eveImgPad}`,
                           800,
                           800,
                           "16.1:10"
